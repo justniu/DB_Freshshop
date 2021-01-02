@@ -1,5 +1,6 @@
 package com.example.demo.Provider;
 
+import com.example.demo.Entities.PurchaseDetail;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.util.Map;
@@ -36,6 +37,41 @@ public class PurchaseDetailProvider {
                 }
                 if(param.get("stockSkuId") != null){
                     WHERE("STOCK_SKU_ID=#{stockSkuId}");
+                }
+            }
+        }.toString();
+    }
+
+    public String dynamicInsert(PurchaseDetail purchasedetail){
+        return new SQL(){
+            {
+                INSERT_INTO("purchase_detail");
+                if(purchasedetail.getId() != null){
+                    VALUES("ID", "#{id}");
+                }
+                if(purchasedetail.getOrderId() != null){
+                    VALUES("ORDER_ID", "#{orderId}");
+                }
+                if(purchasedetail.getProductId() != null){
+                    VALUES("PRODUCT_ID", "#{productId}");
+                }
+//                if(purchasedetail.getCounts() != null){
+//                    VALUES("COUNTS", "#{counts}");
+//                }
+//                if(purchasedetail.getPrice() != null){
+//                    VALUES("PRICE", "#{price}");
+//                }
+//                if(purchasedetail.getDiscount() != null){
+//                    VALUES("DISCOUNT", "#{discount}");
+//                }
+//                if(purchasedetail.getSpend() != null){
+//                    VALUES("SPEND", "#{spend}");
+//                }
+                if(purchasedetail.getProductSkuCode() != null){
+                    VALUES("PRODUCT_SKU_CODE", "#{productSkuCode}");
+                }
+                if(purchasedetail.getStockSkuId() != null){
+                    VALUES("STOCK_SKU_ID", "#{stockSkuId}");
                 }
             }
         }.toString();

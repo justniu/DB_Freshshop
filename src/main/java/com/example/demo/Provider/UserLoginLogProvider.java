@@ -1,5 +1,6 @@
 package com.example.demo.Provider;
 
+import com.example.demo.Entities.UserLoginLog;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.util.Map;
@@ -28,4 +29,28 @@ public class UserLoginLogProvider {
             }
         }.toString();
     }
+
+    public String dynamicInsert(UserLoginLog userloginlog){
+        return new SQL(){
+            {
+                INSERT_INTO("user_login_log");
+                if(userloginlog.getId() != null){
+                    VALUES("ID", "#{id}");
+                }
+                if(userloginlog.getUserId() != null){
+                    VALUES("USER_ID", "#{userId}");
+                }
+                if(userloginlog.getLoginTime() != null){
+                    VALUES("LOGIN_TIME", "#{loginTime}");
+                }
+//                if(userloginlog.getLoginType() != null){
+//                    VALUES("LOGIN_TYPE", "#{loginType}");
+//                }
+                if(userloginlog.getLoginIp() != null){
+                    VALUES("LOGIN_IP", "#{loginIp}");
+                }
+            }
+        }.toString();
+    }
+
 }

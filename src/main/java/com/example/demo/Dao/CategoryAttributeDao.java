@@ -26,4 +26,7 @@ public interface CategoryAttributeDao {
     @SelectProvider(type=com.example.demo.Provider.CategoryAttributeProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<CategoryAttribute> query(Map<String, Object> param);
+
+    @InsertProvider(type = com.example.demo.Provider.CategoryAttributeProvider.class, method = "dynamicInsert")
+    int insert(CategoryAttribute categoryAttribute);
 }

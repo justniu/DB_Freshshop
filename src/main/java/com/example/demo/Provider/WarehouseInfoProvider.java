@@ -1,5 +1,6 @@
 package com.example.demo.Provider;
 
+import com.example.demo.Entities.WarehouseInfo;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.util.Map;
@@ -21,6 +22,26 @@ public class WarehouseInfoProvider {
                 }
                 if(param.get("warehouseAddressDetail") != null){
                     WHERE("WAREHOUSE_ADDRESS_DETAIL=#{warehouseAddressDetail}");
+                }
+            }
+        }.toString();
+    }
+
+    public String dynamicInsert(WarehouseInfo warehouseinfo){
+        return new SQL(){
+            {
+                INSERT_INTO("warehouse_info");
+                if(warehouseinfo.getWarehouseId() != null){
+                    VALUES("WAREHOUSE_ID", "#{warehouseId}");
+                }
+                if(warehouseinfo.getWarehouseName() != null){
+                    VALUES("WAREHOUSE_NAME", "#{warehouseName}");
+                }
+//                if(warehouseinfo.getWarehouseCapacity() != null){
+//                    VALUES("WAREHOUSE_CAPACITY", "#{warehouseCapacity}");
+//                }
+                if(warehouseinfo.getWarehouseAddressDetail() != null){
+                    VALUES("WAREHOUSE_ADDRESS_DETAIL", "#{warehouseAddressDetail}");
                 }
             }
         }.toString();

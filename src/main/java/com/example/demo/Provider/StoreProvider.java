@@ -1,5 +1,6 @@
 package com.example.demo.Provider;
 
+import com.example.demo.Entities.Store;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.util.Map;
@@ -21,6 +22,26 @@ public class StoreProvider {
                 }
                 if(param.get("phone") != null){
                     WHERE("PHONE=#{phone}");
+                }
+            }
+        }.toString();
+    }
+
+    public String dynamicInsert(Store store){
+        return new SQL(){
+            {
+                INSERT_INTO("store");
+                if(store.getId() != null){
+                    VALUES("ID", "#{id}");
+                }
+                if(store.getName() != null){
+                    VALUES("NAME", "#{name}");
+                }
+                if(store.getAddress() != null){
+                    VALUES("ADDRESS", "#{address}");
+                }
+                if(store.getPhone() != null){
+                    VALUES("PHONE", "#{phone}");
                 }
             }
         }.toString();

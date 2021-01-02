@@ -1,5 +1,6 @@
 package com.example.demo.Provider;
 
+import com.example.demo.Entities.ProductCategory;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.jdbc.SQL;
 
@@ -25,6 +26,38 @@ public class ProductCategoryProvider {
                 }
                 if (param.get("keywords") != null) {
                     WHERE("keywords=#{keywords}");
+                }
+            }
+        }.toString();
+    }
+
+    public String dynamicInsert(ProductCategory productcategory){
+        return new SQL(){
+            {
+                INSERT_INTO("product_category");
+                if(productcategory.getProductCategoryId() != null){
+                    VALUES("PRODUCT_CATEGORY_ID", "#{productCategoryId}");
+                }
+                if(productcategory.getParentId() != null){
+                    VALUES("PARENT_ID", "#{parentId}");
+                }
+                if(productcategory.getName() != null){
+                    VALUES("NAME", "#{name}");
+                }
+                if(productcategory.getCategoryLevel() != null){
+                    VALUES("CATEGORY_LEVEL", "#{categoryLevel}");
+                }
+//                if(productcategory.getProductCount() != null){
+//                    VALUES("PRODUCT_COUNT", "#{productCount}");
+//                }
+                if(productcategory.getProductUnit() != null){
+                    VALUES("PRODUCT_UNIT", "#{productUnit}");
+                }
+                if(productcategory.getKeywords() != null){
+                    VALUES("KEYWORDS", "#{keywords}");
+                }
+                if(productcategory.getDescription() != null){
+                    VALUES("DESCRIPTION", "#{description}");
                 }
             }
         }.toString();

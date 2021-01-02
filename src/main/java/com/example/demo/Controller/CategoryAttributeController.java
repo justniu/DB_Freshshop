@@ -27,7 +27,7 @@ public class CategoryAttributeController {
         categoryAttribute.setProductAttributeId("2");
         categoryAttribute.setProductCategoryId("1");
         categoryAttribute.setId("1001");
-        categoryAttributeDao.addCategoryAttr(categoryAttribute);
+        categoryAttributeDao.insert(categoryAttribute);
         return "category_attr";
     }
 

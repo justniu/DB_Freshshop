@@ -1,5 +1,6 @@
 package com.example.demo.Provider;
 
+import com.example.demo.Entities.UserRegisterLog;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.util.Map;
@@ -19,6 +20,23 @@ public class UserRegisterLogProvider {
                 if(param.get("userType") != null){
                     WHERE("USER_TYPE=#{userType}");
                 }
+            }
+        }.toString();
+    }
+
+    public String dynamicInsert(UserRegisterLog userregisterlog){
+        return new SQL(){
+            {
+                INSERT_INTO("user_register_log");
+                if(userregisterlog.getUserId() != null){
+                    VALUES("USER_ID", "#{userId}");
+                }
+                if(userregisterlog.getCreateTime() != null){
+                    VALUES("CREATE_TIME", "#{createTime}");
+                }
+//                if(userregisterlog.getUserType() != null){
+//                    VALUES("USER_TYPE", "#{userType}");
+//                }
             }
         }.toString();
     }

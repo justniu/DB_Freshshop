@@ -3,10 +3,12 @@ package com.example.demo.test;
 import com.example.demo.Dao.UserDao;
 import com.example.demo.Entities.*;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import lombok.SneakyThrows;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.util.List;
 
@@ -78,20 +80,21 @@ public class UserTest {
         return stringBuilder.toString();
     }
 
-    public static String getSelWithParams(Class origin){
+    @SneakyThrows
+    public static String getDynamicInsert(Class origin){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(" public String selectWithParams(Map<String, Object> param){\n" +
+        stringBuilder.append(" public String dynamicInsert("+origin.getSimpleName()+" "+origin.getSimpleName().toLowerCase()+"){\n" +
                 "        return new SQL(){\n" +
                 "            {\n");
-        stringBuilder.append("SELECT(\"*\");\n");
-        stringBuilder.append("FROM(\""+new PropertyNamingStrategy.SnakeCaseStrategy().translate(origin.getSimpleName())+"\");\n");
+        stringBuilder.append("INSERT_INTO(\""+new PropertyNamingStrategy.SnakeCaseStrategy().translate(origin.getSimpleName())+"\");\n");
         for (Field field : origin.getDeclaredFields()) {
             String property = field.getName();
             //映射关系：对象属性(驼峰)->数据库字段(下划线)
             String column = new PropertyNamingStrategy.SnakeCaseStrategy().translate(field.getName()).toUpperCase();
-            stringBuilder.append(String.format("if(param.get(\"%s\") != null){\n" +
-                    "                    WHERE(\"%s=#{%s}\");\n" +
-                    "                }\n", property, column, property));
+            PropertyDescriptor propertyDescriptor = new PropertyDescriptor(property, origin);
+            stringBuilder.append(String.format("if("+ origin.getSimpleName().toLowerCase()+"."+propertyDescriptor.getReadMethod().getName()+"() != null){\n" +
+                    "                    VALUES(\"%s\", \"#{%s}\");\n" +
+                    "                }\n", column, property));
         }
         stringBuilder.append("  }\n" +
                 "        }.toString();\n}\n");
@@ -99,8 +102,8 @@ public class UserTest {
     }
 
     @Test
-    public void getSel(){
-        System.out.println(getSelWithParams(WarehouseInfo.class));
+    public void getIns(){
+        System.out.println(getDynamicInsert(WarehouseInfo.class));
     }
 
 
