@@ -1,16 +1,18 @@
 package com.freshshop.demo.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Document(collection = "userComment")
 public class Comment {
 	@Id
 	private String id;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+//	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(timezone="GMT+8",pattern="yyyy-MM-dd")
 	private Date commentTime;
 	private int commentScore;
 	private String commentContent;
@@ -39,5 +41,13 @@ public class Comment {
 	public void setCommentContent(String commentContent) {
 		this.commentContent = commentContent;
 	}
-	
+//	@Override
+//	public String toString() {
+//		return "{" +
+//              "id=" + id +
+//              ", Time='" + commentTime + '\'' +
+//              ", Score='" + commentScore + '\'' + 
+//              ", Content='" + commentContent + '\'' +
+//              '}';
+//	}
 }
