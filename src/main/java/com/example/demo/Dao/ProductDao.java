@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Mapper
@@ -34,4 +35,8 @@ public interface ProductDao {
     @Insert("insert into product ( \"PRODUCT_ID\",  \"PRODUCT_CATEGORY_ID\",  \"UPDATE_TIME\",  \"NAME\",  \"DELETE_STATUS\",  \"PUBLISH_STATUS\",  \"NEW_STATUS\",  \"SALE\",  \"PRODUCT_PRICE\",  \"PROMOTION_PRICE\",  \"STOCK\",  \"LOW_STOCK\",  \"UNIT\",  \"WEIGHT\",  \"PROMOTION_TYPE\",  \"PROMOTION_START_TIME\",  \"PROMOTION_END_TIME\") values(#{productId}, #{productCategoryId}, #{updateTime}, #{name}, #{deleteStatus}, #{publishStatus}, #{newStatus}, #{sale}, #{productPrice}, #{promotionPrice}, #{stock}, #{lowStock}, #{unit}, #{weight}, #{promotionType}, #{promotionStartTime}, #{promotionEndTime})"
     )
     int addProduct(Product product);
+
+    @SelectProvider(type=com.example.demo.Provider.ProductProvider.class, method = "selectWithParams")
+    @ResultMap("resultMap")
+    List<Product> query(Map<String, Object> param);
 }

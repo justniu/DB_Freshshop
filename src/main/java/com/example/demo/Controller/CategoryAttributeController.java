@@ -4,12 +4,10 @@ package com.example.demo.Controller;
 import com.example.demo.Dao.CategoryAttributeDao;
 import com.example.demo.Entities.CategoryAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/category", method = RequestMethod.GET)
@@ -31,5 +29,10 @@ public class CategoryAttributeController {
         categoryAttribute.setId("1001");
         categoryAttributeDao.addCategoryAttr(categoryAttribute);
         return "category_attr";
+    }
+
+    @GetMapping("/list")
+    public List<CategoryAttribute> query(@RequestParam Map<String, Object> param){
+        return categoryAttributeDao.query(param);
     }
 }

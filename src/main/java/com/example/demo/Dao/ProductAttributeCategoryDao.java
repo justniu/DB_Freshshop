@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Mapper
@@ -21,4 +22,8 @@ public interface ProductAttributeCategoryDao {
     @Insert("insert into product_attribute_category ( \"ID\",  \"PRODUCT_ID\",  \"ATTRIBUTE_COUNT\",  \"PARAM_COUNT\") values(#{id}, #{productId}, #{attributeCount}, #{paramCount})"
     )
     int addProductAttrCate(ProductAttributeCategory productAttributeCategory);
+
+    @SelectProvider(type=com.example.demo.Provider.ProductAttributeCategoryProvider.class, method = "selectWithParams")
+    @ResultMap("resultMap")
+    List<ProductAttributeCategory> query(Map<String, Object> param);
 }

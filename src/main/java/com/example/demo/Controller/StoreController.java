@@ -5,9 +5,11 @@ import com.example.demo.Entities.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/store")
@@ -30,5 +32,10 @@ public class StoreController {
     public List<Store> queryAll(){
         List<Store> stores = storeDao.queryAll();
         return stores;
+    }
+
+    @GetMapping("/list")
+    public List<Store> query(@RequestParam Map<String, Object> param){
+        return storeDao.query(param);
     }
 }

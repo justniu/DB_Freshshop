@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Mapper
@@ -20,4 +21,8 @@ public interface WarehouseInfoDao {
     @Insert("insert into warehouse_info ( \"WAREHOUSE_ID\",  \"WAREHOUSE_NAME\",  \"WAREHOUSE_CAPACITY\",  \"WAREHOUSE_ADDRESS_DETAIL\") values(#{warehouseId}, #{warehouseName}, #{warehouseCapacity}, #{warehouseAddressDetail})"
     )
     int addWarehouseInfo(WarehouseInfo warehouseInfo);
+
+    @SelectProvider(type=com.example.demo.Provider.WarehouseInfoProvider.class, method = "selectWithParams")
+    @ResultMap("resultMap")
+    List<WarehouseInfo> query(Map<String, Object> param);
 }

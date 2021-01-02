@@ -22,4 +22,6 @@ public class UserController {
         List<User > userList = userDao.queryAllUsers();
         return userList;
     }
+
+
 }

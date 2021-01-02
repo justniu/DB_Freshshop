@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Mapper
@@ -24,4 +25,8 @@ public interface StockLogDao {
     @Insert("insert into stock_log ( \"ID\",  \"REPOSITORY_ID\",  \"PRODUCT_ID\",  \"SKU_CODE\",  \"TIME\",  \"COUNTS\",  \"LOG_TYPE\") values(#{id}, #{repositoryId}, #{productId}, #{skuCode}, #{time}, #{counts}, #{logType})"
     )
     int addStockLog(StockLog stockLog);
+
+    @SelectProvider(type=com.example.demo.Provider.StockLogProvider.class, method = "selectWithParams")
+    @ResultMap("resultMap")
+    List<StockLog> query(Map<String, Object> param);
 }

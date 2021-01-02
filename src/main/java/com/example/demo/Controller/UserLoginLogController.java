@@ -7,10 +7,12 @@ import com.example.demo.Entities.UserLoginLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/login")
@@ -35,5 +37,10 @@ public class UserLoginLogController {
     public List<UserLoginLog> queryAll(){
         List<UserLoginLog> userLoginLogs = userLoginLogDao.queryAll();
         return userLoginLogs;
+    }
+
+    @GetMapping("/list")
+    public List<UserLoginLog> query(@RequestParam Map<String, Object> param){
+        return userLoginLogDao.query(param);
     }
 }

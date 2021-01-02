@@ -5,9 +5,11 @@ import com.example.demo.Entities.SkuStock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/skustock")
@@ -31,5 +33,10 @@ public class SkuStockController {
     public List<SkuStock> queryAll(){
         List<SkuStock> skuStocks = skuStockDao.queryAll();
         return skuStocks;
+    }
+
+    @GetMapping("/list")
+    public List<SkuStock> query(@RequestParam Map<String, Object> param){
+        return skuStockDao.query(param);
     }
 }

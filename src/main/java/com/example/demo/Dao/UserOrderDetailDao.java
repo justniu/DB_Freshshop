@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Component
@@ -27,4 +28,8 @@ public interface UserOrderDetailDao {
     @Insert("insert into user_order_detail ( \"USER_ORDER_DETAIL_ID\",  \"USER_ORDER_DETAIL_ORDER_ID\",  \"USER_ORDER_DETAIL_PRODUCT_ID\",  \"USER_ORDER_DETAIL_NUMBER\",  \"USER_ORDER_DETAIL_PRICE\",  \"USER_ORDER_DETAIL_DISCOUNT\",  \"USER_ORDER_DETAIL_SPEND\",  \"PRODUCT_SKU_CODE\",  \"STOCK_SKU_ID\") values(#{userOrderDetailId}, #{userOrderDetailOrderId}, #{userOrderDetailProductId}, #{userOrderDetailNumber}, #{userOrderDetailPrice}, #{userOrderDetailDiscount}, #{userOrderDetailSpend}, #{productSkuCode}, #{stockSkuId})"
     )
     int addUserOrderDetail(UserOrderDetail userOrderDetail);
+
+    @SelectProvider(type=com.example.demo.Provider.UserOrderDetailProvider.class, method = "selectWithParams")
+    @ResultMap("resultMap")
+    List<UserOrderDetail> query(Map<String, Object> param);
 }

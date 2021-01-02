@@ -3,13 +3,11 @@ package com.example.demo.Controller;
 import com.example.demo.Dao.ProductDao;
 import com.example.demo.Entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/product", method = RequestMethod.GET)
@@ -45,5 +43,9 @@ public class ProductController {
     public List<Product> queryAll(){
         List<Product> products = productDao.queryAll();
         return products;
+    }
+    @GetMapping("/list")
+    public List<Product> query(@RequestParam Map<String, Object> param){
+        return productDao.query(param);
     }
 }

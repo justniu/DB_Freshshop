@@ -3,10 +3,10 @@ package com.example.demo.Controller;
 import com.example.demo.Dao.WarehouseInfoDao;
 import com.example.demo.Entities.WarehouseInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/warehouse")
@@ -23,5 +23,10 @@ public class WarehouseInfoController {
         warehouseInfo.setWarehouseAddressDetail("广州市花都区狮岭镇康政西路11号");
         warehouseInfoDao.addWarehouseInfo(warehouseInfo);
         return "warehouseinfo!";
+    }
+
+    @GetMapping("/list")
+    public List<WarehouseInfo> query(@RequestParam Map<String, Object> param){
+        return warehouseInfoDao.query(param);
     }
 }

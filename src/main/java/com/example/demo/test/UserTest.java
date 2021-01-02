@@ -78,9 +78,35 @@ public class UserTest {
         return stringBuilder.toString();
     }
 
+    public static String getSelWithParams(Class origin){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(" public String selectWithParams(Map<String, Object> param){\n" +
+                "        return new SQL(){\n" +
+                "            {\n");
+        stringBuilder.append("SELECT(\"*\");\n");
+        stringBuilder.append("FROM(\""+new PropertyNamingStrategy.SnakeCaseStrategy().translate(origin.getSimpleName())+"\");\n");
+        for (Field field : origin.getDeclaredFields()) {
+            String property = field.getName();
+            //映射关系：对象属性(驼峰)->数据库字段(下划线)
+            String column = new PropertyNamingStrategy.SnakeCaseStrategy().translate(field.getName()).toUpperCase();
+            stringBuilder.append(String.format("if(param.get(\"%s\") != null){\n" +
+                    "                    WHERE(\"%s=#{%s}\");\n" +
+                    "                }\n", property, column, property));
+        }
+        stringBuilder.append("  }\n" +
+                "        }.toString();\n}\n");
+        return stringBuilder.toString();
+    }
+
+    @Test
+    public void getSel(){
+        System.out.println(getSelWithParams(WarehouseInfo.class));
+    }
+
+
     @Test
     public void getInsert(){
-        System.out.println(getInsertStr(CategoryAttribute.class));
+        System.out.println(getInsertStr(ProductCategory.class));
     }
 
     @Test
@@ -90,7 +116,7 @@ public class UserTest {
 
     @Test
     public void getKeyStr(){
-        System.out.println(getKeyStr(User.class));
+        System.out.println(getKeyStr(Product.class));
     }
 
     @Test

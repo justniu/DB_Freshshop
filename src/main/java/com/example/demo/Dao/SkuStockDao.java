@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Mapper
@@ -23,4 +24,7 @@ public interface SkuStockDao {
     )
     int addSkuStock(SkuStock skuStock);
 
+    @SelectProvider(type=com.example.demo.Provider.SkuStockProvider.class, method = "selectWithParams")
+    @ResultMap("resultMap")
+    List<SkuStock> query(Map<String, Object> param);
 }

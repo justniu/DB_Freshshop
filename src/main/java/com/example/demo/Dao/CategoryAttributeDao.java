@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Mapper
@@ -21,4 +22,8 @@ public interface CategoryAttributeDao {
     @Insert("insert into category_attribute ( \"ID\",  \"PRODUCT_CATEGORY_ID\",  \"PRODUCT_ATTRIBUTE_ID\") values(#{id}, #{productCategoryId}, #{productAttributeId})"
     )
     int addCategoryAttr(CategoryAttribute categoryAttribute);
+
+    @SelectProvider(type=com.example.demo.Provider.CategoryAttributeProvider.class, method = "selectWithParams")
+    @ResultMap("resultMap")
+    List<CategoryAttribute> query(Map<String, Object> param);
 }

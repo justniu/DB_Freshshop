@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Mapper
@@ -20,4 +21,8 @@ public interface StoreDao {
 
     @Insert("insert into store ( \"ID\",  \"NAME\",  \"ADDRESS\",  \"PHONE\") values(#{id}, #{name}, #{address}, #{phone})")
     int addStore(Store store);
+
+    @SelectProvider(type=com.example.demo.Provider.StoreProvider.class, method = "selectWithParams")
+    @ResultMap("resultMap")
+    List<Store> query(Map<String, Object> param);
 }

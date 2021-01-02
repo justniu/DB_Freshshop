@@ -40,4 +40,6 @@ public interface UserDao {
 
     @Delete("delete from customers where \"user_id\"=#{userId}")
     int deleteUser(String id);
+
+
 }

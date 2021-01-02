@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Component
@@ -23,4 +24,8 @@ public interface UserLoginLogDao {
     @Insert("insert into user_login_log ( \"ID\",  \"USER_ID\",  \"LOGIN_TIME\",  \"LOGIN_TYPE\",  \"LOGIN_IP\") values(#{id}, #{userId}, #{loginTime}, #{loginType}, #{loginIp})"
     )
     int addUserLoginLog(UserLoginLog userLoginLog);
+
+    @SelectProvider(type=com.example.demo.Provider.UserLoginLogProvider.class, method = "selectWithParams")
+    @ResultMap("resultMap")
+    List<UserLoginLog> query(Map<String, Object> param);
 }

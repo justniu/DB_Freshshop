@@ -7,9 +7,11 @@ import com.example.demo.Entities.UserOrderDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/userOrder")
@@ -37,5 +39,10 @@ public class UserOrderDetailController {
     public List<UserOrderDetail> queryAll(){
         List<UserOrderDetail> userOrderDetails = userOrderDetailDao.queryAll();
         return userOrderDetails;
+    }
+
+    @GetMapping("/list")
+    public List<UserOrderDetail> query(@RequestParam Map<String, Object> param){
+        return userOrderDetailDao.query(param);
     }
 }
