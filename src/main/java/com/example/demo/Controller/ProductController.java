@@ -1,11 +1,49 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Dao.ProductDao;
+import com.example.demo.Entities.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/product", method = RequestMethod.GET)
 public class ProductController {
+
+    @Autowired
+    private ProductDao productDao;
+
+    @GetMapping
+    public String insert(){
+        Product product = new Product();
+        product.setProductId("4");
+        product.setProductPrice(20);
+        product.setProductCategoryId("14");
+        product.setDeleteStatus(0);
+        product.setName("好味道");
+        product.setLowStock(2);
+        product.setNewStatus(1);
+        product.setPromotionType(0);
+        product.setPromotionStartTime(new Date());
+        product.setPromotionEndTime(new Date());
+        product.setPromotionPrice(15);
+        product.setPublishStatus(1);
+        product.setSale(1200);
+        product.setUnit("kg");
+        product.setWeight(1);
+        product.setStock(100);
+        product.setUpdateTime(new Date());
+        productDao.addProduct(product);
+        return "product";
+    }
+    @GetMapping("/lists")
+    public List<Product> queryAll(){
+        List<Product> products = productDao.queryAll();
+        return products;
+    }
 }

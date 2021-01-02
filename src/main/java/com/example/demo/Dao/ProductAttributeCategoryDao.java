@@ -1,13 +1,13 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.ProductAttributeCategory;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
+@Mapper
 public interface ProductAttributeCategoryDao {
     @Select("select * from product_attribute_category")
     @Results(id="resultMap", value = {
@@ -18,7 +18,7 @@ public interface ProductAttributeCategoryDao {
     })
     List<ProductAttributeCategory> queryAll();
 
-    @Insert("insert into product_attribute_category ( \"id\",  \"product_id\",  \"attribute_count\",  \"param_count\") values(#{id}, #{productId}, #{attributeCount}, #{paramCount})"
+    @Insert("insert into product_attribute_category ( \"ID\",  \"PRODUCT_ID\",  \"ATTRIBUTE_COUNT\",  \"PARAM_COUNT\") values(#{id}, #{productId}, #{attributeCount}, #{paramCount})"
     )
     int addProductAttrCate(ProductAttributeCategory productAttributeCategory);
 }

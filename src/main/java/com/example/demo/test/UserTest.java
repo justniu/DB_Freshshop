@@ -62,7 +62,7 @@ public class UserTest {
         for (Field field : origin.getDeclaredFields()) {
             String property = field.getName();
             //映射关系：对象属性(驼峰)->数据库字段(下划线)
-            String column = new PropertyNamingStrategy.SnakeCaseStrategy().translate(field.getName());
+            String column = new PropertyNamingStrategy.SnakeCaseStrategy().translate(field.getName()).toUpperCase();
             stringBuilder.append(String.format(" \\\"%s\\\", ", column));
         }
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
@@ -80,7 +80,7 @@ public class UserTest {
 
     @Test
     public void getInsert(){
-        System.out.println(getInsertStr(WarehouseInfo.class));
+        System.out.println(getInsertStr(CategoryAttribute.class));
     }
 
     @Test
@@ -109,4 +109,5 @@ public class UserTest {
             System.out.println(user);
         }
     }
+
 }

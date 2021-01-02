@@ -1,3 +1,7 @@
+# 问题记录
+所有userid->varchar20改为50  
+userorderdetailorderid: 20->50
+
 # 更新内容
 基于user（对应表为customers）表的增删改查单元测试，其余Dao的insert方法。  
 

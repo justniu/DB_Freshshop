@@ -18,7 +18,7 @@ public interface CategoryAttributeDao {
     })
     List<CategoryAttribute> queryAll();
 
-    @Insert("insert into category_attribute ( \"id\",  \"product_category_id\",  \"product_attribute_id\") values(#{id}, #{productCategoryId}, #{productAttributeId})"
+    @Insert("insert into category_attribute ( \"ID\",  \"PRODUCT_CATEGORY_ID\",  \"PRODUCT_ATTRIBUTE_ID\") values(#{id}, #{productCategoryId}, #{productAttributeId})"
     )
     int addCategoryAttr(CategoryAttribute categoryAttribute);
 }

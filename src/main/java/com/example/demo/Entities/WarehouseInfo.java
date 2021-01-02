@@ -7,6 +7,6 @@ import lombok.Data;
 public class WarehouseInfo {
     private String warehouseId;
     private String warehouseName;
-    private Double warehouseCapacity;
+    private int warehouseCapacity;
     private String warehouseAddressDetail;
 }

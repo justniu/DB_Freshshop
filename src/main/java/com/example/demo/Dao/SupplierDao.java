@@ -1,13 +1,13 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.Supplier;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
+@Mapper
 public interface SupplierDao {
     @Select("select * from supplier")
     @Results(id="resultMap", value = {
@@ -23,7 +23,7 @@ public interface SupplierDao {
     })
     List<Supplier> queryAll();
 
-    @Insert("insert into supplier ( \"supplier_id\",  \"supplier_name\",  \"supplier_product_class_id\",  \"supplier_contact_name\",  \"supplier_tel\",  \"supplier_email\",  \"supplier_address_id\",  \"supplier_address_detail\",  \"supplier_remark\") values(#{supplierId}, #{supplierName}, #{supplierProductClassId}, #{supplierContactName}, #{supplierTel}, #{supplierEmail}, #{supplierAddressId}, #{supplierAddressDetail}, #{supplierRemark})"
+    @Insert("insert into supplier ( \"SUPPLIER_ID\",  \"SUPPLIER_NAME\",  \"SUPPLIER_PRODUCT_CLASS_ID\",  \"SUPPLIER_CONTACT_NAME\",  \"SUPPLIER_TEL\",  \"SUPPLIER_EMAIL\",  \"SUPPLIER_ADDRESS_ID\",  \"SUPPLIER_ADDRESS_DETAIL\",  \"SUPPLIER_REMARK\") values(#{supplierId}, #{supplierName}, #{supplierProductClassId}, #{supplierContactName}, #{supplierTel}, #{supplierEmail}, #{supplierAddressId}, #{supplierAddressDetail}, #{supplierRemark})"
     )
     int addSupplier(Supplier supplier);
 }

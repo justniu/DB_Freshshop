@@ -1,13 +1,13 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.Product;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
+@Mapper
 public interface ProductDao {
     @Select("select * from product")
     @Results(id="resultMap", value={
@@ -31,7 +31,7 @@ public interface ProductDao {
     })
     List<Product> queryAll();
 
-    @Insert("insert into product ( \"product_id\",  \"product_category_id\",  \"update_time\",  \"name\",  \"delete_status\",  \"publish_status\",  \"new_status\",  \"sale\",  \"product_price\",  \"promotion_price\",  \"stock\",  \"low_stock\",  \"unit\",  \"weight\",  \"promotion_type\",  \"promotion_start_time\",  \"promotion_end_time\") values(#{productId}, #{productCategoryId}, #{updateTime}, #{name}, #{deleteStatus}, #{publishStatus}, #{newStatus}, #{sale}, #{productPrice}, #{promotionPrice}, #{stock}, #{lowStock}, #{unit}, #{weight}, #{promotionType}, #{promotionStartTime}, #{promotionEndTime})"
+    @Insert("insert into product ( \"PRODUCT_ID\",  \"PRODUCT_CATEGORY_ID\",  \"UPDATE_TIME\",  \"NAME\",  \"DELETE_STATUS\",  \"PUBLISH_STATUS\",  \"NEW_STATUS\",  \"SALE\",  \"PRODUCT_PRICE\",  \"PROMOTION_PRICE\",  \"STOCK\",  \"LOW_STOCK\",  \"UNIT\",  \"WEIGHT\",  \"PROMOTION_TYPE\",  \"PROMOTION_START_TIME\",  \"PROMOTION_END_TIME\") values(#{productId}, #{productCategoryId}, #{updateTime}, #{name}, #{deleteStatus}, #{publishStatus}, #{newStatus}, #{sale}, #{productPrice}, #{promotionPrice}, #{stock}, #{lowStock}, #{unit}, #{weight}, #{promotionType}, #{promotionStartTime}, #{promotionEndTime})"
     )
     int addProduct(Product product);
 }

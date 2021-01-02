@@ -1,13 +1,14 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.UserLoginLog;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+
+@Component
+@Mapper
 public interface UserLoginLogDao {
     @Select("select * from user_login_log")
     @Results(id="resultMap", value = {
@@ -19,7 +20,7 @@ public interface UserLoginLogDao {
     })
     List<UserLoginLog> queryAll();
 
-    @Insert("insert into user_login_log ( \"id\",  \"user_id\",  \"login_time\",  \"login_type\",  \"login_ip\") values(#{id}, #{userId}, #{loginTime}, #{loginType}, #{loginIp})"
+    @Insert("insert into user_login_log ( \"ID\",  \"USER_ID\",  \"LOGIN_TIME\",  \"LOGIN_TYPE\",  \"LOGIN_IP\") values(#{id}, #{userId}, #{loginTime}, #{loginType}, #{loginIp})"
     )
     int addUserLoginLog(UserLoginLog userLoginLog);
 }

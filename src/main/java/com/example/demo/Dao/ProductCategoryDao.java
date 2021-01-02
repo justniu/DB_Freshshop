@@ -1,13 +1,13 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.ProductCategory;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
+@Mapper
 public interface ProductCategoryDao {
     @Select("select * from product_category")
     @Results(id="resultMap", value = {
@@ -22,7 +22,7 @@ public interface ProductCategoryDao {
     })
     List<ProductCategory> queryAll();
 
-    @Insert("insert into product_category ( \"product_category_id\",  \"parent_id\",  \"name\",  \"category_level\",  \"product_count\",  \"product_unit\",  \"keywords\",  \"description\") values(#{productCategoryId}, #{parentId}, #{name}, #{categoryLevel}, #{productCount}, #{productUnit}, #{keywords}, #{description})"
+    @Insert("insert into product_category ( \"PRODUCT_CATEGORY_ID\",  \"PARENT_ID\",  \"NAME\",  \"CATEGORY_LEVEL\",  \"PRODUCT_COUNT\",  \"PRODUCT_UNIT\",  \"KEYWORDS\",  \"DESCRIPTION\") values(#{productCategoryId}, #{parentId}, #{name}, #{categoryLevel}, #{productCount}, #{productUnit}, #{keywords}, #{description})"
     )
     int addProductCate(ProductCategory productCategory);
 }

@@ -1,13 +1,14 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.UserRegisterLog;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+
+@Component
+@Mapper
 public interface UserRegisterLogDao {
     @Select("select * from user_register_log")
     @Results(id="resultMap", value = {
@@ -17,7 +18,7 @@ public interface UserRegisterLogDao {
     })
     List<UserRegisterLog> queryAll();
 
-    @Insert("insert into user_register_log ( \"user_id\",  \"create_time\",  \"user_type\") values(#{userId}, #{createTime}, #{userType})"
+    @Insert("insert into user_register_log ( \"USER_ID\",  \"CREATE_TIME\",  \"USER_TYPE\") values(#{userId}, #{createTime}, #{userType})"
     )
     int addUserRegisterLog(UserRegisterLog userRegisterLog);
 }

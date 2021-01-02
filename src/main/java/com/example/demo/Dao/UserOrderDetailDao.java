@@ -1,13 +1,14 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.UserOrderDetail;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+
+@Component
+@Mapper
 public interface UserOrderDetailDao {
     @Select("select * from user_order_detail")
     @Results(id="resultMap", value = {
@@ -23,7 +24,7 @@ public interface UserOrderDetailDao {
     })
     List<UserOrderDetail> queryAll();
 
-    @Insert("insert into user_order_detail ( \"user_order_detail_id\",  \"user_order_detail_order_id\",  \"user_order_detail_product_id\",  \"user_order_detail_number\",  \"user_order_detail_price\",  \"user_order_detail_discount\",  \"user_order_detail_spend\",  \"product_sku_code\",  \"stock_sku_id\") values(#{userOrderDetailId}, #{userOrderDetailOrderId}, #{userOrderDetailProductId}, #{userOrderDetailNumber}, #{userOrderDetailPrice}, #{userOrderDetailDiscount}, #{userOrderDetailSpend}, #{productSkuCode}, #{stockSkuId})"
+    @Insert("insert into user_order_detail ( \"USER_ORDER_DETAIL_ID\",  \"USER_ORDER_DETAIL_ORDER_ID\",  \"USER_ORDER_DETAIL_PRODUCT_ID\",  \"USER_ORDER_DETAIL_NUMBER\",  \"USER_ORDER_DETAIL_PRICE\",  \"USER_ORDER_DETAIL_DISCOUNT\",  \"USER_ORDER_DETAIL_SPEND\",  \"PRODUCT_SKU_CODE\",  \"STOCK_SKU_ID\") values(#{userOrderDetailId}, #{userOrderDetailOrderId}, #{userOrderDetailProductId}, #{userOrderDetailNumber}, #{userOrderDetailPrice}, #{userOrderDetailDiscount}, #{userOrderDetailSpend}, #{productSkuCode}, #{stockSkuId})"
     )
     int addUserOrderDetail(UserOrderDetail userOrderDetail);
 }

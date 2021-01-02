@@ -1,13 +1,13 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.StockLog;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
+@Mapper
 public interface StockLogDao {
     @Select("select * from stock_log")
     @Results(id="resultMap", value = {
@@ -21,7 +21,7 @@ public interface StockLogDao {
     })
     List<StockLog> queryAll();
 
-    @Insert("insert into stock_log ( \"id\",  \"repository_id\",  \"product_id\",  \"sku_code\",  \"time\",  \"counts\",  \"log_type\") values(#{id}, #{repositoryId}, #{productId}, #{skuCode}, #{time}, #{counts}, #{logType})"
+    @Insert("insert into stock_log ( \"ID\",  \"REPOSITORY_ID\",  \"PRODUCT_ID\",  \"SKU_CODE\",  \"TIME\",  \"COUNTS\",  \"LOG_TYPE\") values(#{id}, #{repositoryId}, #{productId}, #{skuCode}, #{time}, #{counts}, #{logType})"
     )
     int addStockLog(StockLog stockLog);
 }

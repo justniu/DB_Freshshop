@@ -20,9 +20,6 @@ public class UserController {
     @GetMapping("/lists")
     public List<User> query(){
         List<User > userList = userDao.queryAllUsers();
-        for(User user:userList){
-            System.out.println(user);
-        }
         return userList;
     }
 }
