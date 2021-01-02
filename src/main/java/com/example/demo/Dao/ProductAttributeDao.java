@@ -1,6 +1,7 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.ProductAttribute;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -16,4 +17,8 @@ public interface ProductAttributeDao {
             @Result(property = "attType", column = "att_type"),
     })
     List<ProductAttribute> queryAll();
+
+    @Insert("insert into product_attribute ( \"id\",  \"product_attribute_category_id\",  \"name\",  \"att_type\") values(#{id}, #{productAttributeCategoryId}, #{name}, #{attType})"
+    )
+    int addProductAttr(ProductAttribute productAttribute);
 }

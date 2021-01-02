@@ -1,6 +1,7 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.SkuStock;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -17,5 +18,9 @@ public interface SkuStockDao {
             @Result(property = "id", column = "id"),
     })
     List<SkuStock> queryAll();
+
+    @Insert("insert into sku_stock ( \"sku_stock\",  \"stock\",  \"low_stock\",  \"repository_id\",  \"id\") values(#{skuStock}, #{stock}, #{lowStock}, #{repositoryId}, #{id})"
+    )
+    int addSkuStock(SkuStock skuStock);
 
 }

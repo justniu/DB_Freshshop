@@ -2,10 +2,7 @@ package com.example.demo.Dao;
 
 
 import com.example.demo.Entities.CategoryAttribute;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,4 +17,8 @@ public interface CategoryAttributeDao {
             @Result(property = "productAttributeId", column = "product_attribute_id"),
     })
     List<CategoryAttribute> queryAll();
+
+    @Insert("insert into category_attribute ( \"id\",  \"product_category_id\",  \"product_attribute_id\") values(#{id}, #{productCategoryId}, #{productAttributeId})"
+    )
+    int addCategoryAttr(CategoryAttribute categoryAttribute);
 }

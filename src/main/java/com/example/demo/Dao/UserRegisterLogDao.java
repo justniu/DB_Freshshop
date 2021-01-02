@@ -1,6 +1,7 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.UserRegisterLog;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -15,4 +16,8 @@ public interface UserRegisterLogDao {
             @Result(property = "userType", column = "user_type"),
     })
     List<UserRegisterLog> queryAll();
+
+    @Insert("insert into user_register_log ( \"user_id\",  \"create_time\",  \"user_type\") values(#{userId}, #{createTime}, #{userType})"
+    )
+    int addUserRegisterLog(UserRegisterLog userRegisterLog);
 }

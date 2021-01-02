@@ -1,6 +1,7 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.UserOrderDetail;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -21,4 +22,8 @@ public interface UserOrderDetailDao {
             @Result(property = "stockSkuId", column = "stock_sku_id"),
     })
     List<UserOrderDetail> queryAll();
+
+    @Insert("insert into user_order_detail ( \"user_order_detail_id\",  \"user_order_detail_order_id\",  \"user_order_detail_product_id\",  \"user_order_detail_number\",  \"user_order_detail_price\",  \"user_order_detail_discount\",  \"user_order_detail_spend\",  \"product_sku_code\",  \"stock_sku_id\") values(#{userOrderDetailId}, #{userOrderDetailOrderId}, #{userOrderDetailProductId}, #{userOrderDetailNumber}, #{userOrderDetailPrice}, #{userOrderDetailDiscount}, #{userOrderDetailSpend}, #{productSkuCode}, #{stockSkuId})"
+    )
+    int addUserOrderDetail(UserOrderDetail userOrderDetail);
 }

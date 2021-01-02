@@ -1,6 +1,7 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.Product;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -29,4 +30,8 @@ public interface ProductDao {
             @Result(property = "promotionEndTime", column = "promotion_end_time"),
     })
     List<Product> queryAll();
+
+    @Insert("insert into product ( \"product_id\",  \"product_category_id\",  \"update_time\",  \"name\",  \"delete_status\",  \"publish_status\",  \"new_status\",  \"sale\",  \"product_price\",  \"promotion_price\",  \"stock\",  \"low_stock\",  \"unit\",  \"weight\",  \"promotion_type\",  \"promotion_start_time\",  \"promotion_end_time\") values(#{productId}, #{productCategoryId}, #{updateTime}, #{name}, #{deleteStatus}, #{publishStatus}, #{newStatus}, #{sale}, #{productPrice}, #{promotionPrice}, #{stock}, #{lowStock}, #{unit}, #{weight}, #{promotionType}, #{promotionStartTime}, #{promotionEndTime})"
+    )
+    int addProduct(Product product);
 }

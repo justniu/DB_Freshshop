@@ -13,7 +13,7 @@ public class User {
     private String userEmail;
     private String userZipCode;
     private String userAddressDetail;
-    private String usertype;
+    private int userType;
     private Date userRegisterTime;
     private String realName;
 }

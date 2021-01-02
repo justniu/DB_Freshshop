@@ -1,6 +1,7 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.WarehouseInfo;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -15,4 +16,8 @@ public interface WarehouseInfoDao {
             @Result(property = "userType", column = "user_type"),
     })
     List<WarehouseInfo> queryAll();
+
+    @Insert("insert into warehouse_info ( \"warehouse_id\",  \"warehouse_name\",  \"warehouse_capacity\",  \"warehouse_address_detail\") values(#{warehouseId}, #{warehouseName}, #{warehouseCapacity}, #{warehouseAddressDetail})"
+    )
+    int addWarehouseInfo(WarehouseInfo warehouseInfo);
 }
