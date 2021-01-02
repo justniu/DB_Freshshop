@@ -1,13 +1,11 @@
 package com.freshshop.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.freshshop.demo.entity.Comment;
 import com.freshshop.demo.service.CommentService;
+import com.freshshop.demo.utils.R;
 
 @RestController
 public class CommentController {
@@ -15,8 +13,7 @@ public class CommentController {
 	CommentService commentService;
 	
 	@GetMapping("/comments")
-	public List<Comment> comments() {
-		List<Comment> comments = commentService.getAllComments();
-		return comments;
+	public R comments() {
+		return R.ok().data("items", commentService.getAllComments());
 	}
 }
