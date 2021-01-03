@@ -55,18 +55,18 @@ public class PurchaseDetailProvider {
                 if(purchasedetail.getProductId() != null){
                     VALUES("PRODUCT_ID", "#{productId}");
                 }
-//                if(purchasedetail.getCounts() != null){
-//                    VALUES("COUNTS", "#{counts}");
-//                }
-//                if(purchasedetail.getPrice() != null){
-//                    VALUES("PRICE", "#{price}");
-//                }
-//                if(purchasedetail.getDiscount() != null){
-//                    VALUES("DISCOUNT", "#{discount}");
-//                }
-//                if(purchasedetail.getSpend() != null){
-//                    VALUES("SPEND", "#{spend}");
-//                }
+                if(purchasedetail.getCounts() >=0){
+                    VALUES("COUNTS", "#{counts}");
+                }
+                if(purchasedetail.getPrice() >=0){
+                    VALUES("PRICE", "#{price}");
+                }
+                if(purchasedetail.getDiscount() >=0){
+                    VALUES("DISCOUNT", "#{discount}");
+                }
+                if(purchasedetail.getSpend() >=0){
+                    VALUES("SPEND", "#{spend}");
+                }
                 if(purchasedetail.getProductSkuCode() != null){
                     VALUES("PRODUCT_SKU_CODE", "#{productSkuCode}");
                 }
@@ -87,18 +87,18 @@ public class PurchaseDetailProvider {
                 if(purchasedetail.getProductId() != null){
                     SET("PRODUCT_ID=#{productId}");
                 }
-//                if(purchasedetail.getCounts() != null){
-//                    SET("COUNTS=#{counts}");
-//                }
-//                if(purchasedetail.getPrice() != null){
-//                    SET("PRICE=#{price}");
-//                }
-//                if(purchasedetail.getDiscount() != null){
-//                    SET("DISCOUNT=#{discount}");
-//                }
-//                if(purchasedetail.getSpend() != null){
-//                    SET("SPEND=#{spend}");
-//                }
+                if(purchasedetail.getCounts() >=0){
+                    SET("COUNTS=#{counts}");
+                }
+                if(purchasedetail.getPrice() >=0){
+                    SET("PRICE=#{price}");
+                }
+                if(purchasedetail.getDiscount() >=0){
+                    SET("DISCOUNT=#{discount}");
+                }
+                if(purchasedetail.getSpend() >=0){
+                    SET("SPEND=#{spend}");
+                }
                 if(purchasedetail.getProductSkuCode() != null){
                     SET("PRODUCT_SKU_CODE=#{productSkuCode}");
                 }
@@ -123,18 +123,54 @@ public class PurchaseDetailProvider {
                 if(purchasedetail.getProductId() != null){
                     WHERE("PRODUCT_ID=#{productId}");
                 }
-//                if(purchasedetail.getCounts() != null){
-//                    WHERE("COUNTS=#{counts}");
-//                }
-//                if(purchasedetail.getPrice() != null){
-//                    WHERE("PRICE=#{price}");
-//                }
-//                if(purchasedetail.getDiscount() != null){
-//                    WHERE("DISCOUNT=#{discount}");
-//                }
-//                if(purchasedetail.getSpend() != null){
-//                    WHERE("SPEND=#{spend}");
-//                }
+                if(purchasedetail.getCounts() >=0){
+                    WHERE("COUNTS=#{counts}");
+                }
+                if(purchasedetail.getPrice() >=0){
+                    WHERE("PRICE=#{price}");
+                }
+                if(purchasedetail.getDiscount() >=0){
+                    WHERE("DISCOUNT=#{discount}");
+                }
+                if(purchasedetail.getSpend() >=0){
+                    WHERE("SPEND=#{spend}");
+                }
+                if(purchasedetail.getProductSkuCode() != null){
+                    WHERE("PRODUCT_SKU_CODE=#{productSkuCode}");
+                }
+                if(purchasedetail.getStockSkuId() != null){
+                    WHERE("STOCK_SKU_ID=#{stockSkuId}");
+                }
+            }
+        }.toString();
+    }
+
+    public String dynamicSelect(PurchaseDetail purchasedetail){
+        return new SQL(){
+            {
+                SELECT("*");
+                FROM("purchase_detail");
+                if(purchasedetail.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+                if(purchasedetail.getOrderId() != null){
+                    WHERE("ORDER_ID=#{orderId}");
+                }
+                if(purchasedetail.getProductId() != null){
+                    WHERE("PRODUCT_ID=#{productId}");
+                }
+                if(purchasedetail.getCounts() >=0){
+                    WHERE("COUNTS=#{counts}");
+                }
+                if(purchasedetail.getPrice() >=0){
+                    WHERE("PRICE=#{price}");
+                }
+                if(purchasedetail.getDiscount() >=0){
+                    WHERE("DISCOUNT=#{discount}");
+                }
+                if(purchasedetail.getSpend() >=0){
+                    WHERE("SPEND=#{spend}");
+                }
                 if(purchasedetail.getProductSkuCode() != null){
                     WHERE("PRODUCT_SKU_CODE=#{productSkuCode}");
                 }

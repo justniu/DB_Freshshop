@@ -1,5 +1,6 @@
 package com.example.demo.Dao;
 
+import com.example.demo.Entities.StockLog;
 import com.example.demo.Entities.Store;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
@@ -35,4 +36,7 @@ public interface StoreDao {
     @DeleteProvider(type=com.example.demo.Provider.StoreProvider.class, method = "dynamicDelete")
     int delete(Store store);
 
+    @SelectProvider(type=com.example.demo.Provider.StockLogProvider.class, method = "dynamicSelect")
+    @ResultMap("resultMap")
+    List<StockLog> select(StockLog stockLog);
 }

@@ -39,4 +39,7 @@ public interface StockLogDao {
     @UpdateProvider(type=com.example.demo.Provider.StockLogProvider.class, method = "dynamicUpdate")
     int update(StockLog stockLog);
 
+    @SelectProvider(type=com.example.demo.Provider.StockLogProvider.class, method = "dynamicSelect")
+    @ResultMap("resultMap")
+    List<StockLog> select(StockLog stockLog);
 }

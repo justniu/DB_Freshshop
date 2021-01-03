@@ -14,13 +14,13 @@ public class WarehouseInfoController {
     @Autowired
     private WarehouseInfoDao warehouseInfoDao;
 
-    @GetMapping
-    public String insertWarehouseInfo(){
-        WarehouseInfo warehouseInfo = new WarehouseInfo();
-        warehouseInfo.setWarehouseId("1");
-        warehouseInfo.setWarehouseName("华南一号");
-        warehouseInfo.setWarehouseCapacity(4000);
-        warehouseInfo.setWarehouseAddressDetail("广州市天河区东站路99号");
+    @PostMapping
+    public String insert(@RequestBody WarehouseInfo warehouseInfo){
+//        WarehouseInfo warehouseInfo = new WarehouseInfo();
+//        warehouseInfo.setWarehouseId("1");
+//        warehouseInfo.setWarehouseName("华南一号");
+//        warehouseInfo.setWarehouseCapacity(4000);
+//        warehouseInfo.setWarehouseAddressDetail("广州市天河区东站路99号");
         warehouseInfoDao.addWarehouseInfo(warehouseInfo);
         return "warehouseinfo!";
     }

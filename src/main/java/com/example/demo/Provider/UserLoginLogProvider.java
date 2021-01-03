@@ -43,9 +43,9 @@ public class UserLoginLogProvider {
                 if(userloginlog.getLoginTime() != null){
                     VALUES("LOGIN_TIME", "#{loginTime}");
                 }
-//                if(userloginlog.getLoginType() != null){
-//                    VALUES("LOGIN_TYPE", "#{loginType}");
-//                }
+                if(userloginlog.getLoginType() >=0){
+                    VALUES("LOGIN_TYPE", "#{loginType}");
+                }
                 if(userloginlog.getLoginIp() != null){
                     VALUES("LOGIN_IP", "#{loginIp}");
                 }
@@ -63,9 +63,9 @@ public class UserLoginLogProvider {
                 if(userloginlog.getLoginTime() != null){
                     SET("LOGIN_TIME=#{loginTime}");
                 }
-//                if(userloginlog.getLoginType() != null){
-//                    SET("LOGIN_TYPE=#{loginType}");
-//                }
+                if(userloginlog.getLoginType() >=0){
+                    SET("LOGIN_TYPE=#{loginType}");
+                }
                 if(userloginlog.getLoginIp() != null){
                     SET("LOGIN_IP=#{loginIp}");
                 }
@@ -87,9 +87,33 @@ public class UserLoginLogProvider {
                 if(userloginlog.getLoginTime() != null){
                     WHERE("LOGIN_TIME=#{loginTime}");
                 }
-//                if(userloginlog.getLoginType() != null){
-//                    WHERE("LOGIN_TYPE=#{loginType}");
-//                }
+                if(userloginlog.getLoginType() >=0){
+                    WHERE("LOGIN_TYPE=#{loginType}");
+                }
+                if(userloginlog.getLoginIp() != null){
+                    WHERE("LOGIN_IP=#{loginIp}");
+                }
+            }
+        }.toString();
+    }
+
+    public String dynamicSelect(UserLoginLog userloginlog){
+        return new SQL(){
+            {
+                SELECT("*");
+                FROM("user_login_log");
+                if(userloginlog.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+                if(userloginlog.getUserId() != null){
+                    WHERE("USER_ID=#{userId}");
+                }
+                if(userloginlog.getLoginTime() != null){
+                    WHERE("LOGIN_TIME=#{loginTime}");
+                }
+                if(userloginlog.getLoginType() >=0){
+                    WHERE("LOGIN_TYPE=#{loginType}");
+                }
                 if(userloginlog.getLoginIp() != null){
                     WHERE("LOGIN_IP=#{loginIp}");
                 }

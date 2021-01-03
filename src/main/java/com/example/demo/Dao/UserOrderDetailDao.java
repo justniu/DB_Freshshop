@@ -41,4 +41,8 @@ public interface UserOrderDetailDao {
 
     @UpdateProvider(type=com.example.demo.Provider.UserOrderDetailProvider.class, method = "dynamicUpdate")
     int update(UserOrderDetail userOrderDetail);
+
+    @SelectProvider(type=com.example.demo.Provider.UserOrderDetailProvider.class, method = "dynamicUpdate")
+    @ResultMap("resultMap")
+    List<UserOrderDetail> select(UserOrderDetail userOrderDetail);
 }

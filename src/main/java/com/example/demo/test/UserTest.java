@@ -80,12 +80,13 @@ public class UserTest {
     }
 
     @SneakyThrows
-    public static String getDynamicDelete(Class origin){
+    public static String getDynamicSel(Class origin){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(" public String dynamicDelete("+origin.getSimpleName()+" "+origin.getSimpleName().toLowerCase()+"){\n" +
+        stringBuilder.append(" public String dynamicSelect("+origin.getSimpleName()+" "+origin.getSimpleName().toLowerCase()+"){\n" +
                 "        return new SQL(){\n" +
                 "            {\n");
-        stringBuilder.append("DELETE_FROM(\""+new PropertyNamingStrategy.SnakeCaseStrategy().translate(origin.getSimpleName())+"\");\n");
+        stringBuilder.append("SELECT(\"*\");\n");
+        stringBuilder.append("FROM(\""+new PropertyNamingStrategy.SnakeCaseStrategy().translate(origin.getSimpleName())+"\");\n");
         for (Field field : origin.getDeclaredFields()) {
             String property = field.getName();
             //映射关系：对象属性(驼峰)->数据库字段(下划线)
@@ -101,8 +102,8 @@ public class UserTest {
     }
 
     @Test
-    public void getDel(){
-        System.out.println(getDynamicDelete(UserRegisterLog.class));
+    public void getSel(){
+        System.out.println(getDynamicSel(SkuStock.class));
     }
 
 

@@ -47,9 +47,9 @@ public class ProductCategoryProvider {
                 if(productcategory.getCategoryLevel() != null){
                     VALUES("CATEGORY_LEVEL", "#{categoryLevel}");
                 }
-//                if(productcategory.getProductCount() != null){
-//                    VALUES("PRODUCT_COUNT", "#{productCount}");
-//                }
+                if(productcategory.getProductCount() >=0){
+                    VALUES("PRODUCT_COUNT", "#{productCount}");
+                }
                 if(productcategory.getProductUnit() != null){
                     VALUES("PRODUCT_UNIT", "#{productUnit}");
                 }
@@ -77,9 +77,9 @@ public class ProductCategoryProvider {
                 if(productcategory.getCategoryLevel() != null){
                     SET("CATEGORY_LEVEL=#{categoryLevel}");
                 }
-//                if(productcategory.getProductCount() != null){
-//                    SET("PRODUCT_COUNT=#{productCount}");
-//                }
+                if(productcategory.getProductCount() >=0){
+                    SET("PRODUCT_COUNT=#{productCount}");
+                }
                 if(productcategory.getProductUnit() != null){
                     SET("PRODUCT_UNIT=#{productUnit}");
                 }
@@ -110,9 +110,42 @@ public class ProductCategoryProvider {
                 if(productcategory.getCategoryLevel() != null){
                     WHERE("CATEGORY_LEVEL=#{categoryLevel}");
                 }
-//                if(productcategory.getProductCount() != null){
-//                    WHERE("PRODUCT_COUNT=#{productCount}");
-//                }
+                if(productcategory.getProductCount() >=0){
+                    WHERE("PRODUCT_COUNT=#{productCount}");
+                }
+                if(productcategory.getProductUnit() != null){
+                    WHERE("PRODUCT_UNIT=#{productUnit}");
+                }
+                if(productcategory.getKeywords() != null){
+                    WHERE("KEYWORDS=#{keywords}");
+                }
+                if(productcategory.getDescription() != null){
+                    WHERE("DESCRIPTION=#{description}");
+                }
+            }
+        }.toString();
+    }
+
+    public String dynamicSelect(ProductCategory productcategory){
+        return new SQL(){
+            {
+                SELECT("*");
+                FROM("product_category");
+                if(productcategory.getProductCategoryId() != null){
+                    WHERE("PRODUCT_CATEGORY_ID=#{productCategoryId}");
+                }
+                if(productcategory.getParentId() != null){
+                    WHERE("PARENT_ID=#{parentId}");
+                }
+                if(productcategory.getName() != null){
+                    WHERE("NAME=#{name}");
+                }
+                if(productcategory.getCategoryLevel() != null){
+                    WHERE("CATEGORY_LEVEL=#{categoryLevel}");
+                }
+                if(productcategory.getProductCount() >=0){
+                    WHERE("PRODUCT_COUNT=#{productCount}");
+                }
                 if(productcategory.getProductUnit() != null){
                     WHERE("PRODUCT_UNIT=#{productUnit}");
                 }

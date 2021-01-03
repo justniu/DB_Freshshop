@@ -40,4 +40,8 @@ public interface PurchaseDetailDao {
 
     @UpdateProvider(type = com.example.demo.Provider.PurchaseDetailProvider.class, method = "dynamicUpdate")
     int update(PurchaseDetail purchaseDetail);
+
+    @SelectProvider(type=com.example.demo.Provider.PurchaseDetailProvider.class, method = "dynamicSelect")
+    @ResultMap("resultMap")
+    List<PurchaseDetail> select(PurchaseDetail purchaseDetail);
 }

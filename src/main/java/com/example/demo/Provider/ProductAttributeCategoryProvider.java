@@ -37,12 +37,12 @@ public class ProductAttributeCategoryProvider {
                 if(productattributecategory.getProductId() != null){
                     VALUES("PRODUCT_ID", "#{productId}");
                 }
-//                if(productattributecategory.getAttributeCount() != null){
-//                    VALUES("ATTRIBUTE_COUNT", "#{attributeCount}");
-//                }
-//                if(productattributecategory.getParamCount() != null){
-//                    VALUES("PARAM_COUNT", "#{paramCount}");
-//                }
+                if(productattributecategory.getAttributeCount() >= 0){
+                    VALUES("ATTRIBUTE_COUNT", "#{attributeCount}");
+                }
+                if(productattributecategory.getParamCount() >=0){
+                    VALUES("PARAM_COUNT", "#{paramCount}");
+                }
             }
         }.toString();
     }
@@ -54,12 +54,12 @@ public class ProductAttributeCategoryProvider {
                 if(productattributecategory.getProductId() != null){
                     SET("PRODUCT_ID=#{productId}");
                 }
-//                if(productattributecategory.getAttributeCount() != null){
-//                    SET("ATTRIBUTE_COUNT=#{attributeCount}");
-//                }
-//                if(productattributecategory.getParamCount() != null){
-//                    SET("PARAM_COUNT=#{paramCount}");
-//                }
+                if(productattributecategory.getAttributeCount() >=0){
+                    SET("ATTRIBUTE_COUNT=#{attributeCount}");
+                }
+                if(productattributecategory.getParamCount() >=0){
+                    SET("PARAM_COUNT=#{paramCount}");
+                }
                 WHERE("ID=#{id}");
             }
         }.toString();
@@ -75,14 +75,34 @@ public class ProductAttributeCategoryProvider {
                 if(productattributecategory.getProductId() != null){
                     WHERE("PRODUCT_ID=#{productId}");
                 }
-//                if(productattributecategory.getAttributeCount() != null){
-//                    WHERE("ATTRIBUTE_COUNT=#{attributeCount}");
-//                }
-//                if(productattributecategory.getParamCount() != null){
-//                    WHERE("PARAM_COUNT=#{paramCount}");
-//                }
+                if(productattributecategory.getAttributeCount() >=0){
+                    WHERE("ATTRIBUTE_COUNT=#{attributeCount}");
+                }
+                if(productattributecategory.getParamCount() >=0){
+                    WHERE("PARAM_COUNT=#{paramCount}");
+                }
             }
         }.toString();
     }
 
+    public String dynamicSelect(ProductAttributeCategory productattributecategory){
+        return new SQL(){
+            {
+                SELECT("*");
+                FROM("product_attribute_category");
+                if(productattributecategory.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+                if(productattributecategory.getProductId() != null){
+                    WHERE("PRODUCT_ID=#{productId}");
+                }
+                if(productattributecategory.getAttributeCount() >=0){
+                    WHERE("ATTRIBUTE_COUNT=#{attributeCount}");
+                }
+                if(productattributecategory.getParamCount() >=0){
+                    WHERE("PARAM_COUNT=#{paramCount}");
+                }
+            }
+        }.toString();
+    }
 }

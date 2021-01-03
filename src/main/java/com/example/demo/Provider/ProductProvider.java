@@ -82,39 +82,39 @@ public class ProductProvider {
                 if(product.getName() != null){
                     VALUES("NAME", "#{name}");
                 }
-//                if(product.getDeleteStatus() != null){
-//                    VALUES("DELETE_STATUS", "#{deleteStatus}");
-//                }
-//                if(product.getPublishStatus() != null){
-//                    VALUES("PUBLISH_STATUS", "#{publishStatus}");
-//                }
-//                if(product.getNewStatus() != null){
-//                    VALUES("NEW_STATUS", "#{newStatus}");
-//                }
-//                if(product.getSale() != null){
-//                    VALUES("SALE", "#{sale}");
-//                }
-//                if(product.getProductPrice() != null){
-//                    VALUES("PRODUCT_PRICE", "#{productPrice}");
-//                }
-//                if(product.getPromotionPrice() != null){
-//                    VALUES("PROMOTION_PRICE", "#{promotionPrice}");
-//                }
-//                if(product.getStock() != null){
-//                    VALUES("STOCK", "#{stock}");
-//                }
-//                if(product.getLowStock() != null){
-//                    VALUES("LOW_STOCK", "#{lowStock}");
-//                }
-//                if(product.getUnit() != null){
-//                    VALUES("UNIT", "#{unit}");
-//                }
-//                if(product.getWeight() != null){
-//                    VALUES("WEIGHT", "#{weight}");
-//                }
-//                if(product.getPromotionType() != null){
-//                    VALUES("PROMOTION_TYPE", "#{promotionType}");
-//                }
+                if(product.getDeleteStatus() >=0){
+                    VALUES("DELETE_STATUS", "#{deleteStatus}");
+                }
+                if(product.getPublishStatus() >=0){
+                    VALUES("PUBLISH_STATUS", "#{publishStatus}");
+                }
+                if(product.getNewStatus() >=0){
+                    VALUES("NEW_STATUS", "#{newStatus}");
+                }
+                if(product.getSale() >=0){
+                    VALUES("SALE", "#{sale}");
+                }
+                if(product.getProductPrice() >=0){
+                    VALUES("PRODUCT_PRICE", "#{productPrice}");
+                }
+                if(product.getPromotionPrice() >=0){
+                    VALUES("PROMOTION_PRICE", "#{promotionPrice}");
+                }
+                if(product.getStock() >=0){
+                    VALUES("STOCK", "#{stock}");
+                }
+                if(product.getLowStock() >=0){
+                    VALUES("LOW_STOCK", "#{lowStock}");
+                }
+                if(product.getUnit() != null){
+                    VALUES("UNIT", "#{unit}");
+                }
+                if(product.getWeight() >=0){
+                    VALUES("WEIGHT", "#{weight}");
+                }
+                if(product.getPromotionType() >=0){
+                    VALUES("PROMOTION_TYPE", "#{promotionType}");
+                }
                 if(product.getPromotionStartTime() != null){
                     VALUES("PROMOTION_START_TIME", "#{promotionStartTime}");
                 }
@@ -138,39 +138,39 @@ public class ProductProvider {
                 if(product.getName() != null){
                     SET("NAME=#{name}");
                 }
-//                if(product.getDeleteStatus() != null){
-//                    SET("DELETE_STATUS=#{deleteStatus}");
-//                }
-//                if(product.getPublishStatus() != null){
-//                    SET("PUBLISH_STATUS=#{publishStatus}");
-//                }
-//                if(product.getNewStatus() != null){
-//                    SET("NEW_STATUS=#{newStatus}");
-//                }
-//                if(product.getSale() != null){
-//                    SET("SALE=#{sale}");
-//                }
-//                if(product.getProductPrice() != null){
-//                    SET("PRODUCT_PRICE=#{productPrice}");
-//                }
-//                if(product.getPromotionPrice() != null){
-//                    SET("PROMOTION_PRICE=#{promotionPrice}");
-//                }
-//                if(product.getStock() != null){
-//                    SET("STOCK=#{stock}");
-//                }
-//                if(product.getLowStock() != null){
-//                    SET("LOW_STOCK=#{lowStock}");
-//                }
+                if(product.getDeleteStatus() >=0){
+                    SET("DELETE_STATUS=#{deleteStatus}");
+                }
+                if(product.getPublishStatus() >=0){
+                    SET("PUBLISH_STATUS=#{publishStatus}");
+                }
+                if(product.getNewStatus() >=0){
+                    SET("NEW_STATUS=#{newStatus}");
+                }
+                if(product.getSale() >=0){
+                    SET("SALE=#{sale}");
+                }
+                if(product.getProductPrice() >=0){
+                    SET("PRODUCT_PRICE=#{productPrice}");
+                }
+                if(product.getPromotionPrice() >=0){
+                    SET("PROMOTION_PRICE=#{promotionPrice}");
+                }
+                if(product.getStock() >=0){
+                    SET("STOCK=#{stock}");
+                }
+                if(product.getLowStock() >=0){
+                    SET("LOW_STOCK=#{lowStock}");
+                }
                 if(product.getUnit() != null){
                     SET("UNIT=#{unit}");
                 }
-//                if(product.getWeight() != null){
-//                    SET("WEIGHT=#{weight}");
-//                }
-//                if(product.getPromotionType() != null){
-//                    SET("PROMOTION_TYPE=#{promotionType}");
-//                }
+                if(product.getWeight() >=0){
+                    SET("WEIGHT=#{weight}");
+                }
+                if(product.getPromotionType() >=0){
+                    SET("PROMOTION_TYPE=#{promotionType}");
+                }
                 if(product.getPromotionStartTime() != null){
                     SET("PROMOTION_START_TIME=#{promotionStartTime}");
                 }
@@ -198,39 +198,99 @@ public class ProductProvider {
                 if(product.getName() != null){
                     WHERE("NAME=#{name}");
                 }
-//                if(product.getDeleteStatus() != null){
-//                    WHERE("DELETE_STATUS=#{deleteStatus}");
-//                }
-//                if(product.getPublishStatus() != null){
-//                    WHERE("PUBLISH_STATUS=#{publishStatus}");
-//                }
-//                if(product.getNewStatus() != null){
-//                    WHERE("NEW_STATUS=#{newStatus}");
-//                }
-//                if(product.getSale() != null){
-//                    WHERE("SALE=#{sale}");
-//                }
-//                if(product.getProductPrice() != null){
-//                    WHERE("PRODUCT_PRICE=#{productPrice}");
-//                }
-//                if(product.getPromotionPrice() != null){
-//                    WHERE("PROMOTION_PRICE=#{promotionPrice}");
-//                }
-//                if(product.getStock() != null){
-//                    WHERE("STOCK=#{stock}");
-//                }
-//                if(product.getLowStock() != null){
-//                    WHERE("LOW_STOCK=#{lowStock}");
-//                }
+                if(product.getDeleteStatus() >=0){
+                    WHERE("DELETE_STATUS=#{deleteStatus}");
+                }
+                if(product.getPublishStatus() >=0){
+                    WHERE("PUBLISH_STATUS=#{publishStatus}");
+                }
+                if(product.getNewStatus() >=0){
+                    WHERE("NEW_STATUS=#{newStatus}");
+                }
+                if(product.getSale() >=0){
+                    WHERE("SALE=#{sale}");
+                }
+                if(product.getProductPrice() >=0){
+                    WHERE("PRODUCT_PRICE=#{productPrice}");
+                }
+                if(product.getPromotionPrice() >=0){
+                    WHERE("PROMOTION_PRICE=#{promotionPrice}");
+                }
+                if(product.getStock() >=0){
+                    WHERE("STOCK=#{stock}");
+                }
+                if(product.getLowStock() >=0){
+                    WHERE("LOW_STOCK=#{lowStock}");
+                }
                 if(product.getUnit() != null){
                     WHERE("UNIT=#{unit}");
                 }
-//                if(product.getWeight() != null){
-//                    WHERE("WEIGHT=#{weight}");
-//                }
-//                if(product.getPromotionType() != null){
-//                    WHERE("PROMOTION_TYPE=#{promotionType}");
-//                }
+                if(product.getWeight() >=0){
+                    WHERE("WEIGHT=#{weight}");
+                }
+                if(product.getPromotionType() >=0){
+                    WHERE("PROMOTION_TYPE=#{promotionType}");
+                }
+                if(product.getPromotionStartTime() != null){
+                    WHERE("PROMOTION_START_TIME=#{promotionStartTime}");
+                }
+                if(product.getPromotionEndTime() != null){
+                    WHERE("PROMOTION_END_TIME=#{promotionEndTime}");
+                }
+            }
+        }.toString();
+    }
+
+    public String dynamicSelect(Product product){
+        return new SQL(){
+            {
+                SELECT("*");
+                FROM("product");
+                if(product.getProductId() != null){
+                    WHERE("PRODUCT_ID=#{productId}");
+                }
+                if(product.getProductCategoryId() != null){
+                    WHERE("PRODUCT_CATEGORY_ID=#{productCategoryId}");
+                }
+                if(product.getUpdateTime() != null){
+                    WHERE("UPDATE_TIME=#{updateTime}");
+                }
+                if(product.getName() != null){
+                    WHERE("NAME=#{name}");
+                }
+                if(product.getDeleteStatus() >=0){
+                    WHERE("DELETE_STATUS=#{deleteStatus}");
+                }
+                if(product.getPublishStatus() >=0){
+                    WHERE("PUBLISH_STATUS=#{publishStatus}");
+                }
+                if(product.getNewStatus() >=0){
+                    WHERE("NEW_STATUS=#{newStatus}");
+                }
+                if(product.getSale() >=0){
+                    WHERE("SALE=#{sale}");
+                }
+                if(product.getProductPrice() >=0){
+                    WHERE("PRODUCT_PRICE=#{productPrice}");
+                }
+                if(product.getPromotionPrice() >=0){
+                    WHERE("PROMOTION_PRICE=#{promotionPrice}");
+                }
+                if(product.getStock() >=0){
+                    WHERE("STOCK=#{stock}");
+                }
+                if(product.getLowStock() >=0){
+                    WHERE("LOW_STOCK=#{lowStock}");
+                }
+                if(product.getUnit() != null){
+                    WHERE("UNIT=#{unit}");
+                }
+                if(product.getWeight() >=0){
+                    WHERE("WEIGHT=#{weight}");
+                }
+                if(product.getPromotionType() >=0){
+                    WHERE("PROMOTION_TYPE=#{promotionType}");
+                }
                 if(product.getPromotionStartTime() != null){
                     WHERE("PROMOTION_START_TIME=#{promotionStartTime}");
                 }

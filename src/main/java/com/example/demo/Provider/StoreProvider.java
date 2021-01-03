@@ -84,4 +84,25 @@ public class StoreProvider {
             }
         }.toString();
     }
+
+    public String dynamicSelect(Store store){
+        return new SQL(){
+            {
+                SELECT("*");
+                FROM("store");
+                if(store.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+                if(store.getName() != null){
+                    WHERE("NAME=#{name}");
+                }
+                if(store.getAddress() != null){
+                    WHERE("ADDRESS=#{address}");
+                }
+                if(store.getPhone() != null){
+                    WHERE("PHONE=#{phone}");
+                }
+            }
+        }.toString();
+    }
 }

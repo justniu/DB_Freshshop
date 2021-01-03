@@ -16,17 +16,17 @@ public class ProductCategoryController {
     @Autowired
     private ProductCategoryDao productCategoryDao;
 
-    @GetMapping
-    public String insert(){
-        ProductCategory productCategory = new ProductCategory();
-        productCategory.setProductCategoryId("14");
-        productCategory.setCategoryLevel("3");
-        productCategory.setProductUnit("kg");
-        productCategory.setDescription("直接啃");
-        productCategory.setName("鸡爪");
-        productCategory.setParentId("8");
-        productCategory.setKeywords("暂无");
-        productCategory.setProductCount(100);
+    @PostMapping
+    public String insert(@RequestBody ProductCategory productCategory){
+//        ProductCategory productCategory = new ProductCategory();
+//        productCategory.setProductCategoryId("14");
+//        productCategory.setCategoryLevel("3");
+//        productCategory.setProductUnit("kg");
+//        productCategory.setDescription("直接啃");
+//        productCategory.setName("鸡爪");
+//        productCategory.setParentId("8");
+//        productCategory.setKeywords("暂无");
+//        productCategory.setProductCount(100);
         productCategoryDao.addProductCate(productCategory);
         return "prodcate";
     }

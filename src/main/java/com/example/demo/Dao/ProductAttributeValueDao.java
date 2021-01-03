@@ -36,4 +36,7 @@ public interface ProductAttributeValueDao {
     @UpdateProvider(type = com.example.demo.Provider.ProductAttributeValueProvider.class,method = "dynamicUpdate")
     int update(ProductAttributeValue productAttributeValue);
 
+    @SelectProvider(type=com.example.demo.Provider.ProductAttributeValueProvider.class, method = "dynamicSelect")
+    @ResultMap("resultMap")
+    List<ProductAttributeValue> select(ProductAttributeValue productAttributeValue);
 }

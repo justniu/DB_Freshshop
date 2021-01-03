@@ -37,12 +37,12 @@ public class SkuStockProvider {
                 if(skustock.getSkuId() != null){
                     VALUES("SKU_ID", "#{skuId}");
                 }
-                if(skustock.getStock() != null){
+                if(skustock.getStock() >=0){
                     VALUES("STOCK", "#{stock}");
                 }
-//                if(skustock.getLowStock() != null){
-//                    VALUES("LOW_STOCK", "#{lowStock}");
-//                }
+                if(skustock.getLowStock() >=0){
+                    VALUES("LOW_STOCK", "#{lowStock}");
+                }
                 if(skustock.getRepositoryId() != null){
                     VALUES("REPOSITORY_ID", "#{repositoryId}");
                 }
@@ -60,12 +60,12 @@ public class SkuStockProvider {
                 if(skustock.getSkuId() != null){
                     SET("SKU_ID=#{skuId}");
                 }
-                if(skustock.getStock() != null){
+                if(skustock.getStock() >=0){
                     SET("STOCK=#{stock}");
                 }
-//                if(skustock.getLowStock() != null){
-//                    SET("LOW_STOCK=#{lowStock}");
-//                }
+                if(skustock.getLowStock() >=0){
+                    SET("LOW_STOCK=#{lowStock}");
+                }
                 if(skustock.getRepositoryId() != null){
                     SET("REPOSITORY_ID=#{repositoryId}");
                 }
@@ -81,12 +81,36 @@ public class SkuStockProvider {
                 if(skustock.getSkuId() != null){
                     WHERE("SKU_ID=#{skuId}");
                 }
-                if(skustock.getStock() != null){
+                if(skustock.getStock() >=0){
                     WHERE("STOCK=#{stock}");
                 }
-//                if(skustock.getLowStock() != null){
-//                    WHERE("LOW_STOCK=#{lowStock}");
-//                }
+                if(skustock.getLowStock() >=0){
+                    WHERE("LOW_STOCK=#{lowStock}");
+                }
+                if(skustock.getRepositoryId() != null){
+                    WHERE("REPOSITORY_ID=#{repositoryId}");
+                }
+                if(skustock.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+            }
+        }.toString();
+    }
+
+    public String dynamicSelect(SkuStock skustock){
+        return new SQL(){
+            {
+                SELECT("*");
+                FROM("sku_stock");
+                if(skustock.getSkuId() != null){
+                    WHERE("SKU_ID=#{skuId}");
+                }
+                if(skustock.getStock() >=0){
+                    WHERE("STOCK=#{stock}");
+                }
+                if(skustock.getLowStock() >=0){
+                    WHERE("LOW_STOCK=#{lowStock}");
+                }
                 if(skustock.getRepositoryId() != null){
                     WHERE("REPOSITORY_ID=#{repositoryId}");
                 }

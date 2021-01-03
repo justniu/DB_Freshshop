@@ -35,4 +35,8 @@ public interface ProductAttributeCategoryDao {
 
     @DeleteProvider(type = com.example.demo.Provider.ProductAttributeCategoryProvider.class,method = "dynamicDelete")
     int delete(ProductAttributeCategory productAttributeCategory);
+
+    @SelectProvider(type=com.example.demo.Provider.ProductAttributeCategoryProvider.class, method = "dynamicSelect")
+    @ResultMap("resultMap")
+    List<ProductAttributeCategory> select(ProductAttributeCategory productAttributeCategory);
 }

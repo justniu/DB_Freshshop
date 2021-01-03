@@ -1,9 +1,11 @@
 package com.example.demo.Dao;
 
+import com.example.demo.Entities.StockLog;
 import com.example.demo.Entities.Supplier;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Map;
 
@@ -40,4 +42,8 @@ public interface SupplierDao {
 
     @InsertProvider(type=com.example.demo.Provider.SupplierProvider.class, method = "dynamicInsert")
     int insert(Supplier supplier);
+
+    @SelectProvider(type=com.example.demo.Provider.StockLogProvider.class, method = "dynamicSelect")
+    @ResultMap("resultMap")
+    List<StockLog> select(StockLog stockLog);
 }

@@ -1,6 +1,7 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entities.ProductCategory;
+import com.example.demo.Provider.ProductCategoryProvider;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
@@ -40,4 +41,7 @@ public interface ProductCategoryDao {
     @DeleteProvider(type = com.example.demo.Provider.ProductCategoryProvider.class,method = "dynamicDelete")
     int delete(ProductCategory productCategory);
 
+    @SelectProvider(type=com.example.demo.Provider.ProductCategoryProvider.class, method = "dynamicSelect")
+    @ResultMap("resultMap")
+    List<ProductCategory> select(ProductCategory productCategory);
 }

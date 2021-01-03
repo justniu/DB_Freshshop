@@ -49,5 +49,8 @@ public interface ProductDao {
 
     @DeleteProvider(type = com.example.demo.Provider.ProductProvider.class, method = "dynamicDelete")
     int delete(Product product);
-    
+
+    @SelectProvider(type=com.example.demo.Provider.ProductProvider.class, method = "dynamicSelect")
+    @ResultMap("resultMap")
+    List<Product> select(Product product);
 }

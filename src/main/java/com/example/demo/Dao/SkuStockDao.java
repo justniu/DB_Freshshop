@@ -36,4 +36,8 @@ public interface SkuStockDao {
 
     @DeleteProvider(type=com.example.demo.Provider.SkuStockProvider.class, method = "dynamicDelete")
     int delete(SkuStock skuStock);
+
+    @SelectProvider(type=com.example.demo.Provider.SkuStockProvider.class, method = "dynamicSelect")
+    @ResultMap("resultMap")
+    List<SkuStock> select(SkuStock skuStock);
 }

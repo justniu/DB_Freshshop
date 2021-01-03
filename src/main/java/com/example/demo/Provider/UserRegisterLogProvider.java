@@ -34,9 +34,9 @@ public class UserRegisterLogProvider {
                 if(userregisterlog.getCreateTime() != null){
                     VALUES("CREATE_TIME", "#{createTime}");
                 }
-//                if(userregisterlog.getUserType() != null){
-//                    VALUES("USER_TYPE", "#{userType}");
-//                }
+                if(userregisterlog.getUserType() >=0){
+                    VALUES("USER_TYPE", "#{userType}");
+                }
             }
         }.toString();
     }
@@ -48,9 +48,9 @@ public class UserRegisterLogProvider {
                 if(userregisterlog.getCreateTime() != null){
                     SET("CREATE_TIME=#{createTime}");
                 }
-//                if(userregisterlog.getUserType() != null){
-//                    SET("USER_TYPE=#{userType}");
-//                }
+                if(userregisterlog.getUserType() >=0){
+                    SET("USER_TYPE=#{userType}");
+                }
                 WHERE("USER_ID=#{userId}");
             }
         }.toString();
@@ -66,9 +66,26 @@ public class UserRegisterLogProvider {
                 if(userregisterlog.getCreateTime() != null){
                     WHERE("CREATE_TIME=#{createTime}");
                 }
-//                if(userregisterlog.getUserType() != null){
-//                    WHERE("USER_TYPE=#{userType}");
-//                }
+                if(userregisterlog.getUserType() >=0){
+                    WHERE("USER_TYPE=#{userType}");
+                }
+            }
+        }.toString();
+    }
+    public String dynamicSelect(UserRegisterLog userregisterlog){
+        return new SQL(){
+            {
+                SELECT("*");
+                FROM("user_register_log");
+                if(userregisterlog.getUserId() != null){
+                    WHERE("USER_ID=#{userId}");
+                }
+                if(userregisterlog.getCreateTime() != null){
+                    WHERE("CREATE_TIME=#{createTime}");
+                }
+                if(userregisterlog.getUserType() >=0){
+                    WHERE("USER_TYPE=#{userType}");
+                }
             }
         }.toString();
     }

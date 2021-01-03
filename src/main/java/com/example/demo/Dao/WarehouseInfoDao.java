@@ -11,7 +11,7 @@ import java.util.Map;
 @Mapper
 public interface WarehouseInfoDao {
     @Select("select * from warehouse_info")
-    @Results(id="resultMap", value = {
+    @Results(id = "resultMap", value = {
             @Result(property = "userId", column = "user_id"),
             @Result(property = "createTime", column = "create_time"),
             @Result(property = "userType", column = "user_type"),
@@ -22,16 +22,20 @@ public interface WarehouseInfoDao {
     )
     int addWarehouseInfo(WarehouseInfo warehouseInfo);
 
-    @SelectProvider(type=com.example.demo.Provider.WarehouseInfoProvider.class, method = "selectWithParams")
+    @SelectProvider(type = com.example.demo.Provider.WarehouseInfoProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<WarehouseInfo> query(Map<String, Object> param);
 
-    @DeleteProvider(type=com.example.demo.Provider.WarehouseInfoProvider.class, method = "dynamicDelete")
+    @DeleteProvider(type = com.example.demo.Provider.WarehouseInfoProvider.class, method = "dynamicDelete")
     int delete(WarehouseInfo warehouseInfo);
 
-    @UpdateProvider(type=com.example.demo.Provider.WarehouseInfoProvider.class, method = "dynamicUpdate")
+    @UpdateProvider(type = com.example.demo.Provider.WarehouseInfoProvider.class, method = "dynamicUpdate")
     int update(WarehouseInfo warehouseInfo);
 
-    @InsertProvider(type=com.example.demo.Provider.WarehouseInfoProvider.class, method = "dynamicInsert")
+    @InsertProvider(type = com.example.demo.Provider.WarehouseInfoProvider.class, method = "dynamicInsert")
     int insert(WarehouseInfo warehouseInfo);
+
+    @SelectProvider(type = com.example.demo.Provider.WarehouseInfoProvider.class, method = "dynamicSelect")
+    @ResultMap("resultMap")
+    List<WarehouseInfo> select(WarehouseInfo warehouseInfo);
 }

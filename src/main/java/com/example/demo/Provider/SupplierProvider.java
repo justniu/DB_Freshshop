@@ -52,9 +52,9 @@ public class SupplierProvider {
                 if(supplier.getSupplierName() != null){
                     VALUES("SUPPLIER_NAME", "#{supplierName}");
                 }
-//                if(supplier.getSupplierProductClassId() != null){
-//                    VALUES("SUPPLIER_PRODUCT_CLASS_ID", "#{supplierProductClassId}");
-//                }
+                if(supplier.getSupplierProductClassId() >=0){
+                    VALUES("SUPPLIER_PRODUCT_CLASS_ID", "#{supplierProductClassId}");
+                }
                 if(supplier.getSupplierContactName() != null){
                     VALUES("SUPPLIER_CONTACT_NAME", "#{supplierContactName}");
                 }
@@ -64,9 +64,9 @@ public class SupplierProvider {
                 if(supplier.getSupplierEmail() != null){
                     VALUES("SUPPLIER_EMAIL", "#{supplierEmail}");
                 }
-//                if(supplier.getSupplierAddressId() != null){
-//                    VALUES("SUPPLIER_ADDRESS_ID", "#{supplierAddressId}");
-//                }
+                if(supplier.getSupplierAddressId() >=0){
+                    VALUES("SUPPLIER_ADDRESS_ID", "#{supplierAddressId}");
+                }
                 if(supplier.getSupplierAddressDetail() != null){
                     VALUES("SUPPLIER_ADDRESS_DETAIL", "#{supplierAddressDetail}");
                 }
@@ -84,9 +84,9 @@ public class SupplierProvider {
                 if(supplier.getSupplierName() != null){
                     SET("SUPPLIER_NAME=#{supplierName}");
                 }
-//                if(supplier.getSupplierProductClassId() != null){
-//                    SET("SUPPLIER_PRODUCT_CLASS_ID=#{supplierProductClassId}");
-//                }
+                if(supplier.getSupplierProductClassId() >=0){
+                    SET("SUPPLIER_PRODUCT_CLASS_ID=#{supplierProductClassId}");
+                }
                 if(supplier.getSupplierContactName() != null){
                     SET("SUPPLIER_CONTACT_NAME=#{supplierContactName}");
                 }
@@ -96,9 +96,9 @@ public class SupplierProvider {
                 if(supplier.getSupplierEmail() != null){
                     SET("SUPPLIER_EMAIL=#{supplierEmail}");
                 }
-//                if(supplier.getSupplierAddressId() != null){
-//                    SET("SUPPLIER_ADDRESS_ID=#{supplierAddressId}");
-//                }
+                if(supplier.getSupplierAddressId() >=0){
+                    SET("SUPPLIER_ADDRESS_ID=#{supplierAddressId}");
+                }
                 if(supplier.getSupplierAddressDetail() != null){
                     SET("SUPPLIER_ADDRESS_DETAIL=#{supplierAddressDetail}");
                 }
@@ -120,9 +120,9 @@ public class SupplierProvider {
                 if(supplier.getSupplierName() != null){
                     WHERE("SUPPLIER_NAME=#{supplierName}");
                 }
-//                if(supplier.getSupplierProductClassId() != null){
-//                    WHERE("SUPPLIER_PRODUCT_CLASS_ID=#{supplierProductClassId}");
-//                }
+                if(supplier.getSupplierProductClassId() >=0){
+                    WHERE("SUPPLIER_PRODUCT_CLASS_ID=#{supplierProductClassId}");
+                }
                 if(supplier.getSupplierContactName() != null){
                     WHERE("SUPPLIER_CONTACT_NAME=#{supplierContactName}");
                 }
@@ -132,9 +132,45 @@ public class SupplierProvider {
                 if(supplier.getSupplierEmail() != null){
                     WHERE("SUPPLIER_EMAIL=#{supplierEmail}");
                 }
-//                if(supplier.getSupplierAddressId() != null){
-//                    WHERE("SUPPLIER_ADDRESS_ID=#{supplierAddressId}");
-//                }
+                if(supplier.getSupplierAddressId() >=0){
+                    WHERE("SUPPLIER_ADDRESS_ID=#{supplierAddressId}");
+                }
+                if(supplier.getSupplierAddressDetail() != null){
+                    WHERE("SUPPLIER_ADDRESS_DETAIL=#{supplierAddressDetail}");
+                }
+                if(supplier.getSupplierRemark() != null){
+                    WHERE("SUPPLIER_REMARK=#{supplierRemark}");
+                }
+            }
+        }.toString();
+    }
+
+    public String dynamicSelect(Supplier supplier){
+        return new SQL(){
+            {
+                SELECT("*");
+                FROM("supplier");
+                if(supplier.getSupplierId() != null){
+                    WHERE("SUPPLIER_ID=#{supplierId}");
+                }
+                if(supplier.getSupplierName() != null){
+                    WHERE("SUPPLIER_NAME=#{supplierName}");
+                }
+                if(supplier.getSupplierProductClassId() >=0){
+                    WHERE("SUPPLIER_PRODUCT_CLASS_ID=#{supplierProductClassId}");
+                }
+                if(supplier.getSupplierContactName() != null){
+                    WHERE("SUPPLIER_CONTACT_NAME=#{supplierContactName}");
+                }
+                if(supplier.getSupplierTel() != null){
+                    WHERE("SUPPLIER_TEL=#{supplierTel}");
+                }
+                if(supplier.getSupplierEmail() != null){
+                    WHERE("SUPPLIER_EMAIL=#{supplierEmail}");
+                }
+                if(supplier.getSupplierAddressId() >=0){
+                    WHERE("SUPPLIER_ADDRESS_ID=#{supplierAddressId}");
+                }
                 if(supplier.getSupplierAddressDetail() != null){
                     WHERE("SUPPLIER_ADDRESS_DETAIL=#{supplierAddressDetail}");
                 }

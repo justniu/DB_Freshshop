@@ -21,12 +21,12 @@ public class CategoryAttributeController {
         List<CategoryAttribute> categoryAttributes = categoryAttributeDao.queryAll();
         return categoryAttributes;
     }
-    @GetMapping
-    public String insert(){
-        CategoryAttribute categoryAttribute = new CategoryAttribute();
-        categoryAttribute.setProductAttributeId("2");
-        categoryAttribute.setProductCategoryId("1");
-        categoryAttribute.setId("1001");
+    @PostMapping
+    public String insert(@RequestBody CategoryAttribute categoryAttribute){
+//        CategoryAttribute categoryAttribute = new CategoryAttribute();
+//        categoryAttribute.setProductAttributeId("2");
+//        categoryAttribute.setProductCategoryId("1");
+//        categoryAttribute.setId("1001");
         categoryAttributeDao.insert(categoryAttribute);
         return "category_attr";
     }

@@ -55,18 +55,18 @@ public class UserOrderDetailProvider {
                 if(userorderdetail.getUserOrderDetailProductId() != null){
                     VALUES("USER_ORDER_DETAIL_PRODUCT_ID", "#{userOrderDetailProductId}");
                 }
-//                if(userorderdetail.getUserOrderDetailNumber() != null){
-//                    VALUES("USER_ORDER_DETAIL_NUMBER", "#{userOrderDetailNumber}");
-//                }
-//                if(userorderdetail.getUserOrderDetailPrice() != null){
-//                    VALUES("USER_ORDER_DETAIL_PRICE", "#{userOrderDetailPrice}");
-//                }
-//                if(userorderdetail.getUserOrderDetailDiscount() != null){
-//                    VALUES("USER_ORDER_DETAIL_DISCOUNT", "#{userOrderDetailDiscount}");
-//                }
-//                if(userorderdetail.getUserOrderDetailSpend() != null){
-//                    VALUES("USER_ORDER_DETAIL_SPEND", "#{userOrderDetailSpend}");
-//                }
+                if(userorderdetail.getUserOrderDetailNumber() >=0){
+                    VALUES("USER_ORDER_DETAIL_NUMBER", "#{userOrderDetailNumber}");
+                }
+                if(userorderdetail.getUserOrderDetailPrice() >=0){
+                    VALUES("USER_ORDER_DETAIL_PRICE", "#{userOrderDetailPrice}");
+                }
+                if(userorderdetail.getUserOrderDetailDiscount() >=0){
+                    VALUES("USER_ORDER_DETAIL_DISCOUNT", "#{userOrderDetailDiscount}");
+                }
+                if(userorderdetail.getUserOrderDetailSpend() >=0){
+                    VALUES("USER_ORDER_DETAIL_SPEND", "#{userOrderDetailSpend}");
+                }
                 if(userorderdetail.getProductSkuCode() != null){
                     VALUES("PRODUCT_SKU_CODE", "#{productSkuCode}");
                 }
@@ -87,18 +87,18 @@ public class UserOrderDetailProvider {
                 if(userorderdetail.getUserOrderDetailProductId() != null){
                     SET("USER_ORDER_DETAIL_PRODUCT_ID=#{userOrderDetailProductId}");
                 }
-//                if(userorderdetail.getUserOrderDetailNumber() != null){
-//                    SET("USER_ORDER_DETAIL_NUMBER=#{userOrderDetailNumber}");
-//                }
-//                if(userorderdetail.getUserOrderDetailPrice() != null){
-//                    SET("USER_ORDER_DETAIL_PRICE=#{userOrderDetailPrice}");
-//                }
-//                if(userorderdetail.getUserOrderDetailDiscount() != null){
-//                    SET("USER_ORDER_DETAIL_DISCOUNT=#{userOrderDetailDiscount}");
-//                }
-//                if(userorderdetail.getUserOrderDetailSpend() != null){
-//                    SET("USER_ORDER_DETAIL_SPEND=#{userOrderDetailSpend}");
-//                }
+                if(userorderdetail.getUserOrderDetailNumber() >=0){
+                    SET("USER_ORDER_DETAIL_NUMBER=#{userOrderDetailNumber}");
+                }
+                if(userorderdetail.getUserOrderDetailPrice() >=0){
+                    SET("USER_ORDER_DETAIL_PRICE=#{userOrderDetailPrice}");
+                }
+                if(userorderdetail.getUserOrderDetailDiscount() >=0){
+                    SET("USER_ORDER_DETAIL_DISCOUNT=#{userOrderDetailDiscount}");
+                }
+                if(userorderdetail.getUserOrderDetailSpend() >=0){
+                    SET("USER_ORDER_DETAIL_SPEND=#{userOrderDetailSpend}");
+                }
                 if(userorderdetail.getProductSkuCode() != null){
                     SET("PRODUCT_SKU_CODE=#{productSkuCode}");
                 }
@@ -123,18 +123,54 @@ public class UserOrderDetailProvider {
                 if(userorderdetail.getUserOrderDetailProductId() != null){
                     WHERE("USER_ORDER_DETAIL_PRODUCT_ID=#{userOrderDetailProductId}");
                 }
-//                if(userorderdetail.getUserOrderDetailNumber() != null){
-//                    WHERE("USER_ORDER_DETAIL_NUMBER=#{userOrderDetailNumber}");
-//                }
-//                if(userorderdetail.getUserOrderDetailPrice() != null){
-//                    WHERE("USER_ORDER_DETAIL_PRICE=#{userOrderDetailPrice}");
-//                }
-//                if(userorderdetail.getUserOrderDetailDiscount() != null){
-//                    WHERE("USER_ORDER_DETAIL_DISCOUNT=#{userOrderDetailDiscount}");
-//                }
-//                if(userorderdetail.getUserOrderDetailSpend() != null){
-//                    WHERE("USER_ORDER_DETAIL_SPEND=#{userOrderDetailSpend}");
-//                }
+                if(userorderdetail.getUserOrderDetailNumber() >=0){
+                    WHERE("USER_ORDER_DETAIL_NUMBER=#{userOrderDetailNumber}");
+                }
+                if(userorderdetail.getUserOrderDetailPrice() >=0){
+                    WHERE("USER_ORDER_DETAIL_PRICE=#{userOrderDetailPrice}");
+                }
+                if(userorderdetail.getUserOrderDetailDiscount() >=0){
+                    WHERE("USER_ORDER_DETAIL_DISCOUNT=#{userOrderDetailDiscount}");
+                }
+                if(userorderdetail.getUserOrderDetailSpend() >=0){
+                    WHERE("USER_ORDER_DETAIL_SPEND=#{userOrderDetailSpend}");
+                }
+                if(userorderdetail.getProductSkuCode() != null){
+                    WHERE("PRODUCT_SKU_CODE=#{productSkuCode}");
+                }
+                if(userorderdetail.getStockSkuId() != null){
+                    WHERE("STOCK_SKU_ID=#{stockSkuId}");
+                }
+            }
+        }.toString();
+    }
+
+    public String dynamicSelect(UserOrderDetail userorderdetail){
+        return new SQL(){
+            {
+                SELECT("*");
+                FROM("user_order_detail");
+                if(userorderdetail.getUserOrderDetailId() != null){
+                    WHERE("USER_ORDER_DETAIL_ID=#{userOrderDetailId}");
+                }
+                if(userorderdetail.getUserOrderDetailOrderId() != null){
+                    WHERE("USER_ORDER_DETAIL_ORDER_ID=#{userOrderDetailOrderId}");
+                }
+                if(userorderdetail.getUserOrderDetailProductId() != null){
+                    WHERE("USER_ORDER_DETAIL_PRODUCT_ID=#{userOrderDetailProductId}");
+                }
+                if(userorderdetail.getUserOrderDetailNumber() >=0){
+                    WHERE("USER_ORDER_DETAIL_NUMBER=#{userOrderDetailNumber}");
+                }
+                if(userorderdetail.getUserOrderDetailPrice() >=0){
+                    WHERE("USER_ORDER_DETAIL_PRICE=#{userOrderDetailPrice}");
+                }
+                if(userorderdetail.getUserOrderDetailDiscount() >=0){
+                    WHERE("USER_ORDER_DETAIL_DISCOUNT=#{userOrderDetailDiscount}");
+                }
+                if(userorderdetail.getUserOrderDetailSpend() >=0){
+                    WHERE("USER_ORDER_DETAIL_SPEND=#{userOrderDetailSpend}");
+                }
                 if(userorderdetail.getProductSkuCode() != null){
                     WHERE("PRODUCT_SKU_CODE=#{productSkuCode}");
                 }

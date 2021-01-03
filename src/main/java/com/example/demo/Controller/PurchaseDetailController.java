@@ -3,10 +3,7 @@ package com.example.demo.Controller;
 import com.example.demo.Dao.PurchaseDetailDao;
 import com.example.demo.Entities.PurchaseDetail;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -18,19 +15,19 @@ public class PurchaseDetailController {
     @Autowired
     private PurchaseDetailDao purchaseOrderDetailDao;
 
-    @GetMapping
-    public String insert(){
-        PurchaseDetail purchaseOrderDetail = new PurchaseDetail();
-        purchaseOrderDetail.setOrderId("1");
-        purchaseOrderDetail.setCounts(100);
-        purchaseOrderDetail.setId("1");
-        purchaseOrderDetail.setPrice(5000);
-        purchaseOrderDetail.setDiscount(0.9f);
-        purchaseOrderDetail.setSpend(4500);
-        purchaseOrderDetail.setStockSkuId("1");
-        purchaseOrderDetail.setProductId("1");
-        purchaseOrderDetail.setProductSkuCode("63371141142");
-        purchaseOrderDetailDao.addPurchaseOrderDetail(purchaseOrderDetail);
+    @PostMapping
+    public String insert(@RequestBody PurchaseDetail purchaseDetail){
+//        PurchaseDetail purchaseOrderDetail = new PurchaseDetail();
+//        purchaseOrderDetail.setOrderId("1");
+//        purchaseOrderDetail.setCounts(100);
+//        purchaseOrderDetail.setId("1");
+//        purchaseOrderDetail.setPrice(5000);
+//        purchaseOrderDetail.setDiscount(0.9f);
+//        purchaseOrderDetail.setSpend(4500);
+//        purchaseOrderDetail.setStockSkuId("1");
+//        purchaseOrderDetail.setProductId("1");
+//        purchaseOrderDetail.setProductSkuCode("63371141142");
+        purchaseOrderDetailDao.addPurchaseOrderDetail(purchaseDetail);
         return "purchaseDetail";
     }
 

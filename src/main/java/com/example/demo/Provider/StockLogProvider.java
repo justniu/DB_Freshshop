@@ -55,12 +55,12 @@ public class StockLogProvider {
                 if(stocklog.getTime() != null){
                     VALUES("TIME", "#{time}");
                 }
-//                if(stocklog.getCounts() != null){
-//                    VALUES("COUNTS", "#{counts}");
-//                }
-//                if(stocklog.getLogType() != null){
-//                    VALUES("LOG_TYPE", "#{logType}");
-//                }
+                if(stocklog.getCounts() >=0){
+                    VALUES("COUNTS", "#{counts}");
+                }
+                if(stocklog.getLogType() >=0){
+                    VALUES("LOG_TYPE", "#{logType}");
+                }
             }
         }.toString();
     }
@@ -81,12 +81,12 @@ public class StockLogProvider {
                 if(stocklog.getTime() != null){
                     SET("TIME=#{time}");
                 }
-//                if(stocklog.getCounts() != null){
-//                    SET("COUNTS=#{counts}");
-//                }
-//                if(stocklog.getLogType() != null){
-//                    SET("LOG_TYPE=#{logType}");
-//                }
+                if(stocklog.getCounts() >=0){
+                    SET("COUNTS=#{counts}");
+                }
+                if(stocklog.getLogType() >=0){
+                    SET("LOG_TYPE=#{logType}");
+                }
                 WHERE("ID=#{id}");
             }
         }.toString();
@@ -111,12 +111,42 @@ public class StockLogProvider {
                 if(stocklog.getTime() != null){
                     WHERE("TIME=#{time}");
                 }
-//                if(stocklog.getCounts() != null){
-//                    WHERE("COUNTS=#{counts}");
-//                }
-//                if(stocklog.getLogType() != null){
-//                    WHERE("LOG_TYPE=#{logType}");
-//                }
+                if(stocklog.getCounts() >=0){
+                    WHERE("COUNTS=#{counts}");
+                }
+                if(stocklog.getLogType() >=0){
+                    WHERE("LOG_TYPE=#{logType}");
+                }
+            }
+        }.toString();
+    }
+
+    public String dynamicSelect(StockLog stocklog){
+        return new SQL(){
+            {
+                SELECT("*");
+                FROM("stock_log");
+                if(stocklog.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+                if(stocklog.getRepositoryId() != null){
+                    WHERE("REPOSITORY_ID=#{repositoryId}");
+                }
+                if(stocklog.getProductId() != null){
+                    WHERE("PRODUCT_ID=#{productId}");
+                }
+                if(stocklog.getSkuCode() != null){
+                    WHERE("SKU_CODE=#{skuCode}");
+                }
+                if(stocklog.getTime() != null){
+                    WHERE("TIME=#{time}");
+                }
+                if(stocklog.getCounts() >=0){
+                    WHERE("COUNTS=#{counts}");
+                }
+                if(stocklog.getLogType() >=0){
+                    WHERE("LOG_TYPE=#{logType}");
+                }
             }
         }.toString();
     }

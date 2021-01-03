@@ -36,4 +36,8 @@ public interface UserRegisterLogDao {
     @DeleteProvider(type=com.example.demo.Provider.UserRegisterLogProvider.class, method = "dynamicDelete")
     int delete(UserRegisterLog userRegisterLog);
 
+    @SelectProvider(type=com.example.demo.Provider.UserRegisterLogProvider.class, method = "dynamicSelect")
+    @ResultMap("resultMap")
+    List<UserRegisterLog> select(UserRegisterLog userRegisterLog);
+
 }

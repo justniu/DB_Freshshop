@@ -37,9 +37,9 @@ public class WarehouseInfoProvider {
                 if(warehouseinfo.getWarehouseName() != null){
                     VALUES("WAREHOUSE_NAME", "#{warehouseName}");
                 }
-//                if(warehouseinfo.getWarehouseCapacity() != null){
-//                    VALUES("WAREHOUSE_CAPACITY", "#{warehouseCapacity}");
-//                }
+                if(warehouseinfo.getWarehouseCapacity() >=0){
+                    VALUES("WAREHOUSE_CAPACITY", "#{warehouseCapacity}");
+                }
                 if(warehouseinfo.getWarehouseAddressDetail() != null){
                     VALUES("WAREHOUSE_ADDRESS_DETAIL", "#{warehouseAddressDetail}");
                 }
@@ -54,9 +54,9 @@ public class WarehouseInfoProvider {
                 if(warehouseinfo.getWarehouseName() != null){
                     SET("WAREHOUSE_NAME=#{warehouseName}");
                 }
-//                if(warehouseinfo.getWarehouseCapacity() != null){
-//                    SET("WAREHOUSE_CAPACITY=#{warehouseCapacity}");
-//                }
+                if(warehouseinfo.getWarehouseCapacity() >=0){
+                    SET("WAREHOUSE_CAPACITY=#{warehouseCapacity}");
+                }
                 if(warehouseinfo.getWarehouseAddressDetail() != null){
                     SET("WAREHOUSE_ADDRESS_DETAIL=#{warehouseAddressDetail}");
                 }
@@ -75,9 +75,30 @@ public class WarehouseInfoProvider {
                 if(warehouseinfo.getWarehouseName() != null){
                     WHERE("WAREHOUSE_NAME=#{warehouseName}");
                 }
-//                if(warehouseinfo.getWarehouseCapacity() != null){
-//                    WHERE("WAREHOUSE_CAPACITY=#{warehouseCapacity}");
-//                }
+                if(warehouseinfo.getWarehouseCapacity() >=0){
+                    WHERE("WAREHOUSE_CAPACITY=#{warehouseCapacity}");
+                }
+                if(warehouseinfo.getWarehouseAddressDetail() != null){
+                    WHERE("WAREHOUSE_ADDRESS_DETAIL=#{warehouseAddressDetail}");
+                }
+            }
+        }.toString();
+    }
+
+    public String dynamicSelect(WarehouseInfo warehouseinfo){
+        return new SQL(){
+            {
+                SELECT("*");
+                FROM("warehouse_info");
+                if(warehouseinfo.getWarehouseId() != null){
+                    WHERE("WAREHOUSE_ID=#{warehouseId}");
+                }
+                if(warehouseinfo.getWarehouseName() != null){
+                    WHERE("WAREHOUSE_NAME=#{warehouseName}");
+                }
+                if(warehouseinfo.getWarehouseCapacity() >=0){
+                    WHERE("WAREHOUSE_CAPACITY=#{warehouseCapacity}");
+                }
                 if(warehouseinfo.getWarehouseAddressDetail() != null){
                     WHERE("WAREHOUSE_ADDRESS_DETAIL=#{warehouseAddressDetail}");
                 }

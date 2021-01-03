@@ -72,4 +72,23 @@ public class ProductAttributeValueProvider {
             }
         }.toString();
     }
+
+    public String dynamicSelect(ProductAttributeValue productattributevalue){
+        return new SQL(){
+            {
+                SELECT("*");
+                FROM("product_attribute_value");
+                if(productattributevalue.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+                if(productattributevalue.getProductAttributeId() != null){
+                    WHERE("PRODUCT_ATTRIBUTE_ID=#{productAttributeId}");
+                }
+                if(productattributevalue.getValue() != null){
+                    WHERE("VALUE=#{value}");
+                }
+            }
+        }.toString();
+    }
+
 }
