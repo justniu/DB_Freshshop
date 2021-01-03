@@ -1,61 +1,127 @@
 package com.freshshop.demo.entity;
 
-import java.util.List;
+import java.util.Date;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document(collection = "product")
 public class Product {
-	@Id
-	private String id;
-	private String pic;
-	private String note;
-	private String detailTitle;
-	private String detailDescribe;
-	private String detailHtml;
-	private List<String> commentId;
-	public String getId() {
-		return id;
+    private String productId;
+    private String productCategoryId;
+    private Date updateTime;
+    private String name;
+    private int deleteStatus;
+    private int publishStatus;
+    private int newStatus;
+    private int sale;
+    private float productPrice;
+    private float promotionPrice;
+    private int stock;
+    private int lowStock;
+    private String unit;
+    private float weight;
+    private int promotionType;
+    private Date promotionStartTime;
+    private Date promotionEndTime;
+	public String getProductId() {
+		return productId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
-	public String getPic() {
-		return pic;
+	public String getProductCategoryId() {
+		return productCategoryId;
 	}
-	public void setPic(String pic) {
-		this.pic = pic;
+	public void setProductCategoryId(String productCategoryId) {
+		this.productCategoryId = productCategoryId;
 	}
-	public String getNote() {
-		return note;
+	public Date getUpdateTime() {
+		return updateTime;
 	}
-	public void setNote(String note) {
-		this.note = note;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
-	public String getDetailTitle() {
-		return detailTitle;
+	public String getName() {
+		return name;
 	}
-	public void setDetailTitile(String detailTitle) {
-		this.detailTitle = detailTitle;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getDetailDescribe() {
-		return detailDescribe;
+	public int getDeleteStatus() {
+		return deleteStatus;
 	}
-	public void setDetailDescribe(String detailDescribe) {
-		this.detailDescribe = detailDescribe;
+	public void setDeleteStatus(int deleteStatus) {
+		this.deleteStatus = deleteStatus;
 	}
-	public String getDetailHtml() {
-		return detailHtml;
+	public int getPublishStatus() {
+		return publishStatus;
 	}
-	public void setDetailHtml(String detailHtml) {
-		this.detailHtml = detailHtml;
+	public void setPublishStatus(int publishStatus) {
+		this.publishStatus = publishStatus;
 	}
-	public List<String> getCommentId() {
-		return commentId;
+	public int getNewStatus() {
+		return newStatus;
 	}
-	public void setCommentId(List<String> commentId) {
-		this.commentId = commentId;
+	public void setNewStatus(int newStatus) {
+		this.newStatus = newStatus;
 	}
-	
+	public int getSale() {
+		return sale;
+	}
+	public void setSale(int sale) {
+		this.sale = sale;
+	}
+	public float getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(float productPrice) {
+		this.productPrice = productPrice;
+	}
+	public float getPromotionPrice() {
+		return promotionPrice;
+	}
+	public void setPromotionPrice(float promotionPrice) {
+		this.promotionPrice = promotionPrice;
+	}
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+	public int getLowStock() {
+		return lowStock;
+	}
+	public void setLowStock(int lowStock) {
+		this.lowStock = lowStock;
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+	public float getWeight() {
+		return weight;
+	}
+	public void setWeight(float weight) {
+		this.weight = weight;
+	}
+	public int getPromotionType() {
+		return promotionType;
+	}
+	public void setPromotionType(int promotionType) {
+		this.promotionType = promotionType;
+	}
+	public Date getPromotionStartTime() {
+		return promotionStartTime;
+	}
+	public void setPromotionStartTime(Date promotionStartTime) {
+		this.promotionStartTime = promotionStartTime;
+	}
+	public Date getPromotionEndTime() {
+		return promotionEndTime;
+	}
+	public void setPromotionEndTime(Date promotionEndTime) {
+		this.promotionEndTime = promotionEndTime;
+	}
+    
+    
 }

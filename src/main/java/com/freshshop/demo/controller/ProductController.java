@@ -1,59 +1,82 @@
 package com.freshshop.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.freshshop.demo.entity.Product;
-import com.freshshop.demo.service.ProductService;
+import com.freshshop.demo.mapper.ProductDao;
 import com.freshshop.demo.utils.R;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
+@RequestMapping(value = "/product", method = RequestMethod.GET)
 public class ProductController {
-	@Autowired
-	ProductService productService;
-	
-	@GetMapping("/products") // 获取所有商品的信息
-	public R findAllProduct() {
-		return R.ok().data("items", productService.findAll());
-	}
-	
-	
-	@GetMapping("/findProductById") // 根据产品ID查询指定商品信息
-	public R findProductById(@RequestBody Product params) {
-		return R.ok().data("items", productService.findById(params.getId()));
-	}
-	
-	// 插入一条商品信息
-	@GetMapping("/insertOneProduct")
-	public R insertOneProduct(@RequestBody Product params) {
-		try {
-			productService.insert(params);
+
+    @Autowired
+    private ProductDao productDao;
+
+    @PostMapping
+    public String insert(@RequestBody Product product){
+//        Product product = new Product();
+//        product.setProductId("4");
+//        product.setProductPrice(20);
+//        product.setProductCategoryId("14");
+//        product.setDeleteStatus(0);
+//        product.setName("好味道");
+//        product.setLowStock(2);
+//        product.setNewStatus(1);
+//        product.setPromotionType(0);
+//        product.setPromotionStartTime(new Date());
+//        product.setPromotionEndTime(new Date());
+//        product.setPromotionPrice(15);
+//        product.setPublishStatus(1);
+//        product.setSale(1200);
+//        product.setUnit("kg");
+//        product.setWeight(1);
+//        product.setStock(100);
+//        product.setUpdateTime(new Date());
+        productDao.addProduct(product);
+        return "product";
+    }
+    @GetMapping("/lists")
+    public List<Product> queryAll(){
+        List<Product> products = productDao.queryAll();
+        return products;
+    }
+    @GetMapping("/list")
+    public List<Product> query(@RequestParam Map<String, Object> param){
+        return productDao.query(param);
+    }
+
+    @GetMapping("/new")
+    public R update(@RequestBody Product params){
+//        Product product = new Product();
+//        product.setProductId("4");
+//        product.setProductPrice(20);
+//        product.setProductCategoryId("14");
+//        product.setDeleteStatus(0);
+//        product.setName("好味道鸡爪");
+//        product.setLowStock(2);
+//        product.setNewStatus(1);
+//        product.setPromotionType(0);
+//        product.setPromotionStartTime(new Date());
+//        product.setPromotionEndTime(new Date());
+//        product.setPromotionPrice(15);
+//        product.setPublishStatus(1);
+//        product.setSale(1200);
+//        product.setUnit("kg");
+//        product.setWeight(1);
+//        product.setStock(100);
+//        product.setUpdateTime(new Date());
+//        productDao.update(product);
+//        return "new";
+    	try {
+    		productDao.update(params);
 			return R.ok().data("create","success");
 		} catch (Exception e) {
 			return R.error().data("create","fail");
 		}
-	}
-	
-	@GetMapping("/deleteProductById")// 删除指定ID的商品信息
-	public R deleteProductById(@RequestBody Product params) {
-		try {
-			productService.deleteById(params.getId());
-			return R.ok().data("delete","success");
-		} catch (Exception e) {
-			return R.error().data("delete","fail");
-		}
-	}
-	
-	// 按照商品ID更新一条商品信息
-	@GetMapping("/saveOneProduct")
-	public R saveOneProduct(@RequestBody Product params) {
-		try {
-			productService.save(params);
-			return R.ok().data("update","success");
-		} catch (Exception e) {
-			return R.error().data("update","fail");
-		}
-	}
+    }
 }
