@@ -29,9 +29,9 @@ public class ProductCommentController {
 		return R.ok().data("items", productCommentService.findProductCommentsById(productId));
 	}
 	
-	// http://localhost:8014/insertOne/cgahvtakvha/1001/1002/4.5/good!
-	@GetMapping("/insertOne/{id}/{userId}/{productId}/{score}/{content}") // 插入一条数据
-	public R insertOne(
+	// http://localhost:8014/insertOneComment/cgahvtakvha/1001/1002/4.5/good!
+	@GetMapping("/insertOneComment/{id}/{userId}/{productId}/{score}/{content}") // 插入一条数据
+	public R insertOneComment(
 			@ApiParam(name = "id")
 			@PathVariable String id,
 			@ApiParam(name = "userId")
@@ -57,8 +57,8 @@ public class ProductCommentController {
 	}
 	
 	// http://localhost:8014/deleteCommentsById/cgahvtakvha
-	@GetMapping("/deleteCommentsById/{id}")// 删除指定ID的评论
-	public R deleteById(
+	@GetMapping("/deleteCommentById/{id}")// 删除指定ID的评论
+	public R deleteCommentById(
 			@ApiParam(name = "id")
 			@PathVariable String id) {
 		try {
@@ -70,8 +70,8 @@ public class ProductCommentController {
 	}
 	
 	// http://localhost:8014/saveOne/cgahvtakvha/1001/1002/5/bad!
-	@GetMapping("/saveOne/{id}/{userId}/{productId}/{score}/{content}") // 更新一条数据 根据 _id
-	public R saveOne(
+	@GetMapping("/saveOneComment/{id}/{userId}/{productId}/{score}/{content}") // 更新一条数据 根据 _id
+	public R saveOneComment(
 			@ApiParam(name = "id")
 			@PathVariable String id,
 			@ApiParam(name = "userId")

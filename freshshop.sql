@@ -11,7 +11,7 @@
  Target Server Version : 40020
  File Encoding         : 65001
 
- Date: 02/01/2021 20:47:56
+ Date: 03/01/2021 15:31:02
 */
 
 
@@ -24,6 +24,15 @@ db.createCollection("product");
 // ----------------------------
 // Documents of product
 // ----------------------------
+db.getCollection("product").insert([ {
+    _id: "26",
+    pic: "/imgae/image4.jpg",
+    note: "限购/该商品购买1-5件时享受单件价￥11.90，超出数量以结算价为准/",
+    detailTitle: "品牌故事",
+    detailDescribe: "光明乳业用心打造的每一款产品都在塑造一个品牌故事，在当前激烈的乳品竞争中独具特色。光明乳业在提升品牌价值的同时，更注重突出产品本身的优势，加快渠道拓展，牢固保持稳定的市场占有率。",
+    detailHtml: "https://item.jd.com/5340854.html#crumb-wrap",
+    commentId: [ ]
+} ]);
 db.getCollection("product").insert([ {
     _id: "1",
     pic: "/imgae/image1.jpg",
@@ -57,15 +66,6 @@ db.getCollection("product").insert([ {
         "3",
         "4"
     ]
-} ]);
-db.getCollection("product").insert([ {
-    _id: "26",
-    pic: "/imgae/image4.jpg",
-    note: "限购/该商品购买1-5件时享受单件价￥11.90，超出数量以结算价为准/",
-    detailTitle: "品牌故事",
-    detailDescribe: "光明乳业用心打造的每一款产品都在塑造一个品牌故事，在当前激烈的乳品竞争中独具特色。光明乳业在提升品牌价值的同时，更注重突出产品本身的优势，加快渠道拓展，牢固保持稳定的市场占有率。",
-    detailHtml: "https://item.jd.com/5340854.html#crumb-wrap",
-    commentId: [ ]
 } ]);
 
 // ----------------------------
@@ -195,7 +195,7 @@ db.getCollection("purchaseOrder").insert([ {
     _id: ObjectId("5ff03df80e3a508e69ba1bc5"),
     supplierId: "1",
     purchaseOrderSpend: 2000,
-    purchaseOrderDate: "2021-01-02 17:33:44",
+    purchaseOrderDate: ISODate("2021-01-02T17:33:44Z"),
     status: "0",
     purchaseDetail: [
         "1",
@@ -206,7 +206,7 @@ db.getCollection("purchaseOrder").insert([ {
     _id: ObjectId("5ff03df80e3a508e69ba1bc6"),
     supplierId: "2",
     purchaseOrderSpend: 1200,
-    purchaseOrderDate: "2021-01-02 17:33:44",
+    purchaseOrderDate: ISODate("2021-01-02T17:33:44Z"),
     status: "0",
     purchaseDetail: [
         "3"
@@ -253,7 +253,7 @@ db.getCollection("userOrder").insert([ {
     _id: ObjectId("5ff03e300e3a508e69ba1bc7"),
     userId: "5fefff260e3a508e69ba1bbf",
     userOrderSpend: 2000,
-    userOrderDate: "2021-01-02 17:34:40",
+    userOrderDate: ISODate("2021-01-02T17:34:40Z"),
     method: "0",
     status: "0",
     note: "分30天送货",
@@ -266,7 +266,7 @@ db.getCollection("userOrder").insert([ {
     _id: ObjectId("5ff03e300e3a508e69ba1bc8"),
     userId: "5fefff260e3a508e69ba1bc0",
     userOrderSpend: 1200,
-    userOrderDate: "2021-01-02 17:34:40",
+    userOrderDate: ISODate("2021-01-02T17:34:40Z"),
     method: "0",
     status: "0",
     note: "分30天送货",
