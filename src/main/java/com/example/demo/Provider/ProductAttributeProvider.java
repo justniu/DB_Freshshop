@@ -65,4 +65,25 @@ public class ProductAttributeProvider {
             }
         }.toString();
     }
+
+    public String dynamicDelete(ProductAttribute productattribute){
+        return new SQL(){
+            {
+                DELETE_FROM("product_attribute");
+                if(productattribute.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+                if(productattribute.getProductAttributeCategoryId() != null){
+                    WHERE("PRODUCT_ATTRIBUTE_CATEGORY_ID=#{productAttributeCategoryId}");
+                }
+                if(productattribute.getName() != null){
+                    WHERE("NAME=#{name}");
+                }
+                if(productattribute.getAttType() != null){
+                    WHERE("ATT_TYPE=#{attType}");
+                }
+            }
+        }.toString();
+    }
+
 }

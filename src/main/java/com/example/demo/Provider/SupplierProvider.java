@@ -109,4 +109,39 @@ public class SupplierProvider {
             }
         }.toString();
     }
+
+    public String dynamicDelete(Supplier supplier){
+        return new SQL(){
+            {
+                DELETE_FROM("supplier");
+                if(supplier.getSupplierId() != null){
+                    WHERE("SUPPLIER_ID=#{supplierId}");
+                }
+                if(supplier.getSupplierName() != null){
+                    WHERE("SUPPLIER_NAME=#{supplierName}");
+                }
+//                if(supplier.getSupplierProductClassId() != null){
+//                    WHERE("SUPPLIER_PRODUCT_CLASS_ID=#{supplierProductClassId}");
+//                }
+                if(supplier.getSupplierContactName() != null){
+                    WHERE("SUPPLIER_CONTACT_NAME=#{supplierContactName}");
+                }
+                if(supplier.getSupplierTel() != null){
+                    WHERE("SUPPLIER_TEL=#{supplierTel}");
+                }
+                if(supplier.getSupplierEmail() != null){
+                    WHERE("SUPPLIER_EMAIL=#{supplierEmail}");
+                }
+//                if(supplier.getSupplierAddressId() != null){
+//                    WHERE("SUPPLIER_ADDRESS_ID=#{supplierAddressId}");
+//                }
+                if(supplier.getSupplierAddressDetail() != null){
+                    WHERE("SUPPLIER_ADDRESS_DETAIL=#{supplierAddressDetail}");
+                }
+                if(supplier.getSupplierRemark() != null){
+                    WHERE("SUPPLIER_REMARK=#{supplierRemark}");
+                }
+            }
+        }.toString();
+    }
 }

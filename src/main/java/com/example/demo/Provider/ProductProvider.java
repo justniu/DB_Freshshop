@@ -181,4 +181,63 @@ public class ProductProvider {
             }
         }.toString();
     }
+
+    public String dynamicDelete(Product product){
+        return new SQL(){
+            {
+                DELETE_FROM("product");
+                if(product.getProductId() != null){
+                    WHERE("PRODUCT_ID=#{productId}");
+                }
+                if(product.getProductCategoryId() != null){
+                    WHERE("PRODUCT_CATEGORY_ID=#{productCategoryId}");
+                }
+                if(product.getUpdateTime() != null){
+                    WHERE("UPDATE_TIME=#{updateTime}");
+                }
+                if(product.getName() != null){
+                    WHERE("NAME=#{name}");
+                }
+//                if(product.getDeleteStatus() != null){
+//                    WHERE("DELETE_STATUS=#{deleteStatus}");
+//                }
+//                if(product.getPublishStatus() != null){
+//                    WHERE("PUBLISH_STATUS=#{publishStatus}");
+//                }
+//                if(product.getNewStatus() != null){
+//                    WHERE("NEW_STATUS=#{newStatus}");
+//                }
+//                if(product.getSale() != null){
+//                    WHERE("SALE=#{sale}");
+//                }
+//                if(product.getProductPrice() != null){
+//                    WHERE("PRODUCT_PRICE=#{productPrice}");
+//                }
+//                if(product.getPromotionPrice() != null){
+//                    WHERE("PROMOTION_PRICE=#{promotionPrice}");
+//                }
+//                if(product.getStock() != null){
+//                    WHERE("STOCK=#{stock}");
+//                }
+//                if(product.getLowStock() != null){
+//                    WHERE("LOW_STOCK=#{lowStock}");
+//                }
+                if(product.getUnit() != null){
+                    WHERE("UNIT=#{unit}");
+                }
+//                if(product.getWeight() != null){
+//                    WHERE("WEIGHT=#{weight}");
+//                }
+//                if(product.getPromotionType() != null){
+//                    WHERE("PROMOTION_TYPE=#{promotionType}");
+//                }
+                if(product.getPromotionStartTime() != null){
+                    WHERE("PROMOTION_START_TIME=#{promotionStartTime}");
+                }
+                if(product.getPromotionEndTime() != null){
+                    WHERE("PROMOTION_END_TIME=#{promotionEndTime}");
+                }
+            }
+        }.toString();
+    }
 }

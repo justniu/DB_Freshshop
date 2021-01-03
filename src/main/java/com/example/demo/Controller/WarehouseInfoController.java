@@ -29,4 +29,15 @@ public class WarehouseInfoController {
     public List<WarehouseInfo> query(@RequestParam Map<String, Object> param){
         return warehouseInfoDao.query(param);
     }
+
+    @GetMapping("/del")
+    public String delete(){
+        WarehouseInfo warehouseInfo = new WarehouseInfo();
+        warehouseInfo.setWarehouseId("2");
+        warehouseInfo.setWarehouseName("华南二号");
+        warehouseInfo.setWarehouseCapacity(5200);
+        warehouseInfo.setWarehouseAddressDetail("广州市花都区狮岭镇康政西路11号");
+        warehouseInfoDao.delete(warehouseInfo);
+        return "del";
+    }
 }

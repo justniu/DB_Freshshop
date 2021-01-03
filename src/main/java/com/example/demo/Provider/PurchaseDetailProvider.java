@@ -109,4 +109,39 @@ public class PurchaseDetailProvider {
             }
         }.toString();
     }
+
+    public String dynamicDelete(PurchaseDetail purchasedetail){
+        return new SQL(){
+            {
+                DELETE_FROM("purchase_detail");
+                if(purchasedetail.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+                if(purchasedetail.getOrderId() != null){
+                    WHERE("ORDER_ID=#{orderId}");
+                }
+                if(purchasedetail.getProductId() != null){
+                    WHERE("PRODUCT_ID=#{productId}");
+                }
+//                if(purchasedetail.getCounts() != null){
+//                    WHERE("COUNTS=#{counts}");
+//                }
+//                if(purchasedetail.getPrice() != null){
+//                    WHERE("PRICE=#{price}");
+//                }
+//                if(purchasedetail.getDiscount() != null){
+//                    WHERE("DISCOUNT=#{discount}");
+//                }
+//                if(purchasedetail.getSpend() != null){
+//                    WHERE("SPEND=#{spend}");
+//                }
+                if(purchasedetail.getProductSkuCode() != null){
+                    WHERE("PRODUCT_SKU_CODE=#{productSkuCode}");
+                }
+                if(purchasedetail.getStockSkuId() != null){
+                    WHERE("STOCK_SKU_ID=#{stockSkuId}");
+                }
+            }
+        }.toString();
+    }
 }

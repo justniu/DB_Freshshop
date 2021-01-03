@@ -25,4 +25,7 @@ public interface WarehouseInfoDao {
     @SelectProvider(type=com.example.demo.Provider.WarehouseInfoProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<WarehouseInfo> query(Map<String, Object> param);
+
+    @DeleteProvider(type=com.example.demo.Provider.WarehouseInfoProvider.class, method = "dynamicDelete")
+    int delete(WarehouseInfo warehouseInfo);
 }

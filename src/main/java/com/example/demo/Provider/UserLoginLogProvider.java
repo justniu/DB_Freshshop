@@ -74,4 +74,26 @@ public class UserLoginLogProvider {
         }.toString();
     }
 
+    public String dynamicDelete(UserLoginLog userloginlog){
+        return new SQL(){
+            {
+                DELETE_FROM("user_login_log");
+                if(userloginlog.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+                if(userloginlog.getUserId() != null){
+                    WHERE("USER_ID=#{userId}");
+                }
+                if(userloginlog.getLoginTime() != null){
+                    WHERE("LOGIN_TIME=#{loginTime}");
+                }
+//                if(userloginlog.getLoginType() != null){
+//                    WHERE("LOGIN_TYPE=#{loginType}");
+//                }
+                if(userloginlog.getLoginIp() != null){
+                    WHERE("LOGIN_IP=#{loginIp}");
+                }
+            }
+        }.toString();
+    }
 }

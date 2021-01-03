@@ -93,4 +93,36 @@ public class ProductCategoryProvider {
             }
         }.toString();
     }
+
+    public String dynamicDelete(ProductCategory productcategory){
+        return new SQL(){
+            {
+                DELETE_FROM("product_category");
+                if(productcategory.getProductCategoryId() != null){
+                    WHERE("PRODUCT_CATEGORY_ID=#{productCategoryId}");
+                }
+                if(productcategory.getParentId() != null){
+                    WHERE("PARENT_ID=#{parentId}");
+                }
+                if(productcategory.getName() != null){
+                    WHERE("NAME=#{name}");
+                }
+                if(productcategory.getCategoryLevel() != null){
+                    WHERE("CATEGORY_LEVEL=#{categoryLevel}");
+                }
+//                if(productcategory.getProductCount() != null){
+//                    WHERE("PRODUCT_COUNT=#{productCount}");
+//                }
+                if(productcategory.getProductUnit() != null){
+                    WHERE("PRODUCT_UNIT=#{productUnit}");
+                }
+                if(productcategory.getKeywords() != null){
+                    WHERE("KEYWORDS=#{keywords}");
+                }
+                if(productcategory.getDescription() != null){
+                    WHERE("DESCRIPTION=#{description}");
+                }
+            }
+        }.toString();
+    }
 }

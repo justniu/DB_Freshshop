@@ -54,4 +54,21 @@ public class CategoryAttributeProvider {
             }
         }.toString();
     }
+
+    public String dynamicDelete(CategoryAttribute categoryattribute){
+        return new SQL(){
+            {
+                DELETE_FROM("category_attribute");
+                if(categoryattribute.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+                if(categoryattribute.getProductCategoryId() != null){
+                    WHERE("PRODUCT_CATEGORY_ID=#{productCategoryId}");
+                }
+                if(categoryattribute.getProductAttributeId() != null){
+                    WHERE("PRODUCT_ATTRIBUTE_ID=#{productAttributeId}");
+                }
+            }
+        }.toString();
+    }
 }

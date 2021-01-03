@@ -81,19 +81,19 @@ public class UserTest {
     }
 
     @SneakyThrows
-    public static String getDynamicUpdate(Class origin){
+    public static String getDynamicDelete(Class origin){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(" public String dynamicUpdate("+origin.getSimpleName()+" "+origin.getSimpleName().toLowerCase()+"){\n" +
+        stringBuilder.append(" public String dynamicDelete("+origin.getSimpleName()+" "+origin.getSimpleName().toLowerCase()+"){\n" +
                 "        return new SQL(){\n" +
                 "            {\n");
-        stringBuilder.append("UPDATE(\""+new PropertyNamingStrategy.SnakeCaseStrategy().translate(origin.getSimpleName())+"\");\n");
+        stringBuilder.append("DELETE_FROM(\""+new PropertyNamingStrategy.SnakeCaseStrategy().translate(origin.getSimpleName())+"\");\n");
         for (Field field : origin.getDeclaredFields()) {
             String property = field.getName();
             //映射关系：对象属性(驼峰)->数据库字段(下划线)
             String column = new PropertyNamingStrategy.SnakeCaseStrategy().translate(field.getName()).toUpperCase();
             PropertyDescriptor propertyDescriptor = new PropertyDescriptor(property, origin);
             stringBuilder.append(String.format("if("+ origin.getSimpleName().toLowerCase()+"."+propertyDescriptor.getReadMethod().getName()+"() != null){\n" +
-                    "                    SET(\"%s=#{%s}\");\n" +
+                    "                    WHERE(\"%s=#{%s}\");\n" +
                     "                }\n", column, property));
         }
         stringBuilder.append("  }\n" +
@@ -102,14 +102,14 @@ public class UserTest {
     }
 
     @Test
-    public void getUp(){
-        System.out.println(getDynamicUpdate(WarehouseInfo.class));
+    public void getDel(){
+        System.out.println(getDynamicDelete(UserRegisterLog.class));
     }
 
 
     @Test
     public void getInsert(){
-        System.out.println(getInsertStr(ProductCategory.class));
+        System.out.println(getInsertStr(UserLoginLog.class));
     }
 
     @Test

@@ -91,4 +91,33 @@ public class StockLogProvider {
             }
         }.toString();
     }
+
+    public String dynamicDelete(StockLog stocklog){
+        return new SQL(){
+            {
+                DELETE_FROM("stock_log");
+                if(stocklog.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+                if(stocklog.getRepositoryId() != null){
+                    WHERE("REPOSITORY_ID=#{repositoryId}");
+                }
+                if(stocklog.getProductId() != null){
+                    WHERE("PRODUCT_ID=#{productId}");
+                }
+                if(stocklog.getSkuCode() != null){
+                    WHERE("SKU_CODE=#{skuCode}");
+                }
+                if(stocklog.getTime() != null){
+                    WHERE("TIME=#{time}");
+                }
+//                if(stocklog.getCounts() != null){
+//                    WHERE("COUNTS=#{counts}");
+//                }
+//                if(stocklog.getLogType() != null){
+//                    WHERE("LOG_TYPE=#{logType}");
+//                }
+            }
+        }.toString();
+    }
 }

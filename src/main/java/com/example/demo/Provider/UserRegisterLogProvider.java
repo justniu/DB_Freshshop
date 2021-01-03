@@ -55,4 +55,21 @@ public class UserRegisterLogProvider {
             }
         }.toString();
     }
+
+    public String dynamicDelete(UserRegisterLog userregisterlog){
+        return new SQL(){
+            {
+                DELETE_FROM("user_register_log");
+                if(userregisterlog.getUserId() != null){
+                    WHERE("USER_ID=#{userId}");
+                }
+                if(userregisterlog.getCreateTime() != null){
+                    WHERE("CREATE_TIME=#{createTime}");
+                }
+//                if(userregisterlog.getUserType() != null){
+//                    WHERE("USER_TYPE=#{userType}");
+//                }
+            }
+        }.toString();
+    }
 }

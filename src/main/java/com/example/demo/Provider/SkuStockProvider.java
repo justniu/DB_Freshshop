@@ -73,4 +73,27 @@ public class SkuStockProvider {
             }
         }.toString();
     }
+
+    public String dynamicDelete(SkuStock skustock){
+        return new SQL(){
+            {
+                DELETE_FROM("sku_stock");
+                if(skustock.getSkuId() != null){
+                    WHERE("SKU_ID=#{skuId}");
+                }
+                if(skustock.getStock() != null){
+                    WHERE("STOCK=#{stock}");
+                }
+//                if(skustock.getLowStock() != null){
+//                    WHERE("LOW_STOCK=#{lowStock}");
+//                }
+                if(skustock.getRepositoryId() != null){
+                    WHERE("REPOSITORY_ID=#{repositoryId}");
+                }
+                if(skustock.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+            }
+        }.toString();
+    }
 }

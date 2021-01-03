@@ -64,4 +64,25 @@ public class ProductAttributeCategoryProvider {
             }
         }.toString();
     }
+
+    public String dynamicDelete(ProductAttributeCategory productattributecategory){
+        return new SQL(){
+            {
+                DELETE_FROM("product_attribute_category");
+                if(productattributecategory.getId() != null){
+                    WHERE("ID=#{id}");
+                }
+                if(productattributecategory.getProductId() != null){
+                    WHERE("PRODUCT_ID=#{productId}");
+                }
+//                if(productattributecategory.getAttributeCount() != null){
+//                    WHERE("ATTRIBUTE_COUNT=#{attributeCount}");
+//                }
+//                if(productattributecategory.getParamCount() != null){
+//                    WHERE("PARAM_COUNT=#{paramCount}");
+//                }
+            }
+        }.toString();
+    }
+
 }

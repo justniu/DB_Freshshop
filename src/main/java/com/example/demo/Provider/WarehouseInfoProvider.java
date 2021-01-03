@@ -64,4 +64,24 @@ public class WarehouseInfoProvider {
             }
         }.toString();
     }
+
+    public String dynamicDelete(WarehouseInfo warehouseinfo){
+        return new SQL(){
+            {
+                DELETE_FROM("warehouse_info");
+                if(warehouseinfo.getWarehouseId() != null){
+                    WHERE("WAREHOUSE_ID=#{warehouseId}");
+                }
+                if(warehouseinfo.getWarehouseName() != null){
+                    WHERE("WAREHOUSE_NAME=#{warehouseName}");
+                }
+//                if(warehouseinfo.getWarehouseCapacity() != null){
+//                    WHERE("WAREHOUSE_CAPACITY=#{warehouseCapacity}");
+//                }
+                if(warehouseinfo.getWarehouseAddressDetail() != null){
+                    WHERE("WAREHOUSE_ADDRESS_DETAIL=#{warehouseAddressDetail}");
+                }
+            }
+        }.toString();
+    }
 }
