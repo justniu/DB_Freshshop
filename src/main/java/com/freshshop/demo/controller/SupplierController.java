@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.freshshop.demo.entity.Supplier;
 import com.freshshop.demo.mapper.SupplierDao;
+import com.freshshop.demo.utils.R;
 
 import java.util.List;
 import java.util.Map;
@@ -16,8 +17,8 @@ public class SupplierController {
     @Autowired
     private SupplierDao supplierDao;
 
-    @PostMapping
-    public String insertr(@RequestBody Supplier supplier){
+    @GetMapping("/insert")
+    public R insertr(@RequestBody Supplier supplier){
 //        Supplier supplier = new Supplier();
 //        supplier.setSupplierId("1001");
 //        supplier.setSupplierName("华南海鲜");
@@ -28,18 +29,27 @@ public class SupplierController {
 //        supplier.setSupplierProductClassId(2);
 //        supplier.setSupplierRemark("");
 //        supplier.setSupplierAddressId(1234);
-        supplierDao.addSupplier(supplier);
-        return "supplier!";
+        return R.ok().data("items",supplierDao.addSupplier(supplier));
     }
 
     @GetMapping("/lists")
-    public List<Supplier> queryAll(){
-        List<Supplier> suppliers = supplierDao.queryAll();
-        return suppliers;
+    public R queryAll(){
+        return R.ok().data("items",supplierDao.queryAll());
     }
 
     @GetMapping("/list")
     public List<Supplier> query(@RequestParam Map<String, Object> param){
         return supplierDao.query(param);
+    }
+    
+    @GetMapping("/delete")
+    public R delete(@RequestBody Supplier supplier){
+    	try {
+    		supplierDao.deleteById(supplier.getSupplierId());
+            return R.ok().data("delete","success");
+		} catch (Exception e) {
+			return R.error().data("delete","fail");
+		}
+        
     }
 }

@@ -79,4 +79,9 @@ public class ProductController {
 			return R.error().data("create","fail");
 		}
     }
+    
+    @GetMapping("/find")
+    public R find(@RequestBody Product params) {
+    	return R.ok().data("items",productDao.findProductById(params.getProductId()));
+    }
 }

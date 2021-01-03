@@ -46,5 +46,9 @@ public interface SupplierDao {
     @SelectProvider(type=com.freshshop.demo.Provider.StockLogProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<StockLog> select(StockLog stockLog);
+    
+    // 根据供应商ID删除数据
+    @Delete("delete from supplier where supplier_id = #{supplierId}")
+    void deleteById(String supplierId);
 }
 

@@ -52,4 +52,7 @@ public interface ProductDao {
     @SelectProvider(type=com.freshshop.demo.Provider.ProductProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<Product> select(Product product);
+    
+    @Select("select * from product where product_id = #{productId}")
+    List<Product> findProductById(String ProductId);
 }

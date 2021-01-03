@@ -11,7 +11,7 @@
  Target Server Version : 110200
  File Encoding         : 65001
 
- Date: 04/01/2021 01:23:27
+ Date: 04/01/2021 04:11:10
 */
 
 
@@ -417,6 +417,9 @@ DISABLE ROW MOVEMENT
 -- ----------------------------
 -- Records of SUPPLIER
 -- ----------------------------
+INSERT INTO "ROOT"."SUPPLIER" VALUES ('1001', '供应商A', '1', 'A某', '12347545456', 'hajdadj@163.com', '100001', 'A省A市A区001号', '主营水果');
+INSERT INTO "ROOT"."SUPPLIER" VALUES ('1002', '供应商B', '2', 'B某', '45645645646', 'cdgugui@b.com', '200035', 'B省B市B县002号', '主营水产品');
+INSERT INTO "ROOT"."SUPPLIER" VALUES ('1003', '供应商C', '3', 'C某', '76456455666', 'cuudgajakbcb@c.com', '654566', 'C省C市C区5544号', '主营肉类');
 
 -- ----------------------------
 -- Table structure for USER_LOGIN_LOG

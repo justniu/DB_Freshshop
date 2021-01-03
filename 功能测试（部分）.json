@@ -1,0 +1,97 @@
+一、测试方法
+利用Postman工具，通过JSON数据进行交互。
+
+二、功能测试内容
+1. 供应商信息增删改查
+查：http://localhost:8014/supplier/lists
+增：http://localhost:8014/supplier/insert
+{
+	"supplierId": "1004",
+	"supplierName": "供应商C",
+	"supplierProductClassId": 1,
+	"supplierContactName": "C某",
+	"supplierTel": "12347545456",
+	"supplierEmail": "hajdadj@163.com",
+	"supplierAddressId": 100004,
+	"supplierAddressDetail": "C省A市A区001号",
+	"supplierRemark": "主营水果"
+}
+删：http://localhost:8014/supplier/delete
+{
+    "supplierId": "1004"
+}
+改：
+
+2. 仓库信息管理
+（1）仓库信息增删改查
+（2）库存表增删改查
+（3）过期商品处理
+3. 商品信息管理
+（1）查看某个商品的全部信息
+查：http://localhost:8014/product/find
+{
+    "productId": "2"
+}
+（2）根据分类查找商品
+（3）查看某个商品的全部评论
+查：http://localhost:8014/productComment/findById
+{
+    "productId": "3"
+}
+4. 用户管理
+（1）增删改查用户信息
+查：http://localhost:8014/user/findByUserName
+{
+    "userName": "Horatio"
+}
+增：http://localhost:8014/user/insert
+{
+    "id": "58e69ba1bbf",
+    "userName": "Horio",
+    "userPassword": "Hotio",
+    "userTel": "131179023",
+    "userEmail": "XlgXlV@189.com",
+    "userAddress": {
+        "add1": "231 Lunetta Street",
+        "add2": "1050 Garfield Road"
+    },
+    "userComment": [
+        "11",
+        "12"
+    ]
+}
+改（在MongoDB下，ID需要一致才能进行更新操作，否则为插入操作）：
+http://localhost:8014/user/saveInfo
+{
+    "id": "58e69ba1bbf",
+    "userName": "sadad",
+    "userPassword": "sdffd",
+    "userTel": "222455",
+    "userEmail": "sfsXlgXlV@189.com",
+    "userAddress": {
+        "add1": "2321 Lunetta Street",
+        "add2": "105440 Garfield Road"
+    },
+    "userComment": [
+        "1",
+        "5"
+    ]
+}
+删：http://localhost:8014/user/deleteById
+{
+    "id": "58e69ba1bbf"
+}
+（2）查看用户订单信息
+查：
+（3）查看用户所有评论
+查：http://localhost:8014/productComment/findByUserId
+{
+    "userId": "5fefff260e3a508e69ba1bc0"
+}
+5. 采购管理
+（1）采购单信息增删查改
+采购一个商品，首先查询 sku 表和 sku 库存表是否有该商品，如果没有，增加该商品，如果有，修改库存信息。
+（2）查询采购单的明细
+6. 销售管理
+（1）订单信息增删查改
+（2）查询用户订单明细
