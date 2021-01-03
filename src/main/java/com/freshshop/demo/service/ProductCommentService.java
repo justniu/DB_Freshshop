@@ -21,6 +21,10 @@ public class ProductCommentService {
         return productCommentMapper.findByProductId(productId);
     }
 	
+	public List<ProductComment> findByUserId(String userId){
+        return productCommentMapper.findByUserId(userId);
+	}
+	
 	public ProductComment insertOne(ProductComment productComment) {
 		return productCommentMapper.insert(productComment);
 	}

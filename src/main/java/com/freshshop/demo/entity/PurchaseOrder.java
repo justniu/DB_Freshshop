@@ -16,7 +16,7 @@ public class PurchaseOrder {
 	private String supplierId;
 	private float purchaseOrderSpend;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(timezone="GMT+8",pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date purchaseOrderDate;
 	private String status;
 	private List<String> purchaseDetail;

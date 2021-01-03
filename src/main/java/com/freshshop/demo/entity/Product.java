@@ -33,11 +33,11 @@ public class Product {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public String getDetailTitile() {
+	public String getDetailTitle() {
 		return detailTitle;
 	}
-	public void setDetailTitile(String detailTitile) {
-		this.detailTitle = detailTitile;
+	public void setDetailTitile(String detailTitle) {
+		this.detailTitle = detailTitle;
 	}
 	public String getDetailDescribe() {
 		return detailDescribe;

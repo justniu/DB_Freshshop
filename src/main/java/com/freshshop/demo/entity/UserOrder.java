@@ -16,7 +16,7 @@ public class UserOrder {
 	private String userId;
 	private float userOrderSpend;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(timezone="GMT+8",pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date userOrderDate;
 	private String method;
 	private String status;

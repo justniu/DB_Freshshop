@@ -1,18 +1,13 @@
 package com.freshshop.demo.controller;
 
-import java.util.Date;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.freshshop.demo.entity.PurchaseOrder;
 import com.freshshop.demo.service.PurchaseOrderService;
 import com.freshshop.demo.utils.R;
-
-import io.swagger.annotations.ApiParam;
 
 @RestController
 public class PurchaseOrderContoller {
@@ -24,58 +19,31 @@ public class PurchaseOrderContoller {
 		return R.ok().data("items", purchaseOrderservice.findAll());
 	}
 	
-	// http://localhost:8014/findProductOrderById/5ff03df80e3a508e69ba1bc5
-	@GetMapping("/findProductOrderById/{id}") // 根据ID查询指定采购订单
-	public R findPurchaseOrderById(
-			@ApiParam(name = "id")
-			@PathVariable String id) {
-		return R.ok().data("items", purchaseOrderservice.findById(id));
+	@GetMapping("/findProductOrderById") // 根据ID查询指定采购订单
+	public R findPurchaseOrderById(@RequestBody PurchaseOrder params) {
+		return R.ok().data("items", purchaseOrderservice.findById(params.getId()));
 	}
 	
-	// http://localhost:8014/findProductOrderBySupplierId/1
-	@GetMapping("/findProductOrderBySupplierId/{supplierId}") // 根据ID查询指定采购订单
-	public R findPurchaseOrderBySupplierId(
-			@ApiParam(name = "supplierId")
-			@PathVariable String supplierId) {
-		return R.ok().data("items", purchaseOrderservice.findAllBySupplierId(supplierId));
+	@GetMapping("/findProductOrderBySupplierId") // 根据ID查询指定采购订单
+	public R findPurchaseOrderBySupplierId(@RequestBody PurchaseOrder params) {
+		return R.ok().data("items", purchaseOrderservice.findAllBySupplierId(params.getSupplierId()));
 	}
 	
 	// 插入一条采购订单
-	@GetMapping("/insertOnePurchaseOrder/{id}/{supplierId}/{purchaseOrderSpend}/{purchaseOrderDate}/{status}/{purchaseDetail}")
-	public R insertOnePurchaseOrder(
-			@ApiParam(name = "id")
-			@PathVariable String id,
-			@ApiParam(name = "supplierId")
-			@PathVariable String supplierId,
-			@ApiParam(name = "purchaseOrderSpend")
-			@PathVariable float purchaseOrderSpend,
-			@ApiParam(name = "purchaseOrderDate")
-			@PathVariable Date purchaseOrderDate,
-			@ApiParam(name = "status")
-			@PathVariable String status,
-			@ApiParam(name = "purchaseDetail")
-			@PathVariable List<String> purchaseDetail) {
-		PurchaseOrder purchaseOrder = new PurchaseOrder();
-		purchaseOrder.setId(id);
-		purchaseOrder.setSupplierId(supplierId);
-		purchaseOrder.setPurchaseOrderSpend(purchaseOrderSpend);
-		purchaseOrder.setPurchaseOrderDate(purchaseOrderDate);
-		purchaseOrder.setStatus(status);
-		purchaseOrder.setPurchaseDetail(purchaseDetail);
+	@GetMapping("/insertOnePurchaseOrder")
+	public R insertOnePurchaseOrder(@RequestBody PurchaseOrder params) {
 		try {
-			purchaseOrderservice.insert(purchaseOrder);
+			purchaseOrderservice.insert(params);
 			return R.ok().data("create","success");
 		} catch (Exception e) {
 			return R.error().data("create","fail");
 		}
 	}
 	
-	@GetMapping("/deletePurchaseOrderById/{id}")// 删除指定ID的采购订单
-	public R deletepurchaseOrderById(
-			@ApiParam(name = "id")
-			@PathVariable String id) {
+	@GetMapping("/deletePurchaseOrderById")// 删除指定ID的采购订单
+	public R deletepurchaseOrderById(@RequestBody PurchaseOrder params) {
 		try {
-			purchaseOrderservice.deleteById(id);
+			purchaseOrderservice.deleteById(params.getId());
 			return R.ok().data("delete","success");
 		} catch (Exception e) {
 			return R.error().data("delete","fail");
@@ -83,29 +51,10 @@ public class PurchaseOrderContoller {
 	}
 	
 	// 更新一条采购订单
-	@GetMapping("/saveOnePurchaseOrder/{id}/{supplierId}/{purchaseOrderSpend}/{purchaseOrderDate}/{status}/{purchaseDetail}")
-	public R SaveOnePurchaseOrder(
-			@ApiParam(name = "id")
-			@PathVariable String id,
-			@ApiParam(name = "supplierId")
-			@PathVariable String supplierId,
-			@ApiParam(name = "purchaseOrderSpend")
-			@PathVariable float purchaseOrderSpend,
-			@ApiParam(name = "purchaseOrderDate")
-			@PathVariable Date purchaseOrderDate,
-			@ApiParam(name = "status")
-			@PathVariable String status,
-			@ApiParam(name = "purchaseDetail")
-			@PathVariable List<String> purchaseDetail) {
-		PurchaseOrder purchaseOrder = new PurchaseOrder();
-		purchaseOrder.setId(id);
-		purchaseOrder.setSupplierId(supplierId);
-		purchaseOrder.setPurchaseOrderSpend(purchaseOrderSpend);
-		purchaseOrder.setPurchaseOrderDate(purchaseOrderDate);
-		purchaseOrder.setStatus(status);
-		purchaseOrder.setPurchaseDetail(purchaseDetail);
+	@GetMapping("/saveOnePurchaseOrder")
+	public R SaveOnePurchaseOrder(@RequestBody PurchaseOrder params) {
 		try {
-			purchaseOrderservice.save(purchaseOrder);
+			purchaseOrderservice.save(params);
 			return R.ok().data("update","success");
 		} catch (Exception e) {
 			return R.error().data("update","fail");
