@@ -29,4 +29,14 @@ public interface StockLogDao {
     @SelectProvider(type=com.example.demo.Provider.StockLogProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<StockLog> query(Map<String, Object> param);
+
+    @InsertProvider(type=com.example.demo.Provider.StockLogProvider.class, method = "dynamicInsert")
+    int insert(StockLog stockLog);
+
+    @DeleteProvider(type=com.example.demo.Provider.StockLogProvider.class, method = "dynamicDelete")
+    int delete(StockLog stockLog);
+
+    @UpdateProvider(type=com.example.demo.Provider.StockLogProvider.class, method = "dynamicUpdate")
+    int update(StockLog stockLog);
+
 }

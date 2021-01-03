@@ -32,4 +32,13 @@ public interface UserOrderDetailDao {
     @SelectProvider(type=com.example.demo.Provider.UserOrderDetailProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<UserOrderDetail> query(Map<String, Object> param);
+
+    @InsertProvider(type=com.example.demo.Provider.UserOrderDetailProvider.class, method = "dynamicInsert")
+    int insert(UserOrderDetail userOrderDetail);
+
+    @DeleteProvider(type=com.example.demo.Provider.UserOrderDetailProvider.class, method = "dynamicDelete")
+    int delete(UserOrderDetail userOrderDetail);
+
+    @UpdateProvider(type=com.example.demo.Provider.UserOrderDetailProvider.class, method = "dynamicUpdate")
+    int update(UserOrderDetail userOrderDetail);
 }

@@ -8,4 +8,7 @@ public class ProductAttributeCategory {
     private String productId;
     private int attributeCount;
     private int paramCount;
+
+    public void setAttributeCount(int i) {
+    }
 }

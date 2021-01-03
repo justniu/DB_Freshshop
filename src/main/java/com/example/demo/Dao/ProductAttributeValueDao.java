@@ -1,5 +1,6 @@
 package com.example.demo.Dao;
 
+import com.example.demo.Entities.ProductAttribute;
 import com.example.demo.Entities.ProductAttributeValue;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
@@ -25,5 +26,14 @@ public interface ProductAttributeValueDao {
     @SelectProvider(type=com.example.demo.Provider.ProductAttributeValueProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<ProductAttributeValue> query(Map<String, Object> param);;
+
+    @DeleteProvider(type=com.example.demo.Provider.ProductAttributeValueProvider.class, method = "dynamicDelete")
+    int delete(ProductAttributeValue productAttributeValue);
+
+    @InsertProvider(type = com.example.demo.Provider.ProductAttributeValueProvider.class,method = "dynamicInsert")
+    int insert(ProductAttributeValue productAttributeValue);
+
+    @UpdateProvider(type = com.example.demo.Provider.ProductAttributeValueProvider.class,method = "dynamicUpdate")
+    int update(ProductAttributeValue productAttributeValue);
 
 }

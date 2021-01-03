@@ -27,4 +27,13 @@ public interface SkuStockDao {
     @SelectProvider(type=com.example.demo.Provider.SkuStockProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<SkuStock> query(Map<String, Object> param);
+
+    @InsertProvider(type=com.example.demo.Provider.SkuStockProvider.class, method = "dynamicInsert")
+    int insert(SkuStock skuStock);
+
+    @UpdateProvider(type=com.example.demo.Provider.SkuStockProvider.class, method = "dynamicUpdate")
+    int update(SkuStock skuStock);
+
+    @DeleteProvider(type=com.example.demo.Provider.SkuStockProvider.class, method = "dynamicDelete")
+    int delete(SkuStock skuStock);
 }

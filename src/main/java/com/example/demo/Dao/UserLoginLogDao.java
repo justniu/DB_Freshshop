@@ -28,4 +28,13 @@ public interface UserLoginLogDao {
     @SelectProvider(type=com.example.demo.Provider.UserLoginLogProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<UserLoginLog> query(Map<String, Object> param);
+
+    @InsertProvider(type=com.example.demo.Provider.UserLoginLogProvider.class, method = "dynamicInsert")
+    int insert(UserLoginLog userLoginLog);
+
+    @UpdateProvider(type=com.example.demo.Provider.UserLoginLogProvider.class, method = "dynamicUpdate")
+    int update(UserLoginLog userLoginLog);
+
+    @DeleteProvider(type=com.example.demo.Provider.UserLoginLogProvider.class, method = "dynamicDelete")
+    int delete(UserLoginLog userLoginLog);
 }

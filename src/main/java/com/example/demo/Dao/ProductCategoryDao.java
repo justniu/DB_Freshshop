@@ -30,4 +30,14 @@ public interface ProductCategoryDao {
     @SelectProvider(type=com.example.demo.Provider.ProductCategoryProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<ProductCategory> query(Map<String, Object> param);
+
+    @UpdateProvider(type = com.example.demo.Provider.ProductCategoryProvider.class,method = "dynamicUpdate")
+    int update(ProductCategory productCategory);
+
+    @InsertProvider(type = com.example.demo.Provider.ProductCategoryProvider.class,method = "dynamicInsert")
+    int insert(ProductCategory productCategory);
+
+    @DeleteProvider(type = com.example.demo.Provider.ProductCategoryProvider.class,method = "dynamicDelete")
+    int delete(ProductCategory productCategory);
+
 }

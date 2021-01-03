@@ -1,6 +1,5 @@
 package com.example.demo.test;
 
-import com.example.demo.Dao.UserDao;
 import com.example.demo.Entities.*;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import lombok.SneakyThrows;
@@ -128,15 +127,6 @@ public class UserTest {
     }
 
 
-    @Autowired
-    private UserDao userDao;
 
-    @Test
-    public void queryAll(){
-        List<User> userList = userDao.queryAllUsers();
-        for(User user:userList){
-            System.out.println(user);
-        }
-    }
 
 }

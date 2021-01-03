@@ -43,4 +43,11 @@ public interface ProductDao {
 
     @UpdateProvider(type=com.example.demo.Provider.ProductProvider.class, method = "dynamicUpdate")
     int update(Product product);
+
+    @InsertProvider(type = com.example.demo.Provider.ProductProvider.class, method = "dynamicInsert")
+    int insert(Product product);
+
+    @DeleteProvider(type = com.example.demo.Provider.ProductProvider.class, method = "dynamicDelete")
+    int delete(Product product);
+    
 }

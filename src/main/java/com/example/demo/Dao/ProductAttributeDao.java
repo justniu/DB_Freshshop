@@ -29,4 +29,11 @@ public interface ProductAttributeDao {
 
     @UpdateProvider(type=com.example.demo.Provider.ProductAttributeProvider.class, method = "dynamicUpdate")
     int update(ProductAttribute productAttribute);
+
+    @InsertProvider(type=com.example.demo.Provider.ProductAttributeProvider.class, method = "dynamicInsert")
+    int insert(ProductAttribute productAttribute);
+
+    @DeleteProvider(type=com.example.demo.Provider.ProductAttributeProvider.class, method = "dynamicDelete")
+    int delete(ProductAttribute productAttribute);
+
 }

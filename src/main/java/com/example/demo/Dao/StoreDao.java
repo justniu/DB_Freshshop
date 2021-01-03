@@ -25,4 +25,14 @@ public interface StoreDao {
     @SelectProvider(type=com.example.demo.Provider.StoreProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<Store> query(Map<String, Object> param);
+
+    @InsertProvider(type=com.example.demo.Provider.StoreProvider.class, method = "dynamicInsert")
+    int insert(Store store);
+
+    @UpdateProvider(type=com.example.demo.Provider.StoreProvider.class, method = "dynamicUpdate")
+    int update(Store store);
+
+    @DeleteProvider(type=com.example.demo.Provider.StoreProvider.class, method = "dynamicDelete")
+    int delete(Store store);
+
 }

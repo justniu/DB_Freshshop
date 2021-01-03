@@ -28,4 +28,10 @@ public interface WarehouseInfoDao {
 
     @DeleteProvider(type=com.example.demo.Provider.WarehouseInfoProvider.class, method = "dynamicDelete")
     int delete(WarehouseInfo warehouseInfo);
+
+    @UpdateProvider(type=com.example.demo.Provider.WarehouseInfoProvider.class, method = "dynamicUpdate")
+    int update(WarehouseInfo warehouseInfo);
+
+    @InsertProvider(type=com.example.demo.Provider.WarehouseInfoProvider.class, method = "dynamicInsert")
+    int insert(WarehouseInfo warehouseInfo);
 }

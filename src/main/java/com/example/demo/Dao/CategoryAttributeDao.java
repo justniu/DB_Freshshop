@@ -32,4 +32,7 @@ public interface CategoryAttributeDao {
 
     @UpdateProvider(type=com.example.demo.Provider.CategoryAttributeProvider.class, method = "dynamicUpdate")
     int update(CategoryAttribute categoryAttribute);
+
+    @DeleteProvider(type = com.example.demo.Provider.CategoryAttributeProvider.class, method = "dynamicDelete")
+    int delete(CategoryAttribute categoryAttribute);
 }

@@ -31,4 +31,13 @@ public interface SupplierDao {
     @SelectProvider(type=com.example.demo.Provider.SupplierProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<Supplier> query(Map<String, Object> param);
+
+    @DeleteProvider(type=com.example.demo.Provider.SupplierProvider.class, method = "dynamicDelete")
+    int delete(Supplier supplier);
+
+    @UpdateProvider(type=com.example.demo.Provider.SupplierProvider.class, method = "dynamicUpdate")
+    int update(Supplier supplier);
+
+    @InsertProvider(type=com.example.demo.Provider.SupplierProvider.class, method = "dynamicInsert")
+    int insert(Supplier supplier);
 }

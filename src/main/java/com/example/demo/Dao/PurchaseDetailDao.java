@@ -31,4 +31,13 @@ public interface PurchaseDetailDao {
     @SelectProvider(type=com.example.demo.Provider.PurchaseDetailProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<PurchaseDetail> query(Map<String, Object> param);
+
+    @DeleteProvider(type = com.example.demo.Provider.PurchaseDetailProvider.class, method = "dynamicDelete")
+    int delete(PurchaseDetail purchaseDetail);
+
+    @InsertProvider(type = com.example.demo.Provider.PurchaseDetailProvider.class, method = "dynamicInsert")
+    int insert(PurchaseDetail purchaseDetail);
+
+    @UpdateProvider(type = com.example.demo.Provider.PurchaseDetailProvider.class, method = "dynamicUpdate")
+    int update(PurchaseDetail purchaseDetail);
 }
