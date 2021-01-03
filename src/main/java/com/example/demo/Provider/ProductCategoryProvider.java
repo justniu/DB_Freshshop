@@ -62,4 +62,35 @@ public class ProductCategoryProvider {
             }
         }.toString();
     }
+
+
+    public String dynamicUpdate(ProductCategory productcategory){
+        return new SQL(){
+            {
+                UPDATE("product_category");
+                if(productcategory.getParentId() != null){
+                    SET("PARENT_ID=#{parentId}");
+                }
+                if(productcategory.getName() != null){
+                    SET("NAME=#{name}");
+                }
+                if(productcategory.getCategoryLevel() != null){
+                    SET("CATEGORY_LEVEL=#{categoryLevel}");
+                }
+//                if(productcategory.getProductCount() != null){
+//                    SET("PRODUCT_COUNT=#{productCount}");
+//                }
+                if(productcategory.getProductUnit() != null){
+                    SET("PRODUCT_UNIT=#{productUnit}");
+                }
+                if(productcategory.getKeywords() != null){
+                    SET("KEYWORDS=#{keywords}");
+                }
+                if(productcategory.getDescription() != null){
+                    SET("DESCRIPTION=#{description}");
+                }
+                WHERE("PRODUCT_CATEGORY_ID=#{productCategoryId}");
+            }
+        }.toString();
+    }
 }

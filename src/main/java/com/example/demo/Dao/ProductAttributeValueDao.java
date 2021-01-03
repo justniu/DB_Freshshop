@@ -25,4 +25,5 @@ public interface ProductAttributeValueDao {
     @SelectProvider(type=com.example.demo.Provider.ProductAttributeValueProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<ProductAttributeValue> query(Map<String, Object> param);;
+
 }

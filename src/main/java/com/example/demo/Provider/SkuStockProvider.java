@@ -52,4 +52,25 @@ public class SkuStockProvider {
             }
         }.toString();
     }
+
+    public String dynamicUpdate(SkuStock skustock){
+        return new SQL(){
+            {
+                UPDATE("sku_stock");
+                if(skustock.getSkuId() != null){
+                    SET("SKU_ID=#{skuId}");
+                }
+                if(skustock.getStock() != null){
+                    SET("STOCK=#{stock}");
+                }
+//                if(skustock.getLowStock() != null){
+//                    SET("LOW_STOCK=#{lowStock}");
+//                }
+                if(skustock.getRepositoryId() != null){
+                    SET("REPOSITORY_ID=#{repositoryId}");
+                }
+                WHERE("ID=#{id}");
+            }
+        }.toString();
+    }
 }

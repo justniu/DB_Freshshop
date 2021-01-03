@@ -81,19 +81,19 @@ public class UserTest {
     }
 
     @SneakyThrows
-    public static String getDynamicInsert(Class origin){
+    public static String getDynamicUpdate(Class origin){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(" public String dynamicInsert("+origin.getSimpleName()+" "+origin.getSimpleName().toLowerCase()+"){\n" +
+        stringBuilder.append(" public String dynamicUpdate("+origin.getSimpleName()+" "+origin.getSimpleName().toLowerCase()+"){\n" +
                 "        return new SQL(){\n" +
                 "            {\n");
-        stringBuilder.append("INSERT_INTO(\""+new PropertyNamingStrategy.SnakeCaseStrategy().translate(origin.getSimpleName())+"\");\n");
+        stringBuilder.append("UPDATE(\""+new PropertyNamingStrategy.SnakeCaseStrategy().translate(origin.getSimpleName())+"\");\n");
         for (Field field : origin.getDeclaredFields()) {
             String property = field.getName();
             //映射关系：对象属性(驼峰)->数据库字段(下划线)
             String column = new PropertyNamingStrategy.SnakeCaseStrategy().translate(field.getName()).toUpperCase();
             PropertyDescriptor propertyDescriptor = new PropertyDescriptor(property, origin);
             stringBuilder.append(String.format("if("+ origin.getSimpleName().toLowerCase()+"."+propertyDescriptor.getReadMethod().getName()+"() != null){\n" +
-                    "                    VALUES(\"%s\", \"#{%s}\");\n" +
+                    "                    SET(\"%s=#{%s}\");\n" +
                     "                }\n", column, property));
         }
         stringBuilder.append("  }\n" +
@@ -102,8 +102,8 @@ public class UserTest {
     }
 
     @Test
-    public void getIns(){
-        System.out.println(getDynamicInsert(WarehouseInfo.class));
+    public void getUp(){
+        System.out.println(getDynamicUpdate(WarehouseInfo.class));
     }
 
 

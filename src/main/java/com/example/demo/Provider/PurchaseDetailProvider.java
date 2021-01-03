@@ -76,4 +76,37 @@ public class PurchaseDetailProvider {
             }
         }.toString();
     }
+
+    public String dynamicUpdate(PurchaseDetail purchasedetail){
+        return new SQL(){
+            {
+                UPDATE("purchase_detail");
+                if(purchasedetail.getOrderId() != null){
+                    SET("ORDER_ID=#{orderId}");
+                }
+                if(purchasedetail.getProductId() != null){
+                    SET("PRODUCT_ID=#{productId}");
+                }
+//                if(purchasedetail.getCounts() != null){
+//                    SET("COUNTS=#{counts}");
+//                }
+//                if(purchasedetail.getPrice() != null){
+//                    SET("PRICE=#{price}");
+//                }
+//                if(purchasedetail.getDiscount() != null){
+//                    SET("DISCOUNT=#{discount}");
+//                }
+//                if(purchasedetail.getSpend() != null){
+//                    SET("SPEND=#{spend}");
+//                }
+                if(purchasedetail.getProductSkuCode() != null){
+                    SET("PRODUCT_SKU_CODE=#{productSkuCode}");
+                }
+                if(purchasedetail.getStockSkuId() != null){
+                    SET("STOCK_SKU_ID=#{stockSkuId}");
+                }
+                WHERE("ID=#{id}");
+            }
+        }.toString();
+    }
 }

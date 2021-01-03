@@ -39,4 +39,19 @@ public class CategoryAttributeProvider {
             }
         }.toString();
     }
+
+    public String dynamicUpdate(CategoryAttribute categoryattribute){
+        return new SQL(){
+            {
+                UPDATE("category_attribute");
+                if(categoryattribute.getProductCategoryId() != null){
+                    SET("PRODUCT_CATEGORY_ID=#{productCategoryId}");
+                }
+                if(categoryattribute.getProductAttributeId() != null){
+                    SET("PRODUCT_ATTRIBUTE_ID=#{productAttributeId}");
+                }
+                WHERE("ID=#{id}");
+            }
+        }.toString();
+    }
 }

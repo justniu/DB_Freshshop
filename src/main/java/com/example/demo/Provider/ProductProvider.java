@@ -124,4 +124,61 @@ public class ProductProvider {
             }
         }.toString();
     }
+
+    public String dynamicUpdate(Product product){
+        return new SQL(){
+            {
+                UPDATE("product");
+                if(product.getProductCategoryId() != null){
+                    SET("PRODUCT_CATEGORY_ID=#{productCategoryId}");
+                }
+                if(product.getUpdateTime() != null){
+                    SET("UPDATE_TIME=#{updateTime}");
+                }
+                if(product.getName() != null){
+                    SET("NAME=#{name}");
+                }
+//                if(product.getDeleteStatus() != null){
+//                    SET("DELETE_STATUS=#{deleteStatus}");
+//                }
+//                if(product.getPublishStatus() != null){
+//                    SET("PUBLISH_STATUS=#{publishStatus}");
+//                }
+//                if(product.getNewStatus() != null){
+//                    SET("NEW_STATUS=#{newStatus}");
+//                }
+//                if(product.getSale() != null){
+//                    SET("SALE=#{sale}");
+//                }
+//                if(product.getProductPrice() != null){
+//                    SET("PRODUCT_PRICE=#{productPrice}");
+//                }
+//                if(product.getPromotionPrice() != null){
+//                    SET("PROMOTION_PRICE=#{promotionPrice}");
+//                }
+//                if(product.getStock() != null){
+//                    SET("STOCK=#{stock}");
+//                }
+//                if(product.getLowStock() != null){
+//                    SET("LOW_STOCK=#{lowStock}");
+//                }
+                if(product.getUnit() != null){
+                    SET("UNIT=#{unit}");
+                }
+//                if(product.getWeight() != null){
+//                    SET("WEIGHT=#{weight}");
+//                }
+//                if(product.getPromotionType() != null){
+//                    SET("PROMOTION_TYPE=#{promotionType}");
+//                }
+                if(product.getPromotionStartTime() != null){
+                    SET("PROMOTION_START_TIME=#{promotionStartTime}");
+                }
+                if(product.getPromotionEndTime() != null){
+                    SET("PROMOTION_END_TIME=#{promotionEndTime}");
+                }
+                WHERE("PRODUCT_ID=#{productId}");
+            }
+        }.toString();
+    }
 }

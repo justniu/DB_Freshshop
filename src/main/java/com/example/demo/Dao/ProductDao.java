@@ -2,6 +2,7 @@ package com.example.demo.Dao;
 
 import com.example.demo.Entities.Product;
 import org.apache.ibatis.annotations.*;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -39,4 +40,7 @@ public interface ProductDao {
     @SelectProvider(type=com.example.demo.Provider.ProductProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<Product> query(Map<String, Object> param);
+
+    @UpdateProvider(type=com.example.demo.Provider.ProductProvider.class, method = "dynamicUpdate")
+    int update(Product product);
 }

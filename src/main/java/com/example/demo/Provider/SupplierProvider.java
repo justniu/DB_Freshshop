@@ -76,4 +76,37 @@ public class SupplierProvider {
             }
         }.toString();
     }
+
+    public String dynamicUpdate(Supplier supplier){
+        return new SQL(){
+            {
+                UPDATE("supplier");
+                if(supplier.getSupplierName() != null){
+                    SET("SUPPLIER_NAME=#{supplierName}");
+                }
+//                if(supplier.getSupplierProductClassId() != null){
+//                    SET("SUPPLIER_PRODUCT_CLASS_ID=#{supplierProductClassId}");
+//                }
+                if(supplier.getSupplierContactName() != null){
+                    SET("SUPPLIER_CONTACT_NAME=#{supplierContactName}");
+                }
+                if(supplier.getSupplierTel() != null){
+                    SET("SUPPLIER_TEL=#{supplierTel}");
+                }
+                if(supplier.getSupplierEmail() != null){
+                    SET("SUPPLIER_EMAIL=#{supplierEmail}");
+                }
+//                if(supplier.getSupplierAddressId() != null){
+//                    SET("SUPPLIER_ADDRESS_ID=#{supplierAddressId}");
+//                }
+                if(supplier.getSupplierAddressDetail() != null){
+                    SET("SUPPLIER_ADDRESS_DETAIL=#{supplierAddressDetail}");
+                }
+                if(supplier.getSupplierRemark() != null){
+                    SET("SUPPLIER_REMARK=#{supplierRemark}");
+                }
+                WHERE("SUPPLIER_ID=#{supplierId}");
+            }
+        }.toString();
+    }
 }

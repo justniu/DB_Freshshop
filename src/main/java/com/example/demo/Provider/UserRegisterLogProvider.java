@@ -40,4 +40,19 @@ public class UserRegisterLogProvider {
             }
         }.toString();
     }
+
+    public String dynamicUpdate(UserRegisterLog userregisterlog){
+        return new SQL(){
+            {
+                UPDATE("user_register_log");
+                if(userregisterlog.getCreateTime() != null){
+                    SET("CREATE_TIME=#{createTime}");
+                }
+//                if(userregisterlog.getUserType() != null){
+//                    SET("USER_TYPE=#{userType}");
+//                }
+                WHERE("USER_ID=#{userId}");
+            }
+        }.toString();
+    }
 }

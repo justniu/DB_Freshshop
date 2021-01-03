@@ -46,4 +46,22 @@ public class ProductAttributeCategoryProvider {
             }
         }.toString();
     }
+
+    public String dynamicUpdate(ProductAttributeCategory productattributecategory){
+        return new SQL(){
+            {
+                UPDATE("product_attribute_category");
+                if(productattributecategory.getProductId() != null){
+                    SET("PRODUCT_ID=#{productId}");
+                }
+//                if(productattributecategory.getAttributeCount() != null){
+//                    SET("ATTRIBUTE_COUNT=#{attributeCount}");
+//                }
+//                if(productattributecategory.getParamCount() != null){
+//                    SET("PARAM_COUNT=#{paramCount}");
+//                }
+                WHERE("ID=#{id}");
+            }
+        }.toString();
+    }
 }

@@ -31,6 +31,16 @@ public class CategoryAttributeController {
         return "category_attr";
     }
 
+    @GetMapping("/new")
+    public String update(){
+        CategoryAttribute categoryAttribute = new CategoryAttribute();
+        categoryAttribute.setProductAttributeId("2");
+        categoryAttribute.setProductCategoryId("1");
+        categoryAttribute.setId("1001");
+        categoryAttributeDao.update(categoryAttribute);
+        return "new";
+    }
+
     @GetMapping("/list")
     public List<CategoryAttribute> query(@RequestParam Map<String, Object> param){
         return categoryAttributeDao.query(param);

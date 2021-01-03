@@ -29,4 +29,7 @@ public interface ProductAttributeCategoryDao {
 
     @InsertProvider(type=com.example.demo.Provider.ProductAttributeCategoryProvider.class, method = "dynamicInsert")
     int insert(ProductAttributeCategory productAttributeCategory);
+
+    @UpdateProvider(type=com.example.demo.Provider.ProductAttributeCategoryProvider.class, method = "dynamicUpdate")
+    int update(ProductAttributeCategory productAttributeCategory);
 }

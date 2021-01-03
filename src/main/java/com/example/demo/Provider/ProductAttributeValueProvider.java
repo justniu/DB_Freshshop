@@ -41,4 +41,19 @@ public class ProductAttributeValueProvider {
         }.toString();
     }
 
+    public String dynamicUpdate(ProductAttributeValue productattributevalue){
+        return new SQL(){
+            {
+                UPDATE("product_attribute_value");
+                if(productattributevalue.getProductAttributeId() != null){
+                    SET("PRODUCT_ATTRIBUTE_ID=#{productAttributeId}");
+                }
+                if(productattributevalue.getValue() != null){
+                    SET("VALUE=#{value}");
+                }
+                WHERE("ID=#{id}");
+            }
+        }.toString();
+    }
+
 }

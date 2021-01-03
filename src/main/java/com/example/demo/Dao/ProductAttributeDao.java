@@ -26,4 +26,7 @@ public interface ProductAttributeDao {
     @SelectProvider(type=com.example.demo.Provider.ProductAttributeProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<ProductAttribute> query(Map<String, Object> param);
+
+    @UpdateProvider(type=com.example.demo.Provider.ProductAttributeProvider.class, method = "dynamicUpdate")
+    int update(ProductAttribute productAttribute);
 }

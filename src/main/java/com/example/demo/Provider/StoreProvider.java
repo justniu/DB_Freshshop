@@ -46,4 +46,22 @@ public class StoreProvider {
             }
         }.toString();
     }
+
+    public String dynamicUpdate(Store store){
+        return new SQL(){
+            {
+                UPDATE("store");
+                if(store.getName() != null){
+                    SET("NAME=#{name}");
+                }
+                if(store.getAddress() != null){
+                    SET("ADDRESS=#{address}");
+                }
+                if(store.getPhone() != null){
+                    SET("PHONE=#{phone}");
+                }
+                WHERE("ID=#{id}");
+            }
+        }.toString();
+    }
 }

@@ -53,4 +53,25 @@ public class UserLoginLogProvider {
         }.toString();
     }
 
+    public String dynamicUpdate(UserLoginLog userloginlog){
+        return new SQL(){
+            {
+                UPDATE("user_login_log");
+                if(userloginlog.getUserId() != null){
+                    SET("USER_ID=#{userId}");
+                }
+                if(userloginlog.getLoginTime() != null){
+                    SET("LOGIN_TIME=#{loginTime}");
+                }
+//                if(userloginlog.getLoginType() != null){
+//                    SET("LOGIN_TYPE=#{loginType}");
+//                }
+                if(userloginlog.getLoginIp() != null){
+                    SET("LOGIN_IP=#{loginIp}");
+                }
+                WHERE("ID=#{id}");
+            }
+        }.toString();
+    }
+
 }

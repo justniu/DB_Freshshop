@@ -46,4 +46,22 @@ public class WarehouseInfoProvider {
             }
         }.toString();
     }
+
+    public String dynamicUpdate(WarehouseInfo warehouseinfo){
+        return new SQL(){
+            {
+                UPDATE("warehouse_info");
+                if(warehouseinfo.getWarehouseName() != null){
+                    SET("WAREHOUSE_NAME=#{warehouseName}");
+                }
+//                if(warehouseinfo.getWarehouseCapacity() != null){
+//                    SET("WAREHOUSE_CAPACITY=#{warehouseCapacity}");
+//                }
+                if(warehouseinfo.getWarehouseAddressDetail() != null){
+                    SET("WAREHOUSE_ADDRESS_DETAIL=#{warehouseAddressDetail}");
+                }
+                WHERE("WAREHOUSE_ID=#{warehouseId}");
+            }
+        }.toString();
+    }
 }

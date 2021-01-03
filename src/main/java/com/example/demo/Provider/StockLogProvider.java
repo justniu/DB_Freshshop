@@ -64,4 +64,31 @@ public class StockLogProvider {
             }
         }.toString();
     }
+
+    public String dynamicUpdate(StockLog stocklog){
+        return new SQL(){
+            {
+                UPDATE("stock_log");
+                if(stocklog.getRepositoryId() != null){
+                    SET("REPOSITORY_ID=#{repositoryId}");
+                }
+                if(stocklog.getProductId() != null){
+                    SET("PRODUCT_ID=#{productId}");
+                }
+                if(stocklog.getSkuCode() != null){
+                    SET("SKU_CODE=#{skuCode}");
+                }
+                if(stocklog.getTime() != null){
+                    SET("TIME=#{time}");
+                }
+//                if(stocklog.getCounts() != null){
+//                    SET("COUNTS=#{counts}");
+//                }
+//                if(stocklog.getLogType() != null){
+//                    SET("LOG_TYPE=#{logType}");
+//                }
+                WHERE("ID=#{id}");
+            }
+        }.toString();
+    }
 }
