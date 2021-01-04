@@ -2,8 +2,10 @@ package com.freshshop.demo.service;
 
 import com.freshshop.demo.entity.Product;
 import com.freshshop.demo.entity.ProductSku;
+import com.freshshop.demo.entity.SkuStock;
 import com.freshshop.demo.mapper.ProductDao;
 import com.freshshop.demo.mapper.ProductSkuMapper;
+import com.freshshop.demo.mapper.SkuStockDao;
 import com.freshshop.demo.utils.DateId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,7 +49,9 @@ public class ProductSkuService {
 
 	@Autowired
 	ProductDao productDao;
-	@Transactional
+	@Autowired
+	SkuStockDao skuStockDao;
+
 	public void update(Product product){
 		ProductSku productSku = new ProductSku();
 		productSku.setId(DateId.toStr());
@@ -60,5 +64,12 @@ public class ProductSkuService {
 		productSku.setPromotionPrice(String.valueOf(product.getPromotionPrice()-2));
 		productDao.addProduct(product);
 		insert(productSku);
+		SkuStock skuStock = new SkuStock();
+		skuStock.setStock(0);
+		skuStock.setId(DateId.toStr());
+		skuStock.setLowStock(2);
+		skuStock.setSkuId(productSku.getId());
+		skuStock.setRepositoryId("1");
+		skuStockDao.insert(skuStock);
 	}
 }

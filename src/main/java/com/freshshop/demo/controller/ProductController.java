@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/product", method = RequestMethod.GET)
+@RequestMapping(value = "/product")
 public class ProductController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class ProductController {
     @Autowired
     ProductSkuService productSkuService;
 
-    @PostMapping
+    @GetMapping("/new")
     public String insert(@RequestBody Product product){
 //        Product product = new Product();
 //        product.setProductId("4");
@@ -44,7 +44,7 @@ public class ProductController {
 //        product.setWeight(1);
 //        product.setStock(100);
 //        product.setUpdateTime(new Date());
-        productDao.addProduct(product);
+        productSkuService.update(product);
         return "product";
     }
     @GetMapping("/lists")
@@ -57,36 +57,36 @@ public class ProductController {
         return productDao.query(param);
     }
 
-    @PostMapping("/new")
-    public R update(@RequestBody Product params){
-//        Product product = new Product();
-//        product.setProductId("4");
-//        product.setProductPrice(20);
-//        product.setProductCategoryId("14");
-//        product.setDeleteStatus(0);
-//        product.setName("好味道鸡爪");
-//        product.setLowStock(2);
-//        product.setNewStatus(1);
-//        product.setPromotionType(0);
-//        product.setPromotionStartTime(new Date());
-//        product.setPromotionEndTime(new Date());
-//        product.setPromotionPrice(15);
-//        product.setPublishStatus(1);
-//        product.setSale(1200);
-//        product.setUnit("kg");
-//        product.setWeight(1);
-//        product.setStock(100);
-//        product.setUpdateTime(new Date());
-//        productDao.update(product);
-//        return "new";
-    	try {
-    		productSkuService.update(params);
-			return R.ok().data("create","success");
-		} catch (Exception e) {
-			return R.error().data("create","fail");
-		}
-    }
-    
+//    @GetMapping("/new")
+//    public R update(@RequestBody Product params){
+////        Product product = new Product();
+////        product.setProductId("4");
+////        product.setProductPrice(20);
+////        product.setProductCategoryId("14");
+////        product.setDeleteStatus(0);
+////        product.setName("好味道鸡爪");
+////        product.setLowStock(2);
+////        product.setNewStatus(1);
+////        product.setPromotionType(0);
+////        product.setPromotionStartTime(new Date());
+////        product.setPromotionEndTime(new Date());
+////        product.setPromotionPrice(15);
+////        product.setPublishStatus(1);
+////        product.setSale(1200);
+////        product.setUnit("kg");
+////        product.setWeight(1);
+////        product.setStock(100);
+////        product.setUpdateTime(new Date());
+////        productDao.update(product);
+////        return "new";
+//    	try {
+//    		productSkuService.update(params);
+//			return R.ok().data("create","success");
+//		} catch (Exception e) {
+//			return R.error().data("create","fail");
+//		}
+//    }
+//
     @GetMapping("/find")
     public R find(@RequestBody Product params) {
     	return R.ok().data("items",productDao.findProductById(params.getProductId()));
@@ -98,5 +98,11 @@ public class ProductController {
     	return R.ok().data("items",productDao.findProductByCategoryId(id));
     }
 
+
+    @GetMapping("/del")
+    public R delete(@RequestBody Product product){
+        productDao.delete(product);
+        return R.ok().data("del", "success");
+    }
 
 }
