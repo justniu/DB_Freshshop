@@ -43,4 +43,7 @@ public interface ProductCategoryDao {
     @SelectProvider(type=com.freshshop.demo.Provider.ProductCategoryProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<ProductCategory> select(ProductCategory productCategory);
+    
+    @Select("select product_category_id from product_category where name = #{name}")
+    String findProductCategoryIdByname(String name);
 }

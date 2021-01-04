@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.freshshop.demo.entity.Product;
+import com.freshshop.demo.entity.ProductCategory;
+import com.freshshop.demo.mapper.ProductCategoryDao;
 import com.freshshop.demo.mapper.ProductDao;
 import com.freshshop.demo.utils.R;
 
@@ -16,6 +18,8 @@ public class ProductController {
 
     @Autowired
     private ProductDao productDao;
+    @Autowired
+    private ProductCategoryDao productCategoryDao;
 
     @PostMapping
     public String insert(@RequestBody Product product){
@@ -83,5 +87,11 @@ public class ProductController {
     @GetMapping("/find")
     public R find(@RequestBody Product params) {
     	return R.ok().data("items",productDao.findProductById(params.getProductId()));
+    }
+    
+    @GetMapping("/findProductByCategoryId") // 按类别名称查询
+    public R findProductByCategoryId(@RequestBody ProductCategory params) {
+    	String id = productCategoryDao.findProductCategoryIdByname(params.getName());
+    	return R.ok().data("items",productDao.findProductByCategoryId(id));
     }
 }

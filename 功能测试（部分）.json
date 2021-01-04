@@ -16,11 +16,11 @@
 	"supplierAddressDetail": "C省A市A区001号",
 	"supplierRemark": "主营水果"
 }
+改：
 删：http://localhost:8014/supplier/delete
 {
     "supplierId": "1004"
 }
-改：
 
 2. 仓库信息管理
 （1）仓库信息增删改查
@@ -33,6 +33,10 @@
     "productId": "2"
 }
 （2）根据分类查找商品
+查：http://localhost:8014/product//findProductByCategoryId
+{
+    "name":"红富士"
+}
 （3）查看某个商品的全部评论
 查：http://localhost:8014/productComment/findById
 {

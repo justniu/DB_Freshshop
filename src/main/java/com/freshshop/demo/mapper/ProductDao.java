@@ -55,4 +55,7 @@ public interface ProductDao {
     
     @Select("select * from product where product_id = #{productId}")
     List<Product> findProductById(String ProductId);
+    
+    @Select("select * from product where product_category_id = #{productCategoryId}")
+    List<Product> findProductByCategoryId(String productCategoryId);
 }
