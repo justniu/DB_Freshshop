@@ -10,12 +10,14 @@ import com.freshshop.demo.mapper.SkuStockDao;
 import com.freshshop.demo.mapper.StockLogDao;
 import com.freshshop.demo.utils.DateId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class PurchaseService {
 
     /**
@@ -36,7 +38,7 @@ public class PurchaseService {
     private ProductDao productDao;
 
     @Transactional
-    public void newPurchase1(PurchaseDetail purchaseDetail){
+    public void newPurchase(PurchaseDetail purchaseDetail){
         purchaseDetailDao.insert(purchaseDetail);
         SkuStock skuStock = new SkuStock();
         skuStock.setId(purchaseDetail.getStockSkuId());
@@ -63,10 +65,4 @@ public class PurchaseService {
         stockLogDao.insert(stockLog);
         skuStockDao.update(skuStock);
     }
-
-    @Transactional
-    public void newPurchase2(PurchaseDetail purchaseDetail){
-
-    }
-
 }

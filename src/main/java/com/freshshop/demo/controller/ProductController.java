@@ -4,6 +4,7 @@ import com.freshshop.demo.entity.Product;
 import com.freshshop.demo.entity.ProductCategory;
 import com.freshshop.demo.mapper.ProductCategoryDao;
 import com.freshshop.demo.mapper.ProductDao;
+import com.freshshop.demo.service.ProductSkuService;
 import com.freshshop.demo.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,9 @@ public class ProductController {
     private ProductDao productDao;
     @Autowired
     private ProductCategoryDao productCategoryDao;
+
+    @Autowired
+    ProductSkuService productSkuService;
 
     @PostMapping
     public String insert(@RequestBody Product product){
@@ -53,7 +57,7 @@ public class ProductController {
         return productDao.query(param);
     }
 
-    @GetMapping("/new")
+    @PostMapping("/new")
     public R update(@RequestBody Product params){
 //        Product product = new Product();
 //        product.setProductId("4");
@@ -76,7 +80,7 @@ public class ProductController {
 //        productDao.update(product);
 //        return "new";
     	try {
-    		productDao.update(params);
+    		productSkuService.update(params);
 			return R.ok().data("create","success");
 		} catch (Exception e) {
 			return R.error().data("create","fail");

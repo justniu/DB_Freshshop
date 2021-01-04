@@ -7,6 +7,7 @@ import com.freshshop.demo.mapper.ProductSkuMapper;
 import com.freshshop.demo.utils.DateId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.HashMap;
@@ -46,16 +47,18 @@ public class ProductSkuService {
 
 	@Autowired
 	ProductDao productDao;
+	@Transactional
 	public void update(Product product){
 		ProductSku productSku = new ProductSku();
 		productSku.setId(DateId.toStr());
 		productSku.setProductId(product.getProductId());
 		productSku.setPrice(String.valueOf(product.getProductPrice()));
-		productSku.setSale(100);
+		productSku.setSale(0);
 		Map<String, String> stringStringMap = new HashMap<>();
 		stringStringMap.put("品质","95%");
 		productSku.setSp(stringStringMap);
 		productSku.setPromotionPrice(String.valueOf(product.getPromotionPrice()-2));
+		productDao.addProduct(product);
 		insert(productSku);
 	}
 }

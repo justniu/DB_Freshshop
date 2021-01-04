@@ -1,7 +1,9 @@
 package com.freshshop.demo.controller;
 
+import com.freshshop.demo.entity.OrderAndDetail;
 import com.freshshop.demo.entity.UserOrderDetail;
 import com.freshshop.demo.mapper.UserOrderDetailDao;
+import com.freshshop.demo.service.UserOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,9 @@ public class UserOrderDetailController {
 
     @Autowired
     private UserOrderDetailDao userOrderDetailDao;
+
+    @Autowired
+    private UserOrderService userOrderService;
 
     @PostMapping
     public String insert(@RequestBody UserOrderDetail userOrderDetail){
@@ -42,10 +47,19 @@ public class UserOrderDetailController {
     }
 
     @PostMapping("/test")
-    public String update(@RequestParam Map<String, String > param){
-        if(param.get("orderId")!=null || param.get("orderDetail")!=null){
-            return param.get("orderId")+param.get("orderDetail");
-        }
-        return "test";
+    public String update(@RequestBody OrderAndDetail orderAndDetail){
+        UserOrderDetail userOrderDetail = orderAndDetail.getUserOrderDetail();
+        userOrderDetail.setUserOrderDetailOrderId(orderAndDetail.getOrderId());
+        userOrderDetailDao.addUserOrderDetail(userOrderDetail);
+        return "new";
     }
+
+    /**
+     * 查询某个用户购买商品记录
+     */
+    @GetMapping("/goods")
+    public Map<Object, Object> queryByUserId(@RequestParam String userId){
+        return userOrderService.queryAllDetail(userId);
+    }
+
 }
