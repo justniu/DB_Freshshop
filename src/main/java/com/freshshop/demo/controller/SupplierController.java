@@ -29,7 +29,13 @@ public class SupplierController {
 //        supplier.setSupplierProductClassId(2);
 //        supplier.setSupplierRemark("");
 //        supplier.setSupplierAddressId(1234);
-        return R.ok().data("items",supplierDao.addSupplier(supplier));
+    	try {
+    		supplierDao.addSupplier(supplier);
+    		return R.ok().data("insert","success");
+		} catch (Exception e) {
+			return R.error().data("insert","fail");
+		}
+        
     }
 
     @GetMapping("/lists")
@@ -49,6 +55,17 @@ public class SupplierController {
             return R.ok().data("delete","success");
 		} catch (Exception e) {
 			return R.error().data("delete","fail");
+		}
+        
+    }
+    
+    @GetMapping("/update") // 更新
+    public R update(@RequestBody Supplier supplier){
+    	try {
+    		supplierDao.update(supplier);
+            return R.ok().data("update","success");
+		} catch (Exception e) {
+			return R.error().data("update","fail");
 		}
         
     }

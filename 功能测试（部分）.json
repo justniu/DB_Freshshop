@@ -16,7 +16,18 @@
 	"supplierAddressDetail": "C省A市A区001号",
 	"supplierRemark": "主营水果"
 }
-改：
+改：http://localhost:8014/supplier/update
+{
+	"supplierId": "1004",
+	"supplierName": "供应商C",
+	"supplierProductClassId": 1,
+	"supplierContactName": "C某",
+	"supplierTel": "00000",
+	"supplierEmail": "haj225dadj@163.com",
+	"supplierAddressId": 102204,
+	"supplierAddressDetail": "D省A市A区001号",
+	"supplierRemark": "主营水果"
+}
 删：http://localhost:8014/supplier/delete
 {
     "supplierId": "1004"
@@ -33,7 +44,7 @@
     "productId": "2"
 }
 （2）根据分类查找商品
-查：http://localhost:8014/product//findProductByCategoryId
+查：http://localhost:8014/product/findProductByCategoryId
 {
     "name":"红富士"
 }
