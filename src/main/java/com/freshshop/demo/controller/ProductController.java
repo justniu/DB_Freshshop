@@ -105,4 +105,10 @@ public class ProductController {
         return R.ok().data("del", "success");
     }
 
+    @GetMapping("/update")
+    public void update(Product product){
+        productDao.update(product);
+    }
+
+
 }
