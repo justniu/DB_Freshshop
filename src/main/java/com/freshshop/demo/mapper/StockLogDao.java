@@ -26,20 +26,20 @@ public interface StockLogDao {
     )
     int addStockLog(StockLog stockLog);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.StockLogProvider.class, method = "selectWithParams")
+    @SelectProvider(type=com.freshshop.demo.provider.StockLogProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<StockLog> query(Map<String, Object> param);
 
-    @InsertProvider(type=com.freshshop.demo.Provider.StockLogProvider.class, method = "dynamicInsert")
+    @InsertProvider(type=com.freshshop.demo.provider.StockLogProvider.class, method = "dynamicInsert")
     int insert(StockLog stockLog);
 
-    @DeleteProvider(type=com.freshshop.demo.Provider.StockLogProvider.class, method = "dynamicDelete")
+    @DeleteProvider(type=com.freshshop.demo.provider.StockLogProvider.class, method = "dynamicDelete")
     int delete(StockLog stockLog);
 
-    @UpdateProvider(type=com.freshshop.demo.Provider.StockLogProvider.class, method = "dynamicUpdate")
+    @UpdateProvider(type=com.freshshop.demo.provider.StockLogProvider.class, method = "dynamicUpdate")
     int update(StockLog stockLog);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.StockLogProvider.class, method = "dynamicSelect")
+    @SelectProvider(type=com.freshshop.demo.provider.StockLogProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<StockLog> select(StockLog stockLog);
 }

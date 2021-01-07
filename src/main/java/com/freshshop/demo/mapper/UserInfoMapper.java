@@ -1,11 +1,10 @@
 package com.freshshop.demo.mapper;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.freshshop.demo.entity.UserInfo;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.freshshop.demo.entity.UserInfo;
+import java.util.List;
+import java.util.Optional;
 
 public interface UserInfoMapper extends MongoRepository<UserInfo, String>{
 	List<UserInfo> findAll(); // 查询所有用户信息

@@ -1,10 +1,9 @@
 package com.freshshop.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import com.freshshop.demo.entity.UserRegisterLog;
 import com.freshshop.demo.mapper.UserRegisterLogDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;

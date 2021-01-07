@@ -27,20 +27,20 @@ public interface ProductCategoryDao {
     )
     int addProductCate(ProductCategory productCategory);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.ProductCategoryProvider.class, method = "selectWithParams")
+    @SelectProvider(type=com.freshshop.demo.provider.ProductCategoryProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<ProductCategory> query(Map<String, Object> param);
 
-    @UpdateProvider(type = com.freshshop.demo.Provider.ProductCategoryProvider.class,method = "dynamicUpdate")
+    @UpdateProvider(type = com.freshshop.demo.provider.ProductCategoryProvider.class,method = "dynamicUpdate")
     int update(ProductCategory productCategory);
 
-    @InsertProvider(type = com.freshshop.demo.Provider.ProductCategoryProvider.class,method = "dynamicInsert")
+    @InsertProvider(type = com.freshshop.demo.provider.ProductCategoryProvider.class,method = "dynamicInsert")
     int insert(ProductCategory productCategory);
 
-    @DeleteProvider(type = com.freshshop.demo.Provider.ProductCategoryProvider.class,method = "dynamicDelete")
+    @DeleteProvider(type = com.freshshop.demo.provider.ProductCategoryProvider.class,method = "dynamicDelete")
     int delete(ProductCategory productCategory);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.ProductCategoryProvider.class, method = "dynamicSelect")
+    @SelectProvider(type=com.freshshop.demo.provider.ProductCategoryProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<ProductCategory> select(ProductCategory productCategory);
     

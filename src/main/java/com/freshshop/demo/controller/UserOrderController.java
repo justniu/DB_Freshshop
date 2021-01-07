@@ -1,13 +1,12 @@
 package com.freshshop.demo.controller;
 
+import com.freshshop.demo.entity.UserOrder;
+import com.freshshop.demo.service.UserOrderService;
+import com.freshshop.demo.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.freshshop.demo.entity.UserOrder;
-import com.freshshop.demo.service.UserOrderService;
-import com.freshshop.demo.utils.R;
 
 @RestController
 public class UserOrderController {

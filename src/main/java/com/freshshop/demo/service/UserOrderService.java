@@ -1,18 +1,25 @@
 package com.freshshop.demo.service;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.freshshop.demo.entity.Product;
+import com.freshshop.demo.entity.UserOrder;
+import com.freshshop.demo.entity.UserOrderDetail;
+import com.freshshop.demo.mapper.ProductDao;
+import com.freshshop.demo.mapper.UserOrderDetailDao;
+import com.freshshop.demo.mapper.UserOrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.freshshop.demo.entity.UserOrder;
-import com.freshshop.demo.mapper.UserOrderMapper;
+import java.util.*;
 
 @Service
 public class UserOrderService {
 	@Autowired
 	UserOrderMapper userOrderMapper;
+	@Autowired
+	UserOrderDetailDao userOrderDetailDao;
+	@Autowired
+	ProductDao productDao;
 	
 	public List<UserOrder> findAll(){
 		return userOrderMapper.findAll();
@@ -37,5 +44,22 @@ public class UserOrderService {
 	
 	public UserOrder save(UserOrder userOrder) {
 		return userOrderMapper.save(userOrder);
+	}
+
+	@Transactional
+	public Map<Object, Object> queryAllDetail(String userId){
+		HashMap<Object, Object> objectObjectHashMap1 = new HashMap<>();
+		List<UserOrder> all = userOrderMapper.findAllByUserId(userId);
+		for(UserOrder userOrder:all){
+			if(userOrder.getUserOrderDetail()!=null){
+				for(String orderDetailID:userOrder.getUserOrderDetail()){
+					HashMap<String, Object> objectObjectHashMap = new HashMap<>();
+					objectObjectHashMap.put("userOrderDetailId", orderDetailID);
+					List<Product> productById = productDao.findProductById(userOrderDetailDao.query(objectObjectHashMap).get(0).getUserOrderDetailProductId());
+					objectObjectHashMap1.put(orderDetailID, productById);
+				}
+			}
+		}
+		return objectObjectHashMap1;
 	}
 }

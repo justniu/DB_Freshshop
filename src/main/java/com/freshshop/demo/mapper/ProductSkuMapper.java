@@ -1,11 +1,10 @@
 package com.freshshop.demo.mapper;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.freshshop.demo.entity.ProductSku;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.freshshop.demo.entity.ProductSku;
+import java.util.List;
+import java.util.Optional;
 
 public interface ProductSkuMapper extends MongoRepository<ProductSku, String>{
 	List<ProductSku> findAll(); // 查询所有商品sku信息

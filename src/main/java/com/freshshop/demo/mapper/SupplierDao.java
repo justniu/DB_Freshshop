@@ -30,20 +30,20 @@ public interface SupplierDao {
     )
     int addSupplier(Supplier supplier);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.SupplierProvider.class, method = "selectWithParams")
+    @SelectProvider(type=com.freshshop.demo.provider.SupplierProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<Supplier> query(Map<String, Object> param);
 
-    @DeleteProvider(type=com.freshshop.demo.Provider.SupplierProvider.class, method = "dynamicDelete")
+    @DeleteProvider(type=com.freshshop.demo.provider.SupplierProvider.class, method = "dynamicDelete")
     int delete(Supplier supplier);
 
-    @UpdateProvider(type=com.freshshop.demo.Provider.SupplierProvider.class, method = "dynamicUpdate")
+    @UpdateProvider(type=com.freshshop.demo.provider.SupplierProvider.class, method = "dynamicUpdate")
     int update(Supplier supplier);
 
-    @InsertProvider(type=com.freshshop.demo.Provider.SupplierProvider.class, method = "dynamicInsert")
+    @InsertProvider(type=com.freshshop.demo.provider.SupplierProvider.class, method = "dynamicInsert")
     int insert(Supplier supplier);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.StockLogProvider.class, method = "dynamicSelect")
+    @SelectProvider(type=com.freshshop.demo.provider.StockLogProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<StockLog> select(StockLog stockLog);
     

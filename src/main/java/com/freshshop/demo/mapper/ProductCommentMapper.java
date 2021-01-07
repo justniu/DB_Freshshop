@@ -1,10 +1,9 @@
 package com.freshshop.demo.mapper;
 
-import java.util.List;
-
+import com.freshshop.demo.entity.ProductComment;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.freshshop.demo.entity.ProductComment;
+import java.util.List;
 
 public interface ProductCommentMapper extends MongoRepository<ProductComment, String>{
 	List<ProductComment> findAll(); // 查询所有的产品评论

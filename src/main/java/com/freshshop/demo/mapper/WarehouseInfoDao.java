@@ -22,20 +22,20 @@ public interface WarehouseInfoDao {
     )
     int addWarehouseInfo(WarehouseInfo warehouseInfo);
 
-    @SelectProvider(type = com.freshshop.demo.Provider.WarehouseInfoProvider.class, method = "selectWithParams")
+    @SelectProvider(type = com.freshshop.demo.provider.WarehouseInfoProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<WarehouseInfo> query(Map<String, Object> param);
 
-    @DeleteProvider(type = com.freshshop.demo.Provider.WarehouseInfoProvider.class, method = "dynamicDelete")
+    @DeleteProvider(type = com.freshshop.demo.provider.WarehouseInfoProvider.class, method = "dynamicDelete")
     int delete(WarehouseInfo warehouseInfo);
 
-    @UpdateProvider(type = com.freshshop.demo.Provider.WarehouseInfoProvider.class, method = "dynamicUpdate")
+    @UpdateProvider(type = com.freshshop.demo.provider.WarehouseInfoProvider.class, method = "dynamicUpdate")
     int update(WarehouseInfo warehouseInfo);
 
-    @InsertProvider(type = com.freshshop.demo.Provider.WarehouseInfoProvider.class, method = "dynamicInsert")
+    @InsertProvider(type = com.freshshop.demo.provider.WarehouseInfoProvider.class, method = "dynamicInsert")
     int insert(WarehouseInfo warehouseInfo);
 
-    @SelectProvider(type = com.freshshop.demo.Provider.WarehouseInfoProvider.class, method = "dynamicSelect")
+    @SelectProvider(type = com.freshshop.demo.provider.WarehouseInfoProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<WarehouseInfo> select(WarehouseInfo warehouseInfo);
 }

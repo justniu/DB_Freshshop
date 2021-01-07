@@ -1,13 +1,12 @@
 package com.freshshop.demo.service;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.freshshop.demo.entity.UserInfo;
+import com.freshshop.demo.mapper.UserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.freshshop.demo.entity.UserInfo;
-import com.freshshop.demo.mapper.UserInfoMapper;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserInfoService {

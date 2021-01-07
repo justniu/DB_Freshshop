@@ -2,11 +2,17 @@ package com.freshshop.demo.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class StockLog {
     private String id;
     private String repositoryId;
     private String productId;
     private String skuCode;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
     private Date time;
     private int counts;
     private int logType;
@@ -52,6 +58,5 @@ public class StockLog {
 	public void setLogType(int logType) {
 		this.logType = logType;
 	}
-    
     
 }

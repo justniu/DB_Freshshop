@@ -1,10 +1,11 @@
 package com.freshshop.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import com.freshshop.demo.entity.PurchaseDetail;
 import com.freshshop.demo.mapper.PurchaseDetailDao;
+import com.freshshop.demo.service.PurchaseService;
+import com.freshshop.demo.utils.R;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -15,9 +16,11 @@ public class PurchaseDetailController {
 
     @Autowired
     private PurchaseDetailDao purchaseOrderDetailDao;
+    @Autowired
+    PurchaseService purchaseService;
 
     @PostMapping
-    public String insert(@RequestBody PurchaseDetail purchaseDetail){
+    public R insert(@RequestBody PurchaseDetail purchaseDetail){
 //        PurchaseDetail purchaseOrderDetail = new PurchaseDetail();
 //        purchaseOrderDetail.setOrderId("1");
 //        purchaseOrderDetail.setCounts(100);
@@ -28,8 +31,8 @@ public class PurchaseDetailController {
 //        purchaseOrderDetail.setStockSkuId("1");
 //        purchaseOrderDetail.setProductId("1");
 //        purchaseOrderDetail.setProductSkuCode("63371141142");
-        purchaseOrderDetailDao.addPurchaseOrderDetail(purchaseDetail);
-        return "purchaseDetail";
+        purchaseService.newPurchase(purchaseDetail);
+        return R.ok().data("insert","success");
     }
 
     @GetMapping("/lists")

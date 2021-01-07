@@ -23,20 +23,20 @@ public interface UserRegisterLogDao {
     )
     int addUserRegisterLog(UserRegisterLog userRegisterLog);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.UserRegisterLogProvider.class, method = "selectWithParams")
+    @SelectProvider(type=com.freshshop.demo.provider.UserRegisterLogProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<UserRegisterLog> query(Map<String, Object> param);
 
-    @InsertProvider(type=com.freshshop.demo.Provider.UserRegisterLogProvider.class, method = "dynamicInsert")
+    @InsertProvider(type=com.freshshop.demo.provider.UserRegisterLogProvider.class, method = "dynamicInsert")
     int insert(UserRegisterLog userRegisterLog);
 
-    @UpdateProvider(type=com.freshshop.demo.Provider.UserRegisterLogProvider.class, method = "dynamicUpdate")
+    @UpdateProvider(type=com.freshshop.demo.provider.UserRegisterLogProvider.class, method = "dynamicUpdate")
     int update(UserRegisterLog userRegisterLog);
 
-    @DeleteProvider(type=com.freshshop.demo.Provider.UserRegisterLogProvider.class, method = "dynamicDelete")
+    @DeleteProvider(type=com.freshshop.demo.provider.UserRegisterLogProvider.class, method = "dynamicDelete")
     int delete(UserRegisterLog userRegisterLog);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.UserRegisterLogProvider.class, method = "dynamicSelect")
+    @SelectProvider(type=com.freshshop.demo.provider.UserRegisterLogProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<UserRegisterLog> select(UserRegisterLog userRegisterLog);
 

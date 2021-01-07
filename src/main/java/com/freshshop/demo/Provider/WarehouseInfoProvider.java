@@ -1,4 +1,4 @@
-package com.freshshop.demo.Provider;
+package com.freshshop.demo.provider;
 
 import com.freshshop.demo.entity.WarehouseInfo;
 import org.apache.ibatis.jdbc.SQL;

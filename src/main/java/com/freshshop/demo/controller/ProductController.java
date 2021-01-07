@@ -1,14 +1,18 @@
 package com.freshshop.demo.controller;
 
+import com.freshshop.demo.entity.Product;
+import com.freshshop.demo.entity.ProductCategory;
+import com.freshshop.demo.entity.ProductSku;
+import com.freshshop.demo.entity.SkuStock;
+import com.freshshop.demo.mapper.ProductCategoryDao;
+import com.freshshop.demo.mapper.ProductDao;
+import com.freshshop.demo.service.ProductSkuService;
+import com.freshshop.demo.utils.DateId;
+import com.freshshop.demo.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.freshshop.demo.entity.Product;
-import com.freshshop.demo.entity.ProductCategory;
-import com.freshshop.demo.mapper.ProductCategoryDao;
-import com.freshshop.demo.mapper.ProductDao;
-import com.freshshop.demo.utils.R;
-
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,29 +25,10 @@ public class ProductController {
     @Autowired
     private ProductCategoryDao productCategoryDao;
 
-    @PostMapping
-    public String insert(@RequestBody Product product){
-//        Product product = new Product();
-//        product.setProductId("4");
-//        product.setProductPrice(20);
-//        product.setProductCategoryId("14");
-//        product.setDeleteStatus(0);
-//        product.setName("好味道");
-//        product.setLowStock(2);
-//        product.setNewStatus(1);
-//        product.setPromotionType(0);
-//        product.setPromotionStartTime(new Date());
-//        product.setPromotionEndTime(new Date());
-//        product.setPromotionPrice(15);
-//        product.setPublishStatus(1);
-//        product.setSale(1200);
-//        product.setUnit("kg");
-//        product.setWeight(1);
-//        product.setStock(100);
-//        product.setUpdateTime(new Date());
-        productDao.addProduct(product);
-        return "product";
-    }
+    @Autowired
+    private ProductSkuService productSkuService;
+
+   
     @GetMapping("/lists")
     public List<Product> queryAll(){
         List<Product> products = productDao.queryAll();
@@ -55,7 +40,7 @@ public class ProductController {
     }
 
     @GetMapping("/new")
-    public R update(@RequestBody Product params){
+    public R insert(@RequestBody Product product){
 //        Product product = new Product();
 //        product.setProductId("4");
 //        product.setProductPrice(20);
@@ -77,7 +62,7 @@ public class ProductController {
 //        productDao.update(product);
 //        return "new";
     	try {
-    		productDao.update(params);
+    		productSkuService.update(product);
 			return R.ok().data("create","success");
 		} catch (Exception e) {
 			return R.error().data("create","fail");
@@ -93,5 +78,26 @@ public class ProductController {
     public R findProductByCategoryId(@RequestBody ProductCategory params) {
     	String id = productCategoryDao.findProductCategoryIdByname(params.getName());
     	return R.ok().data("items",productDao.findProductByCategoryId(id));
+    }
+
+    @GetMapping("/findProductByLike") // 模糊查询
+    public R findProductByLike(@RequestBody Product params) {
+    	return R.ok().data("items",productDao.findProductByLike("%"+params.getName()+"%"));
+    }
+    
+    @GetMapping("/del")
+    public R delete(@RequestParam String id) {
+    	try {
+        	productDao.deleteById(id);
+        	return R.ok().data("del","success");
+    	}catch(Exception e) {
+    		return R.error().data("del", "fail");
+    	}
+    	
+    }
+    
+    @GetMapping("/update")
+    public void update(@RequestBody Product product) {
+    	productDao.update(product);
     }
 }

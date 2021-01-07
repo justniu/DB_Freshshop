@@ -41,17 +41,28 @@
 （1）查看某个商品的全部信息
 查：http://localhost:8014/product/find
 {
-    "productId": "2"
+    "productId": "10002695"
 }
 （2）根据分类查找商品
 查：http://localhost:8014/product/findProductByCategoryId
 {
-    "name":"红富士"
+    "name":"苹果"
 }
 （3）查看某个商品的全部评论
 查：http://localhost:8014/productComment/findById
 {
     "productId": "3"
+}
+（4）模糊查询
+查：http://localhost:8014/product/findProductByLike
+{
+    "name": "冬瓜"
+}
+（5）更新商品信息
+http://localhost:8014/product/update
+{
+    "productId": "10002695",
+    "deleteStatus":0
 }
 4. 用户管理
 （1）增删改查用户信息
@@ -97,7 +108,7 @@ http://localhost:8014/user/saveInfo
     "id": "58e69ba1bbf"
 }
 （2）查看用户订单信息
-查：
+查：http://localhost:8014/userOrder/goods?userId=58e69ba1bbe
 （3）查看用户所有评论
 查：http://localhost:8014/productComment/findByUserId
 {
@@ -105,8 +116,37 @@ http://localhost:8014/user/saveInfo
 }
 5. 采购管理
 （1）采购单信息增删查改
+根据商品主要信息查询sku
+http://localhost:8014/product/list?name=蔺德青瓜
+增加商品
+http://localhost:8014/product/new
+{
+    "productId": "10011195",
+    "productCategoryId": "14",
+    "updateTime": "1900-01-20T03:34:58.000+00:00",
+    "name": "天天青瓜",
+    "deleteStatus": 1,
+    "publishStatus": 0,
+    "newStatus": 0,
+    "sale": 1681,
+    "productPrice": 15.26,
+    "promotionPrice": 13.26,
+    "stock": 20,
+    "lowStock": 2,
+    "unit": "kg",
+    "weight": 2.0,
+    "promotionType": 0,
+    "promotionStartTime": null,
+    "promotionEndTime": null
+}
+http://localhost:8014/product/list?name=天天青瓜
+删除
+http://localhost:8014/product/del?id=10011195
+
 采购一个商品，首先查询 sku 表和 sku 库存表是否有该商品，如果没有，增加该商品，如果有，修改库存信息。
 （2）查询采购单的明细
 6. 销售管理
 （1）订单信息增删查改
 （2）查询用户订单明细
+（3）订单增
+增：

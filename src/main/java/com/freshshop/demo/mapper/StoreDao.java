@@ -23,20 +23,20 @@ public interface StoreDao {
     @Insert("insert into store ( \"ID\",  \"NAME\",  \"ADDRESS\",  \"PHONE\") values(#{id}, #{name}, #{address}, #{phone})")
     int addStore(Store store);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.StoreProvider.class, method = "selectWithParams")
+    @SelectProvider(type=com.freshshop.demo.provider.StoreProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<Store> query(Map<String, Object> param);
 
-    @InsertProvider(type=com.freshshop.demo.Provider.StoreProvider.class, method = "dynamicInsert")
+    @InsertProvider(type=com.freshshop.demo.provider.StoreProvider.class, method = "dynamicInsert")
     int insert(Store store);
 
-    @UpdateProvider(type=com.freshshop.demo.Provider.StoreProvider.class, method = "dynamicUpdate")
+    @UpdateProvider(type=com.freshshop.demo.provider.StoreProvider.class, method = "dynamicUpdate")
     int update(Store store);
 
-    @DeleteProvider(type=com.freshshop.demo.Provider.StoreProvider.class, method = "dynamicDelete")
+    @DeleteProvider(type=com.freshshop.demo.provider.StoreProvider.class, method = "dynamicDelete")
     int delete(Store store);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.StockLogProvider.class, method = "dynamicSelect")
+    @SelectProvider(type=com.freshshop.demo.provider.StockLogProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<StockLog> select(StockLog stockLog);
 }

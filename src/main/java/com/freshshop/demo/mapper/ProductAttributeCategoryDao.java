@@ -23,20 +23,20 @@ public interface ProductAttributeCategoryDao {
     )
     int addProductAttrCate(ProductAttributeCategory productAttributeCategory);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.ProductAttributeCategoryProvider.class, method = "selectWithParams")
+    @SelectProvider(type=com.freshshop.demo.provider.ProductAttributeCategoryProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<ProductAttributeCategory> query(Map<String, Object> param);
 
-    @InsertProvider(type=com.freshshop.demo.Provider.ProductAttributeCategoryProvider.class, method = "dynamicInsert")
+    @InsertProvider(type=com.freshshop.demo.provider.ProductAttributeCategoryProvider.class, method = "dynamicInsert")
     int insert(ProductAttributeCategory productAttributeCategory);
 
-    @UpdateProvider(type=com.freshshop.demo.Provider.ProductAttributeCategoryProvider.class, method = "dynamicUpdate")
+    @UpdateProvider(type=com.freshshop.demo.provider.ProductAttributeCategoryProvider.class, method = "dynamicUpdate")
     int update(ProductAttributeCategory productAttributeCategory);
 
-    @DeleteProvider(type = com.freshshop.demo.Provider.ProductAttributeCategoryProvider.class,method = "dynamicDelete")
+    @DeleteProvider(type = com.freshshop.demo.provider.ProductAttributeCategoryProvider.class,method = "dynamicDelete")
     int delete(ProductAttributeCategory productAttributeCategory);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.ProductAttributeCategoryProvider.class, method = "dynamicSelect")
+    @SelectProvider(type=com.freshshop.demo.provider.ProductAttributeCategoryProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<ProductAttributeCategory> select(ProductAttributeCategory productAttributeCategory);
 }

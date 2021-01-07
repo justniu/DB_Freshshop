@@ -24,20 +24,26 @@ public interface SkuStockDao {
     )
     int addSkuStock(SkuStock skuStock);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.SkuStockProvider.class, method = "selectWithParams")
+    @SelectProvider(type=com.freshshop.demo.provider.SkuStockProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<SkuStock> query(Map<String, Object> param);
 
-    @InsertProvider(type=com.freshshop.demo.Provider.SkuStockProvider.class, method = "dynamicInsert")
+    @InsertProvider(type=com.freshshop.demo.provider.SkuStockProvider.class, method = "dynamicInsert")
     int insert(SkuStock skuStock);
 
-    @UpdateProvider(type=com.freshshop.demo.Provider.SkuStockProvider.class, method = "dynamicUpdate")
+    @UpdateProvider(type=com.freshshop.demo.provider.SkuStockProvider.class, method = "dynamicUpdate")
     int update(SkuStock skuStock);
 
-    @DeleteProvider(type=com.freshshop.demo.Provider.SkuStockProvider.class, method = "dynamicDelete")
+    @DeleteProvider(type=com.freshshop.demo.provider.SkuStockProvider.class, method = "dynamicDelete")
     int delete(SkuStock skuStock);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.SkuStockProvider.class, method = "dynamicSelect")
+    @SelectProvider(type=com.freshshop.demo.provider.SkuStockProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<SkuStock> select(SkuStock skuStock);
+    
+    @Update("update sku_stock set stock = stock-#{num} where sku_id=#{skuId}")
+    void updateSkuStock(int num,String skuId);
+    
+    @Select("select repository_id from sku_stock where sku_id = #{skuId}")
+    String selectRepositoryId(String skuId);
 }

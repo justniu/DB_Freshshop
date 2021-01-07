@@ -22,20 +22,20 @@ public interface ProductAttributeValueDao {
     )
     int addProductAttrVal(ProductAttributeValue productAttributeValue);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.ProductAttributeValueProvider.class, method = "selectWithParams")
+    @SelectProvider(type=com.freshshop.demo.provider.ProductAttributeValueProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<ProductAttributeValue> query(Map<String, Object> param);;
 
-    @DeleteProvider(type=com.freshshop.demo.Provider.ProductAttributeValueProvider.class, method = "dynamicDelete")
+    @DeleteProvider(type=com.freshshop.demo.provider.ProductAttributeValueProvider.class, method = "dynamicDelete")
     int delete(ProductAttributeValue productAttributeValue);
 
-    @InsertProvider(type = com.freshshop.demo.Provider.ProductAttributeValueProvider.class,method = "dynamicInsert")
+    @InsertProvider(type = com.freshshop.demo.provider.ProductAttributeValueProvider.class,method = "dynamicInsert")
     int insert(ProductAttributeValue productAttributeValue);
 
-    @UpdateProvider(type = com.freshshop.demo.Provider.ProductAttributeValueProvider.class,method = "dynamicUpdate")
+    @UpdateProvider(type = com.freshshop.demo.provider.ProductAttributeValueProvider.class,method = "dynamicUpdate")
     int update(ProductAttributeValue productAttributeValue);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.ProductAttributeValueProvider.class, method = "dynamicSelect")
+    @SelectProvider(type=com.freshshop.demo.provider.ProductAttributeValueProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<ProductAttributeValue> select(ProductAttributeValue productAttributeValue);
 }

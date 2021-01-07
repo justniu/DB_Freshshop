@@ -36,20 +36,20 @@ public interface ProductDao {
     )
     int addProduct(Product product);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.ProductProvider.class, method = "selectWithParams")
+    @SelectProvider(type=com.freshshop.demo.provider.ProductProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<Product> query(Map<String, Object> param);
 
-    @UpdateProvider(type=com.freshshop.demo.Provider.ProductProvider.class, method = "dynamicUpdate")
+    @UpdateProvider(type=com.freshshop.demo.provider.ProductProvider.class, method = "dynamicUpdate")
     int update(Product product);
 
-    @InsertProvider(type = com.freshshop.demo.Provider.ProductProvider.class, method = "dynamicInsert")
+    @InsertProvider(type = com.freshshop.demo.provider.ProductProvider.class, method = "dynamicInsert")
     int insert(Product product);
 
-    @DeleteProvider(type = com.freshshop.demo.Provider.ProductProvider.class, method = "dynamicDelete")
+    @DeleteProvider(type = com.freshshop.demo.provider.ProductProvider.class, method = "dynamicDelete")
     int delete(Product product);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.ProductProvider.class, method = "dynamicSelect")
+    @SelectProvider(type=com.freshshop.demo.provider.ProductProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<Product> select(Product product);
     
@@ -58,4 +58,11 @@ public interface ProductDao {
     
     @Select("select * from product where product_category_id = #{productCategoryId}")
     List<Product> findProductByCategoryId(String productCategoryId);
+    
+    @Select("select * from product where name like #{name}")
+    @ResultMap("resultMap")
+    List<Product> findProductByLike(String name);
+    
+    @Delete("delete from product where product_id = #{id}")
+    int deleteById(String id);
 }

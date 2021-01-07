@@ -29,20 +29,20 @@ public interface UserOrderDetailDao {
     )
     int addUserOrderDetail(UserOrderDetail userOrderDetail);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.UserOrderDetailProvider.class, method = "selectWithParams")
+    @SelectProvider(type=com.freshshop.demo.provider.UserOrderDetailProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<UserOrderDetail> query(Map<String, Object> param);
 
-    @InsertProvider(type=com.freshshop.demo.Provider.UserOrderDetailProvider.class, method = "dynamicInsert")
+    @InsertProvider(type=com.freshshop.demo.provider.UserOrderDetailProvider.class, method = "dynamicInsert")
     int insert(UserOrderDetail userOrderDetail);
 
-    @DeleteProvider(type=com.freshshop.demo.Provider.UserOrderDetailProvider.class, method = "dynamicDelete")
+    @DeleteProvider(type=com.freshshop.demo.provider.UserOrderDetailProvider.class, method = "dynamicDelete")
     int delete(UserOrderDetail userOrderDetail);
 
-    @UpdateProvider(type=com.freshshop.demo.Provider.UserOrderDetailProvider.class, method = "dynamicUpdate")
+    @UpdateProvider(type=com.freshshop.demo.provider.UserOrderDetailProvider.class, method = "dynamicUpdate")
     int update(UserOrderDetail userOrderDetail);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.UserOrderDetailProvider.class, method = "dynamicUpdate")
+    @SelectProvider(type=com.freshshop.demo.provider.UserOrderDetailProvider.class, method = "dynamicUpdate")
     @ResultMap("resultMap")
     List<UserOrderDetail> select(UserOrderDetail userOrderDetail);
 }

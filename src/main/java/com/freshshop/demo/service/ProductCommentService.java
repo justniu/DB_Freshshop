@@ -1,12 +1,11 @@
 package com.freshshop.demo.service;
 
-import java.util.List;
-
+import com.freshshop.demo.entity.ProductComment;
+import com.freshshop.demo.mapper.ProductCommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.freshshop.demo.entity.ProductComment;
-import com.freshshop.demo.mapper.ProductCommentMapper;
+import java.util.List;
 
 @Service
 public class ProductCommentService {

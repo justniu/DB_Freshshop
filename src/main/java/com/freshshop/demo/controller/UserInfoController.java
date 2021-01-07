@@ -1,21 +1,27 @@
 package com.freshshop.demo.controller;
 
+import com.freshshop.demo.entity.UserInfo;
+import com.freshshop.demo.entity.UserRegisterLog;
+import com.freshshop.demo.mapper.UserRegisterLogDao;
+import com.freshshop.demo.service.UserInfoService;
+import com.freshshop.demo.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.freshshop.demo.entity.UserInfo;
-import com.freshshop.demo.service.UserInfoService;
-import com.freshshop.demo.utils.R;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/user")
 public class UserInfoController {
 	@Autowired
 	UserInfoService userInfoService;
-	
+
+	@Autowired
+	UserRegisterLogDao userRegisterLogDao;
+
 	@GetMapping("/Infos") // 获取所有用户的信息
 	public R findAllUserInfo() {
 		return R.ok().data("items", userInfoService.findAll());
@@ -36,6 +42,11 @@ public class UserInfoController {
 	public R insertUserInfo(@RequestBody UserInfo params) {
 		try {
 			userInfoService.insert(params);
+			UserRegisterLog userRegisterLog = new UserRegisterLog();
+			userRegisterLog.setUserId(params.getId());
+			userRegisterLog.setCreateTime(new Date());
+			userRegisterLog.setUserType(0);
+			userRegisterLogDao.addUserRegisterLog(userRegisterLog);
 			return R.ok().data("create","success");
 		} catch (Exception e) {
 			return R.error().data("create","fail");

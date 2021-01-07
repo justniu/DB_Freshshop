@@ -1,11 +1,10 @@
 package com.freshshop.demo.mapper;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.freshshop.demo.entity.UserOrder;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.freshshop.demo.entity.UserOrder;
+import java.util.List;
+import java.util.Optional;
 
 public interface UserOrderMapper  extends MongoRepository<UserOrder, String>{
 	List<UserOrder> findAll(); // 查询所有销售订单

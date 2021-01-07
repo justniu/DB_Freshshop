@@ -1,9 +1,8 @@
 package com.freshshop.demo.mapper;
 
+import com.freshshop.demo.entity.CategoryAttribute;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
-
-import com.freshshop.demo.entity.CategoryAttribute;
 
 import java.util.List;
 import java.util.Map;
@@ -23,20 +22,20 @@ public interface CategoryAttributeDao {
     )
     int addCategoryAttr(CategoryAttribute categoryAttribute);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.CategoryAttributeProvider.class, method = "selectWithParams")
+    @SelectProvider(type=com.freshshop.demo.provider.CategoryAttributeProvider.class, method = "selectWithParams")
     @ResultMap("resultMap")
     List<CategoryAttribute> query(Map<String, Object> param);
 
-    @InsertProvider(type = com.freshshop.demo.Provider.CategoryAttributeProvider.class, method = "dynamicInsert")
+    @InsertProvider(type = com.freshshop.demo.provider.CategoryAttributeProvider.class, method = "dynamicInsert")
     int insert(CategoryAttribute categoryAttribute);
 
-    @UpdateProvider(type=com.freshshop.demo.Provider.CategoryAttributeProvider.class, method = "dynamicUpdate")
+    @UpdateProvider(type=com.freshshop.demo.provider.CategoryAttributeProvider.class, method = "dynamicUpdate")
     int update(CategoryAttribute categoryAttribute);
 
-    @DeleteProvider(type = com.freshshop.demo.Provider.CategoryAttributeProvider.class, method = "dynamicDelete")
+    @DeleteProvider(type = com.freshshop.demo.provider.CategoryAttributeProvider.class, method = "dynamicDelete")
     int delete(CategoryAttribute categoryAttribute);
 
-    @SelectProvider(type=com.freshshop.demo.Provider.CategoryAttributeProvider.class, method = "dynamicSelect")
+    @SelectProvider(type=com.freshshop.demo.provider.CategoryAttributeProvider.class, method = "dynamicSelect")
     @ResultMap("resultMap")
     List<CategoryAttribute> select(CategoryAttribute categoryAttribute);
 }

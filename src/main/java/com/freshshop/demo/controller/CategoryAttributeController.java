@@ -1,11 +1,10 @@
 package com.freshshop.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import com.freshshop.demo.entity.CategoryAttribute;
 import com.freshshop.demo.mapper.CategoryAttributeDao;
 import com.freshshop.demo.utils.R;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;

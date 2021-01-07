@@ -1,10 +1,10 @@
 package com.freshshop.demo.utils;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
 public class R {
